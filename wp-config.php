@@ -19,10 +19,10 @@
 define('DB_NAME', 'playground');
 
 /** MySQL database username */
-define('DB_USER', 'longlc');
+define('DB_USER', '');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'longlc');
+define('DB_PASSWORD', '');
 
 /** MySQL hostname */
 define('DB_HOST', 'localhost');
