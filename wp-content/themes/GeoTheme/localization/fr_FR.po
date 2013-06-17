@@ -1,0 +1,1983 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Geo Places/GeoPlaces v2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2010-10-30 13:32+0530\n"
+"Last-Translator: test <test@best.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: author.php:38
+msgid "image not available"
+msgstr "image non disponible"
+
+#: author.php:43
+msgid "review"
+msgstr "avis"
+
+#: author.php:64
+#: library/functions/custom_functions.php:912
+#: library/functions/widgets_functions.php:1020
+#: library/functions/widgets_functions.php:1404
+#: library/includes/event_listing.php:106
+#: library/includes/event_listing.php:153
+#: library/includes/place_listing.php:102
+#: library/includes/place_listing.php:146
+#: search.php:73
+#: tag.php:64
+#: tag.php:93
+#: taxonomy-event_tag.php:98
+#: taxonomy-event_tag.php:145
+#: taxonomy-eventcategory.php:83
+#: taxonomy-eventcategory.php:130
+#: taxonomy.php:83
+#: taxonomy.php:130
+msgid "read more"
+msgstr "en savoir plus"
+
+#: author.php:70
+#: library/includes/blog_detail.php:46
+#: library/includes/event_detail.php:101
+#: library/includes/place_detail.php:108
+#: single-events.php:100
+msgid "Previous"
+msgstr "Précédent"
+
+#: author.php:71
+#: library/includes/blog_detail.php:47
+#: library/includes/event_detail.php:102
+#: library/includes/place_detail.php:109
+#: single-events.php:101
+msgid "Next"
+msgstr "Suivant"
+
+#: comments-old.php:110
+#: comments-old.php:113
+#: comments.php:79
+#: comments.php:83
+msgid "*"
+msgstr "*"
+
+#: header.php:90
+#: header.php:110
+msgid "Home"
+msgstr "Accueil"
+
+#: header.php:153
+#: language.php:21
+#: library/functions/widgets_functions.php:61
+msgid "Add Listing"
+msgstr "Ajouter une annonce"
+
+#: header.php:156
+#: language.php:18
+#: library/functions/custom_post_type.php:13
+#: library/functions/widgets_functions.php:64
+msgid "Add Event"
+msgstr "Ajouter un événement"
+
+#: language.php:3
+msgid "Add Place Listing"
+msgstr "Ajouter une annonce"
+
+#: language.php:4
+msgid "Add Event Listing"
+msgstr "Ajouter un événement"
+
+#: language.php:5
+msgid "Add Listing Preview"
+msgstr ""
+
+#: language.php:6
+msgid "Site Registration and Login Form"
+msgstr "Inscription au site et formulaire de connexion"
+
+#: language.php:7
+msgid "Success"
+msgstr "Succès"
+
+#: language.php:9
+msgid "How to Register"
+msgstr "Comment s'inscrire"
+
+#: language.php:10
+#: library/functions/custom_functions.php:113
+msgid "Registration Fees"
+msgstr "Frais d'inscription"
+
+#: language.php:11
+msgid "Enter how to register details "
+msgstr "Entrer les modalités d'inscription"
+
+#: language.php:14
+msgid "Enter Registration Fees, in  eg. : <b>50</b>"
+msgstr "Entrer les frais d'inscription, en ex. : <b>50</b>"
+
+#: language.php:17
+#: language.php:180
+msgid "Indicates mandatory fields"
+msgstr "Champs obligatoires"
+
+#: language.php:19
+msgid "Renew Event"
+msgstr "Renouveler l'événement"
+
+#: language.php:20
+msgid "Update Event"
+msgstr "Mettre à jour l'événement"
+
+#: language.php:22
+msgid "Renew Listing"
+msgstr "Renouveler l'annonce"
+
+#: language.php:23
+msgid "Update Listing"
+msgstr "Mettre à jour l'annonce"
+
+#: language.php:24
+#: library/includes/event_listing.php:99
+msgid "Date"
+msgstr "Date"
+
+#: language.php:25
+#: language.php:103
+msgid "Time"
+msgstr "Horaires"
+
+#: language.php:31
+msgid "Login"
+msgstr "Connexion"
+
+#: language.php:32
+#: language.php:177
+#: language.php:223
+#: library/functions/widgets_functions.php:76
+msgid "Password"
+msgstr "Mot de passe"
+
+#: language.php:33
+#: library/includes/admin_bulk_upload.php:214
+#: library/includes/admin_coupon.php:133
+#: library/includes/admin_paymet_settings.php:115
+#: library/includes/admin_price.php:128
+#: library/includes/admin_settings.php:137
+msgid "Submit"
+msgstr "Soumettre"
+
+#: language.php:34
+msgid "Add Images : <small>(You can upload more than one images to create image gallery on detail page)</small>"
+msgstr "Ajouter images : <small> (Vous pouvez mettre en ligne plusieurs images afin de créer une galerie d'images sur la page détaillée)</small>"
+
+#: language.php:35
+#: library/includes/image_uploader.php:45
+msgid "Select Images"
+msgstr "Sélectionner images"
+
+#: language.php:36
+#: language.php:94
+msgid "Listing Description"
+msgstr "Description de l'annonce"
+
+#: language.php:37
+msgid "Event Description"
+msgstr "Description de l'événement"
+
+#: language.php:38
+msgid "Special Offers"
+msgstr "Offres spéciales"
+
+#: language.php:39
+msgid "Contact"
+msgstr "Contact"
+
+#: language.php:40
+msgid "Enter Coupon Code"
+msgstr "Entrer un coupon de réduction"
+
+#: language.php:41
+msgid "Enter coupon code here (optional)"
+msgstr "Entrer votre coupon de réduction ici (facultatif)"
+
+#: language.php:42
+msgid "Captcha Verification"
+msgstr "Captcha"
+
+#: language.php:43
+msgid "Select Package Type"
+msgstr "Sélectionner le type de forfait"
+
+#: language.php:44
+#: library/includes/admin_coupon.php:108
+#: library/includes/admin_manage_coupon.php:72
+msgid "Coupon Code"
+msgstr "Code de réduction"
+
+#: language.php:46
+#, php-format
+msgid "%s : number of publish days are %s (<span id=\"%s\">%s %s</span>)"
+msgstr ""
+
+#: language.php:47
+msgid "Select Payment Method"
+msgstr "Sélectionner un moyen de paiement"
+
+#: language.php:50
+#, php-format
+msgid "This is preview of your listing and its not published yet. <br />If there is something wrong then \"Go back and edit\" or if you want to add listing then click on \"Publish\".<br> You are going to pay <b>%s</b> &  alive days are <b>%s</b> as %s listing"
+msgstr ""
+
+#: language.php:51
+msgid "This is preview of your listing and its not updated yet. <br />If there is something wrong then \"Go back and edit\" or if you want to add listing then click on \"Update now\""
+msgstr ""
+
+#: language.php:54
+msgid "Invalid Coupon Code"
+msgstr "Code de réduction invalide"
+
+#: language.php:56
+msgid "Email ID already exists. Please select a different Email."
+msgstr ""
+
+#: language.php:57
+msgid "New user registration disabled."
+msgstr "Inscription de nouveaux utilisateurs désactivée."
+
+#: language.php:59
+msgid "Select Package"
+msgstr "Sélectionner un forfait"
+
+#: language.php:60
+msgid "Set Google Map"
+msgstr "Définir Google Map"
+
+#: language.php:61
+msgid "Word Verification"
+msgstr ""
+
+#: language.php:62
+msgid "Review Your Listing"
+msgstr "Prévisualiser votre annonce"
+
+#: language.php:63
+msgid "Listing Information"
+msgstr "Information de l'annonce"
+
+#: language.php:64
+msgid "Select Listing Type"
+msgstr "Sélectionner le type d'annonce"
+
+#: language.php:65
+msgid "Select Type"
+msgstr "Type"
+
+#: language.php:66
+msgid "Listing Title"
+msgstr "Titre de l'annonce"
+
+#: language.php:67
+msgid "Note : You can sort images from Dashboard and then clicking on \"Edit\" in the lisitng"
+msgstr "Note : You can sort images from Dashboard and then clicking on \"Edit\" in the lisitng"
+
+#: language.php:68
+msgid "Name"
+msgstr "Nom"
+
+#: language.php:69
+msgid "City"
+msgstr "Ville"
+
+#: language.php:70
+msgid "State"
+msgstr ""
+
+#: language.php:71
+msgid "Mobile Number"
+msgstr "Téléphone portable"
+
+#: language.php:72
+#: language.php:115
+msgid "Email"
+msgstr "E-mail"
+
+#: language.php:73
+#: language.php:116
+#: library/functions/custom_functions.php:150
+#: library/functions/custom_functions.php:270
+#: library/includes/event_detail.php:145
+#: library/includes/place_detail.php:130
+#: library/includes/preview.php:211
+#: library/includes/preview_event.php:256
+#: single-events.php:144
+msgid "Website"
+msgstr "Site web"
+
+#: language.php:74
+#: library/functions/custom_functions.php:165
+#: library/functions/custom_functions.php:285
+#: library/includes/event_detail.php:158
+#: library/includes/place_detail.php:158
+#: library/includes/preview.php:239
+#: library/includes/preview_event.php:268
+#: single-events.php:157
+msgid "Twitter"
+msgstr "Twitter"
+
+#: language.php:75
+#: library/functions/custom_functions.php:172
+#: library/functions/custom_functions.php:292
+#: library/includes/event_detail.php:159
+#: library/includes/place_detail.php:159
+#: library/includes/preview.php:240
+#: library/includes/preview_event.php:269
+#: single-events.php:158
+msgid "Facebook"
+msgstr "Facebook"
+
+#: language.php:76
+msgid "Upload Photo"
+msgstr "Mettre en ligne une photo"
+
+#: language.php:77
+msgid "Short Biodata Information"
+msgstr "Courte biographie"
+
+#: language.php:78
+msgid "Note : PNG, GIF of JPEG only, for better image quality upload image size 150x150"
+msgstr "Note : PNG, GIF et JPEG seulement, taille recommandée 150x150"
+
+#: language.php:79
+msgid "Note : Basic HTML tags are allowed"
+msgstr "Note : Tags HTML de base autorisés"
+
+#: language.php:80
+msgid "Note: List out any special offers (optional)"
+msgstr ""
+
+#: language.php:81
+#: library/includes/admin_catetory_icons.php:55
+msgid "Category"
+msgstr "Catégorie"
+
+#: language.php:82
+msgid "Address"
+msgstr "Adresse"
+
+#: language.php:83
+msgid "Address Latitude"
+msgstr "Latitude"
+
+#: language.php:84
+msgid "Address Longitude"
+msgstr "Longitude"
+
+#: language.php:85
+msgid "Google Map View"
+msgstr "Vue Google Map"
+
+#: language.php:88
+msgid "Home Information"
+msgstr ""
+
+#: language.php:89
+msgid "&laquo; Go Back and Edit"
+msgstr ""
+
+#: language.php:90
+msgid "Update Now"
+msgstr "Mettre à jour"
+
+#: language.php:91
+msgid "Publish"
+msgstr "Publier"
+
+#: language.php:92
+#: library/includes/admin_coupon.php:135
+#: library/includes/admin_paymet_settings.php:117
+#: library/includes/admin_price.php:130
+msgid "Cancel"
+msgstr "Annuler"
+
+#: language.php:93
+msgid "Pay & Publish"
+msgstr "Payer et Publier"
+
+#: language.php:95
+msgid "Publisher Information"
+msgstr ""
+
+#: language.php:96
+msgid "Fill Out Event Information"
+msgstr ""
+
+#: language.php:97
+msgid "Enter Listing Details"
+msgstr "Entrer les détails de l'annonce"
+
+#: language.php:99
+msgid "Enter Event Details"
+msgstr "Entrer les détails de l'événement"
+
+#: language.php:100
+msgid "Event Title"
+msgstr "Titre de l'événement"
+
+#: language.php:104
+msgid "Event Start Date"
+msgstr "Date de début"
+
+#: language.php:105
+msgid "Enter Event Start Date. eg. : "
+msgstr ""
+
+#: language.php:106
+msgid "Start Time"
+msgstr "Heure de départ"
+
+#: language.php:107
+msgid "Enter Event Start Time. eg. : "
+msgstr ""
+
+#: language.php:109
+msgid "Event End Date"
+msgstr "Heures de fin"
+
+#: language.php:110
+msgid "Enter Event End Date. eg. : "
+msgstr ""
+
+#: language.php:111
+msgid "End Time"
+msgstr "Date de fin"
+
+#: language.php:112
+msgid "Enter Event End Time. eg. : "
+msgstr ""
+
+#: language.php:114
+msgid "Phone"
+msgstr "Téléphone"
+
+#: language.php:117
+msgid "Are you really sure want to DELETE this listing? Deleted listing can not be recovered later"
+msgstr "Etes vous vraiment sur(e) de vouloir SUPPRIMER cette annonce ? Cette opération ne peut être annulée par la suite"
+
+#: language.php:118
+msgid "Yes, Delete Please!"
+msgstr "Oui, supprimer SVP !"
+
+#: language.php:119
+msgid "This place is listed as Featured. Do you want to remove it from feature listing?"
+msgstr ""
+
+#: language.php:121
+msgid "Please enter listing address. eg. : <b>230 Vine Street And locations throughout Old City, Philadelphia, PA 19106</b>"
+msgstr ""
+
+#: language.php:122
+msgid "Enter Business or Listing Timing Information. <br /> eg. : <b>10.00 am to 6 pm every day</b>"
+msgstr ""
+
+#: language.php:123
+msgid "Please enter latitude for google map perfection. eg. : <b>39.955823048131286</b>"
+msgstr "Pour plus de précision, vous pouvez entrer une latitude. eg. : <b>39.955823048131286</b>"
+
+#: language.php:124
+msgid "Please enter longitude for google map perfection. eg. : <b>-75.14408111572266</b>"
+msgstr "Pour plus de précision, vous pouvez entrer une longitude. eg. : <b>-75.14408111572266</b>"
+
+#: language.php:125
+msgid "Click on \"Set Address on Map\" and then you can also drag pinpoint to locate the correct address"
+msgstr "Cliquer sur \"Définir l'adresse sur la carte\"  et déplacez ensuite votre point à l'endroit exacte sur la carte par glisser-déposer."
+
+#: language.php:126
+msgid "You can enter phone number,cell phone number etc."
+msgstr "Vous pouvez entrer un numéro de téléphone fixe ou mobile."
+
+#: language.php:127
+msgid "Enter website URL. eg. : <b>http://myplace.com</b>"
+msgstr "Entrer l'URL de votre site Web. ex. : <b>http://letouriste.fr/</b>"
+
+#: language.php:128
+msgid "Enter twitter URL. eg. : <b>http://twitter.com/myplace</b>"
+msgstr "Entrer l'URL de votre compte Twitter. ex. : <b>http://twitter.com/letouristefr</b>"
+
+#: language.php:129
+msgid "Enter facebook URL. eg. : <b>http://facebook.com/myplace</b>"
+msgstr "Entrer l'URL de votre compte Facebook. eg. : <b>http://facebook.com/letouriste/</b>"
+
+#: language.php:130
+msgid "Select listing category from here. Select atleast one category"
+msgstr "Sélectionner une ou plusieurs catégories pour votre annonce."
+
+#: language.php:131
+msgid "Select event category from here. Select atleast one category"
+msgstr "Sélectionner une ou plusieurs catégories pour votre événement."
+
+#: language.php:134
+msgid "Listing Posted Successfully"
+msgstr ""
+
+#: language.php:135
+msgid "Listing Renewal Successfully"
+msgstr ""
+
+#: language.php:136
+msgid "<h2>Listing information posted successfully.</h2> <p> You can edit this message from language.php file at root of theme folder.</p>"
+msgstr ""
+
+#: language.php:137
+msgid ""
+"<p>Thanks. The property has been submitted successfully.</p><p>In order to publish the property, kindly transfer amount of <u>[#$order_amt#] </u> in our bank. Our bank account details is mentioned below.</p>\n"
+"<p>Bank Name : [#$bank_name#]</p><p>Account Number : [#$account_number#]</p><br><p>Please include the following reference : [#$orderId#]</p><p><a href=\"[#$submited_link#]\" >View your submitted Property &raquo;</a></p><br><p>Thanks for listing your property at [#$store_name#].</p>"
+msgstr ""
+
+#: language.php:140
+msgid "Listing Posting Canceled"
+msgstr ""
+
+#: language.php:141
+msgid "Listing Post Canceled.<br><br>You can edit this message from language.php file at root of theme folder."
+msgstr ""
+
+#: language.php:144
+msgid "Payment Success"
+msgstr "Paiement effectué avec succès"
+
+#: language.php:145
+msgid "Thank you for join us. Your payment received and listing post published.<br>Thank you for become our valued member.<br><br>You can edit this message from language.php file at root of theme folder."
+msgstr ""
+
+#: language.php:148
+#: language.php:174
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
+
+#: language.php:149
+#: language.php:164
+#: language.php:187
+#: language.php:189
+#: language.php:190
+msgid "Sign In"
+msgstr "Se connecter"
+
+#: language.php:152
+#: language.php:158
+msgid "Dashboard"
+msgstr ""
+
+#: language.php:153
+#: language.php:222
+msgid "Edit Profile"
+msgstr "Editer profil"
+
+#: language.php:154
+msgid "Change Password"
+msgstr "Modifier le mot de passe"
+
+#: language.php:157
+msgid "My Account"
+msgstr "Mon compte"
+
+#: language.php:161
+msgid "Welcome "
+msgstr "Bienvenue"
+
+#: language.php:162
+msgid "Guest"
+msgstr "Invité"
+
+#: language.php:163
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: language.php:165
+msgid "Signup"
+msgstr "S'inscrire"
+
+#: language.php:168
+msgid "Place Listing are not Available"
+msgstr "Emplacement d'annonce non disponible"
+
+#: language.php:169
+msgid "edit"
+msgstr "éditer"
+
+#: language.php:170
+msgid "renew"
+msgstr "renouveler"
+
+#: language.php:171
+msgid "delete"
+msgstr "supprimer"
+
+#: language.php:175
+#: language.php:183
+msgid "E-mail"
+msgstr "E-mail"
+
+#: language.php:176
+#: library/functions/widgets_functions.php:75
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: language.php:178
+msgid "Remember me on this computer"
+msgstr "Se souvenir de moi sur cette ordinateur"
+
+#: language.php:179
+msgid "Get New Password"
+msgstr "Obtenir un nouveau mot de passe"
+
+#: language.php:181
+msgid "Sign Up Now"
+msgstr "S'inscrire maintenant"
+
+#: language.php:182
+msgid "Personal Information"
+msgstr "Informations personnelles"
+
+#: language.php:184
+msgid "Full Name"
+msgstr "Nom"
+
+#: language.php:185
+msgid "(note: A password will be e-mailed to you for future usage.)"
+msgstr "(note : un mot de passe va vous être envoyé par e-mail.)"
+
+#: language.php:186
+msgid "Register Now"
+msgstr "S'inscrire maintenant"
+
+#: language.php:188
+msgid "Register"
+msgstr "Inscrition"
+
+#: language.php:191
+msgid "Invalid Username/Password."
+msgstr "Nom d'utilisateur/Mot de passe invalide."
+
+#: language.php:192
+msgid "Registration complete. Please check your e-mail for login details."
+msgstr "Inscription terminée. Vérifiez votre adresse e-mail pour obtenir vos informations de connexion."
+
+#: language.php:193
+msgid "We just sent you a new password. Kindly check your e-mail now."
+msgstr "Nous venons de vous envoyer un nouveau mot de passe. Vérifier votre adresse e-mail."
+
+#: language.php:194
+msgid "A confirmation link has been sent to you via email. Kindly check your e-mail now."
+msgstr "Un lien de confirmation vient de vous être envoyé par e-mail. Vérifiez votre Bàl."
+
+#: language.php:195
+msgid "User registration has been disabled by the admin."
+msgstr "Inscription désactivée par l'administrateur."
+
+#: language.php:196
+msgid "You are now logged out."
+msgstr "Vous êtes maintenant déconnecté(e)."
+
+#: language.php:197
+msgid "Please enter your e-mail address as username. You will receive a new password via e-mail."
+msgstr ""
+
+#: language.php:198
+msgid "Invalid Email, Please check"
+msgstr "E-mail invalide, vérifier SVP"
+
+#: language.php:199
+msgid "Check your e-mail for your new password."
+msgstr "Vérifiez votre e-mail pour votre nouveau mot de passe."
+
+#: language.php:202
+msgid "Enter Your Location"
+msgstr "Entrer "
+
+#: language.php:203
+msgid "Read More..."
+msgstr "En savoir plus..."
+
+#: language.php:206
+msgid "Place Your Review"
+msgstr "Placer votre avis"
+
+#: language.php:207
+msgid "Your Comments"
+msgstr "Vos commentaires"
+
+#: language.php:208
+msgid "Rate this place by clicking a star below :"
+msgstr "Noter cette annonce en cliquant sur une étoile ci-dessous :"
+
+#: language.php:209
+msgid "Comment"
+msgstr "Commentaire"
+
+#: language.php:210
+msgid "Review"
+msgstr "Avis"
+
+#: language.php:211
+msgid "Comments"
+msgstr "Commentaires"
+
+#: language.php:212
+#: library/includes/place_listing.php:43
+msgid "Reviews"
+msgstr "Avis"
+
+#: language.php:213
+msgid "Submit Review"
+msgstr "Soumettre l'avis"
+
+#: language.php:216
+msgid "Near"
+msgstr "Près de..."
+
+#: language.php:217
+msgid "Search for"
+msgstr "Recherche pour"
+
+#: language.php:218
+msgid "food, products or place"
+msgstr "restaurants, hôtels, campings..."
+
+#: language.php:219
+msgid "Zip code or address "
+msgstr "Code postal ou adresse"
+
+#: language.php:224
+msgid "Confirm Password"
+msgstr "Confirmer mot de passe"
+
+#: language.php:225
+#: library/functions/custom_post_type.php:15
+#: library/includes/admin_catetory_icons.php:71
+#: library/includes/admin_manage_coupon.php:75
+#: library/includes/admin_manage_coupon.php:94
+#: library/includes/admin_manage_price.php:50
+#: library/includes/admin_manage_price.php:68
+msgid "Edit"
+msgstr "Editer"
+
+#: language.php:226
+#: language.php:229
+msgid "Profile edited successfully."
+msgstr "Profil édité avec succès."
+
+#: language.php:227
+msgid "Please enter Email."
+msgstr "Entrer votre E-mail SVP."
+
+#: language.php:228
+msgid "Email already exist, please choose another."
+msgstr "L'adresse e-mail existe déjà, choisissez-en une autre SVP."
+
+#: language.php:232
+msgid "Processing for paypal, Please wait..."
+msgstr ""
+
+#: language.php:234
+msgid "Processing for 2Checkout, Please wait..."
+msgstr ""
+
+#: language.php:236
+msgid "Processing for Authorize Net, Please wait..."
+msgstr ""
+
+#: language.php:238
+msgid "Processing for Google Checkout, Please wait..."
+msgstr ""
+
+#: language.php:240
+msgid "Processing for WordPay, Please wait..."
+msgstr ""
+
+#: language.php:244
+msgid ""
+"<p>Thanks. The listing has been submitted successfully.</p><p>In order to publish the listing, kindly transfer amount of <u>[#$order_amt#] </u> in our bank. Our bank account details is mentioned below.</p>\n"
+"<p>Bank Name : [#$bank_name#]</p><p>Account Number : [#$account_number#]</p><br><p>Please include the following reference : [#$orderId#]</p><p><a href=\"[#$submited_listing_link#]\" >View your submitted listing &raquo;</a></p><br><p>Thanks for listing your listing at [#$store_name#].</p>"
+msgstr ""
+
+#: language.php:248
+msgid "<h3>How to Register</h3><p>Click on the below link to register by going to our website. Just enter your detail and pay the registration fees.</p><p><a href=\"#\" class=\"button\">Register Now</a></p>"
+msgstr ""
+
+#: library/captcha/captcha_function.php:12
+msgid "Please enter valid black colored text only"
+msgstr ""
+
+#: library/captcha/captcha_function.php:13
+msgid "Enter the text as you see in the image. Only enter black colored text"
+msgstr ""
+
+#: library/functions/admin_options.php:92
+msgid "Default Image Cutting Edge"
+msgstr ""
+
+#: library/functions/admin_options.php:93
+msgid "Set Default Image Cutting Edge Position."
+msgstr ""
+
+#: library/functions/admin_settings.php:99
+msgid "Theme Options"
+msgstr "Options du thème"
+
+#: library/functions/admin_settings.php:100
+msgid "Show/Hide All Options"
+msgstr "Afficher/masquer toutes les options"
+
+#: library/functions/admin_settings.php:222
+msgid "label"
+msgstr ""
+
+#: library/functions/admin_settings.php:258
+#: library/functions/admin_settings.php:273
+#: library/functions/admin_settings.php:349
+msgid "name"
+msgstr ""
+
+#: library/functions/admin_settings.php:327
+msgid "Save changes"
+msgstr "Sauvegarder les modifications"
+
+#: library/functions/admin_settings.php:333
+msgid "Reset"
+msgstr ""
+
+#: library/functions/admin_settings.php:353
+msgid "desc"
+msgstr ""
+
+#: library/functions/custom_functions.php:26
+msgid "Image Position"
+msgstr "Position de l'image"
+
+#: library/functions/custom_functions.php:29
+msgid "Enter Image Position. eg. : left/right"
+msgstr ""
+
+#: library/functions/custom_functions.php:49
+#: library/functions/custom_functions.php:204
+msgid "Custom Video code"
+msgstr "Code vidéo personnalisé"
+
+#: library/functions/custom_functions.php:51
+#: library/functions/custom_functions.php:206
+msgid "Enter embaded code for video. eg. : youtube video code"
+msgstr ""
+
+#: library/functions/custom_functions.php:56
+#: library/functions/custom_functions.php:211
+msgid "Listing Address"
+msgstr "Adresse de l'annonce"
+
+#: library/functions/custom_functions.php:58
+msgid ""
+"<span class=note>Enter listing place address. eg. : <b>230 Vine Street And locations throughout Old City,\n"
+"\tPhiladelphia, PA 19106</b> </span>"
+msgstr ""
+
+#: library/functions/custom_functions.php:64
+msgid "Latitude for Map"
+msgstr ""
+
+#: library/functions/custom_functions.php:66
+#: library/functions/custom_functions.php:221
+msgid "Enter Google Map Latitude. eg. : <b>39.955823048131286</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:71
+msgid "Longitude for Map"
+msgstr ""
+
+#: library/functions/custom_functions.php:73
+#: library/functions/custom_functions.php:228
+msgid "Enter Google Map Longitude. eg. : <b>-75.14408111572266</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:78
+msgid "Starting Date"
+msgstr ""
+
+#: library/functions/custom_functions.php:85
+msgid "Starting Time"
+msgstr ""
+
+#: library/functions/custom_functions.php:92
+msgid "Ending Date"
+msgstr ""
+
+#: library/functions/custom_functions.php:99
+msgid "Ending Time"
+msgstr ""
+
+#: library/functions/custom_functions.php:106
+msgid "Registration Description"
+msgstr ""
+
+#: library/functions/custom_functions.php:108
+msgid "Enter Registration Description"
+msgstr ""
+
+#: library/functions/custom_functions.php:115
+msgid "10</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:120
+#: library/functions/custom_functions.php:240
+msgid "Contact Information"
+msgstr "Informations de contact"
+
+#: library/functions/custom_functions.php:122
+#: library/functions/custom_functions.php:242
+msgid "Enter Contact Information, Phone or mobile number. eg. : <b>(610) 388-1000</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:127
+#: library/functions/custom_functions.php:247
+msgid "Publish Contact Information?"
+msgstr ""
+
+#: library/functions/custom_functions.php:130
+#: library/functions/custom_functions.php:250
+msgid "Wish to publish Contact Information on detail page? eg. : <b>yes/no</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:135
+#: library/functions/custom_functions.php:255
+msgid "Email Address"
+msgstr "Adresse e-mail"
+
+#: library/functions/custom_functions.php:137
+#: library/functions/custom_functions.php:257
+msgid "Enter Address. eg. : <b>info@myplace.com</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:142
+#: library/functions/custom_functions.php:262
+msgid "Publish Email?"
+msgstr "Publier l'e-mail ?"
+
+#: library/functions/custom_functions.php:145
+#: library/functions/custom_functions.php:265
+msgid "Wish to publish email on detail page? eg. : <b>yes/no</b>"
+msgstr "Souhaitez-vous publier votre e-mail sur votre page d'annonce ? ex. : <b>oui/non</b>"
+
+#: library/functions/custom_functions.php:152
+#: library/functions/custom_functions.php:272
+msgid "Enter Website Address. eg. : <b>http://myplace.com</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:157
+#: library/functions/custom_functions.php:277
+msgid "Publish Website?"
+msgstr "Publier l'adresse du site web ?"
+
+#: library/functions/custom_functions.php:160
+#: library/functions/custom_functions.php:280
+msgid "Wish to publish Website on detail page? eg. : <b>yes/no</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:167
+#: library/functions/custom_functions.php:287
+msgid "Enter Twitter Address. eg. : <b>http://twitter.com/myplace</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:174
+#: library/functions/custom_functions.php:294
+msgid "Enter Facebook Address. eg. : <b>http://facebook.com/myplace</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:179
+#: library/functions/custom_functions.php:299
+#: library/includes/admin_manage_price.php:49
+#: library/includes/admin_price.php:111
+msgid "Is Featured"
+msgstr ""
+
+#: library/functions/custom_functions.php:181
+#: library/functions/custom_functions.php:301
+msgid "Enter <b>1</b> if want to set as Feature else <b>0</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:186
+#: library/functions/custom_functions.php:307
+msgid "Paid Amount"
+msgstr ""
+
+#: library/functions/custom_functions.php:188
+#: library/functions/custom_functions.php:309
+msgid "Paid Amount to publish the listing. eg. : <b>$10</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:193
+#: library/functions/custom_functions.php:314
+#: library/includes/admin_paymet_settings.php:82
+msgid "Payment Method"
+msgstr ""
+
+#: library/functions/custom_functions.php:195
+#: library/functions/custom_functions.php:316
+msgid "Payment Method used to publish the listing. eg. : <b>paypal/googlecheckout/authorizenet/cashondelivery ... etc</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:213
+msgid ""
+"Enter listing place address. eg. : <b>230 Vine Street And locations throughout Old City,\n"
+"\tPhiladelphia, PA 19106</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:219
+msgid "Latitude Form Map"
+msgstr ""
+
+#: library/functions/custom_functions.php:226
+msgid "Longitude Form Map"
+msgstr ""
+
+#: library/functions/custom_functions.php:233
+msgid "Timing Information"
+msgstr ""
+
+#: library/functions/custom_functions.php:235
+msgid "Enter Timing Information. eg. : <b>10.00 am to 6 pm</b>"
+msgstr ""
+
+#: library/functions/custom_functions.php:551
+msgid "MostWanted Configuration"
+msgstr ""
+
+#: library/functions/custom_functions.php:597
+msgid "<!-- MostWanted Generated  Expires  -->"
+msgstr ""
+
+#: library/functions/custom_functions.php:619
+msgid "<!-- "
+msgstr ""
+
+#: library/functions/custom_functions.php:621
+msgid " -->"
+msgstr ""
+
+#: library/functions/custom_functions.php:641
+msgid "<!-- MostWanted Cache Hit -->"
+msgstr ""
+
+#: library/functions/custom_functions.php:706
+msgid "<p>MostWanted is now updating your stattraq database as a LOW_PRIORITY task.  This will probably take around  minutes.  Your previous statistics are being ever-so-slightly-repaired.  Every record of a post that was accessed using a permalink is having it's post id added to it.</p><ol>"
+msgstr ""
+
+#: library/functions/custom_functions.php:707
+msgid "<p>This page shows the progress of that process.  If you wander off to another page, the process will continue in the background, but you won't know precicely when it's complete.</p>"
+msgstr ""
+
+#: library/functions/custom_functions.php:721
+msgid " - sleeping for  seconds"
+msgstr ""
+
+#: library/functions/custom_functions.php:723
+msgid "</span></li>"
+msgstr ""
+
+#: library/functions/custom_functions.php:731
+msgid "</ol>"
+msgstr ""
+
+#: library/functions/custom_functions.php:732
+msgid "<h1>Finished!</h1>"
+msgstr ""
+
+#: library/functions/custom_functions.php:867
+msgid "Related Listing"
+msgstr ""
+
+#@ twentyten
+#: library/functions/custom_functions.php:1142
+#, php-format
+msgid "View all posts in %s"
+msgstr "View all posts in %s"
+
+#: library/functions/custom_post_type.php:10
+#: library/functions/custom_post_type.php:11
+#: library/includes/event_listing.php:49
+#: taxonomy-event_tag.php:38
+#: taxonomy-eventcategory.php:20
+#: taxonomy.php:20
+msgid "Events"
+msgstr "Evénements"
+
+#: library/functions/custom_post_type.php:12
+msgid "Event"
+msgstr "Evénement"
+
+#: library/functions/custom_post_type.php:14
+msgid "Add New Event"
+msgstr "Ajouter un nouvel événement"
+
+#: library/functions/custom_post_type.php:16
+msgid "Edit Event"
+msgstr "Editer l'événement"
+
+#: library/functions/custom_post_type.php:17
+msgid "New Event"
+msgstr "Nouvel événement"
+
+#: library/functions/custom_post_type.php:18
+msgid "View Event"
+msgstr "Voir l'événement"
+
+#: library/functions/custom_post_type.php:19
+#: library/functions/custom_post_type.php:53
+msgid "Search Events"
+msgstr "Rechercher un événement"
+
+#: library/functions/custom_post_type.php:20
+msgid "No Events found"
+msgstr "Aucun événement trouvé"
+
+#: library/functions/custom_post_type.php:21
+msgid "No Events found in trash"
+msgstr ""
+
+#: library/functions/custom_post_type.php:51
+msgid "Event Categories"
+msgstr "Catégories de l'événement"
+
+#: library/functions/custom_post_type.php:52
+msgid "Event Category"
+msgstr "Catégorie de l'événement"
+
+#: library/functions/custom_post_type.php:54
+msgid "Popular Event Categories"
+msgstr ""
+
+#: library/functions/custom_post_type.php:55
+msgid "All Event Categories"
+msgstr "Toutes les catégories d'événement"
+
+#: library/functions/custom_post_type.php:56
+msgid "Parent Event Category"
+msgstr ""
+
+#: library/functions/custom_post_type.php:57
+msgid "Parent Event Category:"
+msgstr ""
+
+#: library/functions/custom_post_type.php:58
+msgid "Edit Event Category"
+msgstr "Editer la catégorie de l'événement"
+
+#: library/functions/custom_post_type.php:59
+msgid "Update Event Category"
+msgstr "Mettre à jour la catégorie de l'événement"
+
+#: library/functions/custom_post_type.php:60
+msgid "Add New Event Category"
+msgstr "Ajouter une nouvelle catégorie à l'événement"
+
+#: library/functions/custom_post_type.php:61
+msgid "New Event Category Name"
+msgstr ""
+
+#: library/functions/custom_post_type.php:70
+#: library/functions/custom_post_type.php:71
+msgid "Event Tags"
+msgstr "Tags de l'événement"
+
+#: library/functions/custom_post_type.php:72
+msgid "Search Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:73
+msgid "Popular Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:74
+msgid "All Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:75
+msgid "Parent Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:76
+msgid "Parent Event Tags:"
+msgstr ""
+
+#: library/functions/custom_post_type.php:77
+msgid "Edit Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:78
+msgid "Update Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:79
+msgid "Add New Event Tags"
+msgstr ""
+
+#: library/functions/custom_post_type.php:80
+msgid "New Event Tags Name"
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:143
+msgid "Title: "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:148
+msgid "Number of posts to display: "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:154
+msgid "Show comment count "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:159
+msgid "Include zero comment posts "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:164
+msgid "If both of the following options are enabled, the <em>only category</em> option is respected."
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:167
+msgid "Show comments from all categories "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:171
+msgid "Only show posts in this category."
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:175
+msgid "Exclude posts from no categories "
+msgstr ""
+
+#@ most_popular_posts
+#: library/functions/most-popular.php:179
+msgid "Exclude posts in this category."
+msgstr ""
+
+#: library/functions/widgets_functions.php:102
+msgid "Widget Title"
+msgstr "Titre du widget"
+
+#: library/functions/widgets_functions.php:1000
+#: library/includes/event_listing.php:137
+#: library/includes/place_listing.php:132
+#: search.php:61
+#: taxonomy-event_tag.php:129
+#: taxonomy-eventcategory.php:114
+#: taxonomy.php:114
+msgid "Image Not Available "
+msgstr "Image non disponible"
+
+#: library/functions/widgets_functions.php:1219
+msgid "Title:"
+msgstr "Titre :"
+
+#: library/functions/widgets_functions.php:1224
+msgid "Category (<code>IDs</code> separated by commas):"
+msgstr "Catégorie (<code>IDs</code> séparés par des virgules) :"
+
+#: library/functions/widgets_functions.php:1229
+msgid "Number of posts:"
+msgstr "Nombre d'articles :"
+
+#: library/functions/widgets_functions.php:1234
+msgid "Nearest listing Factor<small><code>(this option will disabled if category ids inserted)</small>:"
+msgstr ""
+
+#: library/functions/widgets_functions.php:1236
+msgid "So Far Away"
+msgstr "Très éloigné"
+
+#: library/functions/widgets_functions.php:1237
+msgid "Far Away"
+msgstr "Eloigné"
+
+#: library/functions/widgets_functions.php:1238
+msgid "At Some Distant"
+msgstr "A une certaine distance"
+
+#: library/functions/widgets_functions.php:1239
+msgid "Nearer"
+msgstr "Plus près de"
+
+#: library/functions/widgets_functions.php:1240
+msgid "Very Near"
+msgstr "Très proche"
+
+#: library/functions/widgets_functions.php:1366
+#: library/functions/widgets_functions.php:1509
+msgid "View All"
+msgstr "Voir Tous"
+
+#: library/functions/widgets_functions.php:1394
+#: library/includes/event_listing.php:95
+#: library/includes/place_listing.php:90
+#: taxonomy-event_tag.php:84
+#: taxonomy-eventcategory.php:69
+#: taxonomy.php:69
+msgid "Image Not Available"
+msgstr "Image non disponible"
+
+#: library/functions/widgets_functions.php:1849
+msgid "Twitter Account ID"
+msgstr "ID compte Twitter"
+
+#: library/functions/widgets_functions.php:1854
+#: library/functions/widgets_functions.php:1973
+#: library/includes/admin_manage_price.php:45
+msgid "Title"
+msgstr "Titre"
+
+#: library/functions/widgets_functions.php:1860
+msgid "Show Twitter Posts"
+msgstr "Afficher les articles Twitter"
+
+#: library/functions/widgets_functions.php:1926
+msgid "Map Width (in pixcels)"
+msgstr "Largeur de la carte (en pixels)"
+
+#: library/functions/widgets_functions.php:1931
+msgid "Map Height (in pixcels)"
+msgstr "Hauteur de la carte (en pixels)"
+
+#: library/functions/yoast-breadcrumbs.php:61
+#: library/includes/admin_paymet_settings.php:73
+#: library/includes/admin_paymethods.php:264
+#: library/includes/admin_paymethods.php:298
+msgid "Settings"
+msgstr "Paramètres"
+
+#: library/functions/yoast-breadcrumbs.php:69
+msgid "You cannot edit the Yoast Breadcrumbs options."
+msgstr ""
+
+#@ yoast-posts
+#: library/functions/yoast-posts.php:23
+msgid "Yoast - Tweaking Websites"
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:170
+msgid "Bulk Upload"
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:174
+msgid "Please upload CSV file only."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:180
+msgid "Please select valid CSV file only for listing bulk upload."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:186
+msgid "Cannot move the bulk upload file to Temporary system folder <b>\"\"</b>. Please check folder permission should be 0777."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:192
+msgid "File you are uploading is not valid. First colum should be \"Post Title\"."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:200
+msgid "CSV uploaded successfully."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:202
+msgid "Total of  records inserted."
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:208
+msgid "Select CSV file to upload"
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:220
+msgid "You can download"
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:220
+msgid "sample CSV file"
+msgstr ""
+
+#: library/includes/admin_bulk_upload.php:230
+msgid "Please select csv file to upload"
+msgstr ""
+
+#: library/includes/admin_catetory_icons.php:13
+msgid "Icon settings saved successfully"
+msgstr ""
+
+#: library/includes/admin_catetory_icons.php:44
+msgid "Manage Category Icons"
+msgstr ""
+
+#: library/includes/admin_catetory_icons.php:56
+msgid "Icon"
+msgstr ""
+
+#: library/includes/admin_catetory_icons.php:57
+#: library/includes/admin_paymethods.php:263
+msgid "Action"
+msgstr "Action"
+
+#: library/includes/admin_catetory_icons.php:72
+msgid "Icon Path:"
+msgstr ""
+
+#: library/includes/admin_catetory_icons.php:76
+msgid "Save Changes"
+msgstr "Sauvegarder les modifications"
+
+#: library/includes/admin_coupon.php:94
+msgid "Edit Coupon"
+msgstr "Editer code de réduction"
+
+#: library/includes/admin_coupon.php:97
+#: library/includes/admin_manage_coupon.php:68
+msgid "Add Coupon"
+msgstr "Ajouter un code de réduction"
+
+#: library/includes/admin_coupon.php:103
+msgid "Coupon code already exists, Please user different one."
+msgstr ""
+
+#: library/includes/admin_coupon.php:113
+#: library/includes/admin_manage_coupon.php:73
+msgid "Discount Type"
+msgstr "Type de réduction"
+
+#: library/includes/admin_coupon.php:116
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#: library/includes/admin_coupon.php:124
+msgid "Amount"
+msgstr "Montant"
+
+#: library/includes/admin_coupon.php:146
+msgid "Percentage should be less than or equal to 100"
+msgstr "Le pourcentage doit être inférieur ou égal à 100"
+
+#: library/includes/admin_manage_coupon.php:42
+msgid "Manage Coupons"
+msgstr "Gérer les codes de réduction"
+
+#: library/includes/admin_manage_coupon.php:51
+msgid "Allow coupon option on submit Add Listing page"
+msgstr ""
+
+#: library/includes/admin_manage_coupon.php:52
+#: library/includes/admin_manage_price.php:67
+#: library/includes/admin_paymethods.php:287
+#: library/includes/admin_price.php:115
+#: library/includes/admin_settings.php:133
+msgid "Yes"
+msgstr "Oui"
+
+#: library/includes/admin_manage_coupon.php:53
+#: library/includes/admin_paymethods.php:287
+#: library/includes/admin_price.php:114
+#: library/includes/admin_settings.php:133
+msgid "No"
+msgstr "Non"
+
+#: library/includes/admin_manage_coupon.php:60
+msgid "Coupon updated successfully."
+msgstr "Code de réduction mis à jour avec succès."
+
+#: library/includes/admin_manage_coupon.php:65
+msgid "Coupon deleted successfully."
+msgstr "Code de réduction supprimé avec succès."
+
+#: library/includes/admin_manage_coupon.php:74
+msgid "Discount Amount"
+msgstr ""
+
+#: library/includes/admin_manage_coupon.php:76
+#: library/includes/admin_manage_coupon.php:95
+#: library/includes/admin_manage_price.php:51
+#: library/includes/admin_manage_price.php:69
+msgid "Delete"
+msgstr "Supprimer"
+
+#: library/includes/admin_manage_price.php:30
+msgid "Manage Price"
+msgstr "Gérer les prix"
+
+#: library/includes/admin_manage_price.php:33
+msgid "Price updated successfully."
+msgstr "Prix mis à jour avec succès."
+
+#: library/includes/admin_manage_price.php:38
+msgid "Price deleted successfully."
+msgstr "Prix supprimés avec succès"
+
+#: library/includes/admin_manage_price.php:41
+#: library/includes/admin_price.php:66
+msgid "Add Price"
+msgstr "Ajouter prix"
+
+#: library/includes/admin_manage_price.php:46
+msgid "Price"
+msgstr "Prix"
+
+#: library/includes/admin_manage_price.php:47
+msgid "Number Of Days"
+msgstr "Nombre de jours"
+
+#: library/includes/admin_manage_price.php:48
+#: library/includes/admin_price.php:102
+msgid "Status"
+msgstr "Statut"
+
+#: library/includes/admin_manage_price.php:66
+#: library/includes/admin_price.php:105
+msgid "Active"
+msgstr "Actif"
+
+#: library/includes/admin_manage_price.php:66
+#: library/includes/admin_price.php:106
+msgid "Inactive"
+msgstr "Inactif"
+
+#: library/includes/admin_manage_price.php:81
+msgid "Are you sure want to delet price?"
+msgstr "Etes vous sur(e) de vouloir supprimer ce prix ?"
+
+#: library/includes/admin_paymet_settings.php:76
+msgid "Updated Succesfully"
+msgstr "Mise à jour effectuée"
+
+#: library/includes/admin_paymet_settings.php:86
+#: library/includes/admin_paymethods.php:261
+msgid "Is Active"
+msgstr "Est actif"
+
+#: library/includes/admin_paymet_settings.php:88
+#: library/includes/admin_paymethods.php:294
+msgid "Activate"
+msgstr ""
+
+#: library/includes/admin_paymet_settings.php:89
+#: library/includes/admin_paymethods.php:291
+msgid "Deactivate"
+msgstr ""
+
+#: library/includes/admin_paymet_settings.php:94
+msgid "Display Order"
+msgstr "Ordre d'affichage"
+
+#: library/includes/admin_paymet_settings.php:128
+msgid "Please enter Payment Method"
+msgstr "Sélectionner un moyen de paiement SVP."
+
+#: library/includes/admin_paymethods.php:251
+msgid "Manage Payment Options"
+msgstr ""
+
+#: library/includes/admin_paymethods.php:260
+msgid "Method Name"
+msgstr ""
+
+#: library/includes/admin_paymethods.php:262
+msgid "Sort Order"
+msgstr "Trier par "
+
+#: library/includes/admin_price.php:63
+msgid "Edit Price"
+msgstr "Editer prix"
+
+#: library/includes/admin_price.php:72
+msgid "Price Title"
+msgstr "Titre du prix"
+
+#: library/includes/admin_price.php:77
+msgid "Price Amount"
+msgstr "Montant du prix"
+
+#: library/includes/admin_price.php:83
+msgid "Number of Days"
+msgstr "Nombre de jours"
+
+#: library/includes/admin_price.php:89
+#: library/includes/admin_price.php:92
+msgid "Select Category"
+msgstr "Sélectionner catégorie"
+
+#: library/includes/admin_price.php:120
+msgid "Title to be display while Add Listing"
+msgstr ""
+
+#: library/includes/admin_price.php:123
+msgid "Keep blank to reset default content."
+msgstr ""
+
+#: library/includes/admin_price.php:139
+msgid "Please enter Title"
+msgstr "Entrer un titre SVP"
+
+#: library/includes/admin_settings.php:107
+msgid "General Settings"
+msgstr "Paramètres généraux"
+
+#: library/includes/admin_settings.php:116
+msgid "Sender (Name that will be shown as email sender when users receive emails from this site)"
+msgstr ""
+
+#: library/includes/admin_settings.php:120
+msgid "Email Address (emails to users will be sent via this mail ID)"
+msgstr ""
+
+#: library/includes/admin_settings.php:124
+msgid "Default Currency (Ex.: USD)"
+msgstr ""
+
+#: library/includes/admin_settings.php:128
+msgid "Default Currency Symbol (Ex.: $)"
+msgstr ""
+
+#: library/includes/admin_settings.php:132
+msgid "Use HTTPS when clicking on Submit"
+msgstr "Utiliser HTTPS quand on clique sur Soumettre"
+
+#: library/includes/blog_listing.php:71
+msgid "Read more &raquo;"
+msgstr "En savoir plus &raquo;"
+
+#: library/includes/event_detail.php:11
+#: single-events.php:11
+msgid "Tweet"
+msgstr "Tweet"
+
+#: library/includes/event_detail.php:93
+#: library/includes/preview_event.php:211
+#: single-events.php:92
+msgid "Fees : "
+msgstr "Frais :"
+
+#: library/includes/event_detail.php:113
+#: library/includes/place_detail.php:120
+#: library/includes/preview.php:201
+#: library/includes/preview_event.php:224
+#: single-events.php:112
+msgid "Edit this Post"
+msgstr "Editer cet article"
+
+#: library/includes/event_detail.php:117
+#: library/includes/preview_event.php:228
+#: single-events.php:116
+msgid " - "
+msgstr "-"
+
+#: library/includes/event_detail.php:120
+#: library/includes/event_listing.php:99
+#: library/includes/event_listing.php:142
+#: library/includes/preview_event.php:231
+#: search.php:68
+#: single-events.php:119
+#: taxonomy-event_tag.php:88
+#: taxonomy-event_tag.php:134
+#: taxonomy-eventcategory.php:73
+#: taxonomy-eventcategory.php:119
+#: taxonomy.php:73
+#: taxonomy.php:119
+msgid " to "
+msgstr "vers"
+
+#: library/includes/event_detail.php:123
+#: library/includes/place_detail.php:121
+#: library/includes/preview.php:202
+#: library/includes/preview_event.php:234
+#: single-events.php:122
+msgid "Address :"
+msgstr "Adresse :"
+
+#: library/includes/event_detail.php:149
+#: library/includes/place_detail.php:148
+#: library/includes/place_listing.php:44
+#: library/includes/preview.php:229
+#: library/includes/preview_event.php:260
+#: single-events.php:148
+msgid "Rating"
+msgstr "Note"
+
+#: library/includes/event_detail.php:152
+#: library/includes/place_detail.php:151
+#: library/includes/preview.php:232
+#: library/includes/preview_event.php:263
+#: single-events.php:151
+msgid "Share"
+msgstr "Partager"
+
+#: library/includes/event_listing.php:52
+#: taxonomy-event_tag.php:41
+#: taxonomy-eventcategory.php:27
+#: taxonomy.php:27
+msgid "Upcoming"
+msgstr "A venir"
+
+#: library/includes/event_listing.php:53
+#: taxonomy-event_tag.php:42
+#: taxonomy-eventcategory.php:28
+#: taxonomy.php:28
+msgid "Past"
+msgstr ""
+
+#: library/includes/event_listing.php:99
+msgid "Timing"
+msgstr ""
+
+#: library/includes/event_listing.php:102
+#: library/includes/event_listing.php:148
+#: library/includes/place_listing.php:98
+#: library/includes/place_listing.php:141
+#: taxonomy-event_tag.php:94
+#: taxonomy-event_tag.php:140
+#: taxonomy-eventcategory.php:79
+#: taxonomy-eventcategory.php:125
+#: taxonomy.php:79
+#: taxonomy.php:125
+msgid "Pinpoint"
+msgstr "Pinpoint"
+
+#: library/includes/event_listing.php:151
+#: search.php:67
+#: search.php:70
+msgid "Location"
+msgstr "Localisation"
+
+#: library/includes/event_listing.php:177
+#: taxonomy-event_tag.php:169
+#: taxonomy-eventcategory.php:154
+#: taxonomy.php:154
+msgid "<b>No events Available right now</b>"
+msgstr "<b>Aucun événement disponible actuellement</b>"
+
+#: library/includes/image_uploader.php:45
+msgid "2 MB Max"
+msgstr "2 MB max"
+
+#: library/includes/image_uploader.php:129
+msgid "Save Order"
+msgstr "Sauvegarder la commande"
+
+#: library/includes/image_uploader.php:138
+msgid "processing ..."
+msgstr "traitement en cours..."
+
+#: library/includes/image_uploader.php:146
+msgid "Error loading agent favorite property."
+msgstr "Erreur de chargement."
+
+#: library/includes/image_uploader.php:175
+msgid "Error loading deletion of property image."
+msgstr "Erreur de chargement lors de la suppression des propriétés de l`image."
+
+#: library/includes/paynow.php:209
+msgid "<p>Dear ,</p><p>A new listing placed of ID:# </p><p>Thanks</p>"
+msgstr ""
+
+#: library/includes/paynow.php:210
+msgid "New place listing of ID:#"
+msgstr ""
+
+#: library/includes/paynow_event.php:217
+msgid "<p>Dear ,</p><p>A new event listing of ID:# </p><p>Thanks</p>"
+msgstr ""
+
+#: library/includes/paynow_event.php:218
+msgid "New event listing of ID:#"
+msgstr ""
+
+#: library/includes/place_listing.php:36
+msgid "Sort by"
+msgstr "Classés par"
+
+#: library/includes/registration.php:33
+msgid "<strong>ERROR</strong>: Enter a username or e-mail address."
+msgstr "<strong>ERREUR</strong>: Entrez un nom d'utilisateur ou une adresse e-mail."
+
+#: library/includes/registration.php:38
+msgid "<strong>ERROR</strong>: There is no user registered with that email address."
+msgstr "<strong>ERREUR</strong>: Il n'y a aucun nom d'utilisateur enregistré avec cette adresse e-mail."
+
+#: library/includes/registration.php:50
+msgid "<strong>ERROR</strong>: Invalid username or e-mail."
+msgstr "<strong>ERREUR</strong>: Nom d'utilisateur ou adresse e-mail invalide."
+
+#: library/includes/registration.php:67
+msgid "Invalid key"
+msgstr "Clé invalide"
+
+#: library/includes/registration.php:76
+#, php-format
+msgid "Username: %s"
+msgstr "Nom d'utilisateur : %s"
+
+#: library/includes/registration.php:77
+#, php-format
+msgid "Password: %s"
+msgstr "Mot de passe : %s"
+
+#: library/includes/registration.php:84
+#, php-format
+msgid "[%s] Your new password"
+msgstr "[%s] Votre nouveau mot de passe"
+
+#: library/includes/registration.php:107
+#: library/includes/single_page_checkout_insertuser.php:24
+msgid "ERROR: Please enter a username."
+msgstr "ERREUR : Entrer un nom d'utilisateur SVP."
+
+#: library/includes/registration.php:109
+#: library/includes/single_page_checkout_insertuser.php:26
+msgid "<strong>ERROR</strong>: This username is invalid.  Please enter a valid username."
+msgstr "<strong>ERREUR</strong>: Le nom d'utilisateur est invalide. Entrez un nom d'utilisateur valide SVP."
+
+#: library/includes/registration.php:112
+msgid "<strong>ERROR</strong>: This username is already registered, please choose another one."
+msgstr "<strong>ERREUR</strong>:  Ce nom d'utilisateur est déjà utilisé, veuillez en choisir un autre SVP."
+
+#: library/includes/registration.php:116
+#: library/includes/single_page_checkout_insertuser.php:33
+msgid "<strong>ERROR</strong>: Please type your e-mail address."
+msgstr "<strong>ERREUR</strong>: Entrez une adresse e-mail SVP."
+
+#: library/includes/registration.php:118
+#: library/includes/single_page_checkout_insertuser.php:35
+msgid "<strong>ERROR</strong>: The email address isn&#8217;t correct."
+msgstr "<strong>ERREUR</strong>: L'adresse e-mail est incorrecte. "
+
+#: library/includes/registration.php:121
+msgid "<strong>ERROR</strong>: This email is already registered, please choose another one."
+msgstr "<strong>ERREUR</strong>:  Cette adresse e-mail est déjà utilisée, veuillez en choisir une autre SVP."
+
+#: library/includes/registration.php:168
+#: library/includes/single_page_checkout_insertuser.php:70
+#, php-format
+msgid "<strong>ERROR</strong>: Couldn&#8217;t register you... please contact the <a href=\"mailto:%s\">webmaster</a> !"
+msgstr "<strong>ERREUR</strong>: Impossible de valider votre inscription... veuillez contacter le <a href=\"mailto:%s\">webmaster</a> !"
+
+#: library/includes/registration.php:270
+msgid "Sorry, that key does not appear to be valid."
+msgstr "Désolé, il semblerait que cette clé ne soit pas valide."
+
+#: library/includes/registration.php:401
+msgid "<strong>ERROR</strong>: Cookies are blocked or not supported by your browser. You must <a href='http://www.google.com/cookies.html'>enable cookies</a> to use WordPress."
+msgstr "<strong>ERREUR</strong>: Les cookies sont bloqués ou non supportés par votre navigateur. Vous devez <a href='http://www.google.com/cookies.html'>activer les cookies</a> pour utiliser LeTouriste.fr"
+
+#: library/includes/single_page_checkout_insertuser.php:6
+msgid "Email for Contact Details is Empty. Please enter Email, your all informations will sent to your Email."
+msgstr "Saisissez une adresse e-mail SVP. Toutes les informations concernant vos annonces/événements/compte utilisateur vous y seront envoyées."
+
+#: library/includes/single_page_checkout_insertuser.php:29
+msgid "<strong>ERROR</strong>:  This username is already registered, please choose another one."
+msgstr "<strong>ERREUR</strong>:  Ce nom d'utilisateur est déjà utilisé, veuillez en choisir un autre SVP."
+
+#: library/includes/single_page_checkout_insertuser.php:38
+msgid "<strong>ERROR</strong>:  This email is already registered, please choose another one."
+msgstr "<strong>ERREUR</strong>:  Cette adresse e-mail est déjà utilisée, veuillez en choisir une autre SVP."
+
+#: library/map/location_add_map.php:5
+msgid "Set Address on Map"
+msgstr "Définir l'adresse sur la carte"
+
+#: library/map/map_data.php:137
+msgid "&nbsp;to&nbsp;"
+msgstr "&nbsp;vers&nbsp;"
+
+#: library/map/map_functions.php:139
+#: library/map/map_functions.php:217
+msgid "Latitude:"
+msgstr "Latitude :"
+
+#: library/map/map_functions.php:139
+#: library/map/map_functions.php:217
+msgid "Longitude:"
+msgstr "Longitude :"
+
+#: library/map/map_functions.php:175
+msgid "Status Code:"
+msgstr "Statut code réduction :"
+
+#: library/map/map_functions.php:183
+msgid "latlng:"
+msgstr "Lat/long :"
+
+#: library/map/map_functions.php:184
+msgid "Address:"
+msgstr "Adresse :"
+
+#: library/map/map_functions.php:230
+msgid "not found"
+msgstr "non trouvé"
+
+#: library/rating/get_rating.php:13
+msgid " rates"
+msgstr "notes"
+
+#: library/rating/get_rating.php:20
+msgid "rates"
+msgstr "notes"
+
+#: search.php:17
+msgid "Browsing Day"
+msgstr "Parcourir par jour"
+
+#: search.php:19
+msgid "Search Result"
+msgstr "Résultats de recherche"
+
+#: search.php:19
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: submit_event.php:92
+#: submit_place.php:80
+msgid "You should enter description content for your listing."
+msgstr "Vous devez entrer une description pour votre annonce."
+
+#: submit_event.php:295
+#: submit_place.php:283
+msgid "Default Map"
+msgstr "Carte par défaut"
+
+#: submit_event.php:296
+#: submit_place.php:284
+msgid "Satellite Map"
+msgstr "Carte satellite"
+
+#: submit_event.php:297
+#: submit_place.php:285
+msgid "Hybrid Map"
+msgstr "Carte hybride"
+
+#: submit_event.php:459
+#: submit_place.php:427
+msgid "Note: You will be able to see a preview in the next page"
+msgstr "Note : Vous pourrez prévisualiser votre annonce à la page suivante"
+
+#: tag.php:60
+#: tag.php:88
+msgid "pinpoint"
+msgstr "pinpoint"
+

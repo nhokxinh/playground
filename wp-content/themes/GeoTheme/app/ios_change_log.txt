@@ -1,0 +1,26 @@
+iOS 0.1_beta
+
+TO BE FIXED:
+
+1. fix the stuttering scroll on first load
+2. No error given if internet connection lost after app is launched.
+3. Arrows on gallery are useless, make taping any of them take u to the swipe gallery view.
+4. Change featured to favourites
+
+
+
+
+for me:
+1. add paging on featured like on categories
+2. add styling to add lisitng pages (events)
+3. Query bug if city is set ot everywhere http://www.geotheme.co.uk/?api=list&city_id=0&type=place&cat_id=47
+
+1 2 3
+Search Location Maps
+
+4 5 6
+Places Events Add
+(categories)
+
+7 8 9
+Favorites Account About
