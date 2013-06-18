@@ -419,7 +419,7 @@ if(get_edit_post_link()){
 
 		<?php }?>
 		
-		<?php the_taxonomies(array('before'=>'<p><span>','sep'=>'</span></p><p><span>','after'=>'</span></p>')); ?>
+		<?php pg_the_taxonomies(array('before'=>'<p><span>','sep'=>'</span></p><p><span>','after'=>'</span></p>')); ?>
 
 		
 		<p><span style="color:#31b2e5;font-weight:bold">Hướng dẫn đường đi: </span><?php echo get_post_meta( $post->ID, 'pg_restaurant_direction', true ); ?></p>

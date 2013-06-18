@@ -70,5 +70,12 @@ else{require_once (TEMPLATEPATH . '/library/includes/shopping_detail.php');}
 		if($ct_on && file_exists($child_dir.'/library/includes/club_detail.php')){include_once ($child_dir. '/library/includes/club_detail.php');}
 else{require_once (TEMPLATEPATH . '/library/includes/club_detail.php');}
 	}
+	
+	elseif($post->post_type=='review')
+	{
+		$is_restaurant_post = 1;
+		if($ct_on && file_exists($child_dir.'/library/includes/review_detail.php')){include_once ($child_dir. '/library/includes/review_detail.php');}
+else{require_once (TEMPLATEPATH . '/library/includes/review_detail.php');}
+	}
 }
 ?>

@@ -129,8 +129,21 @@ if($cat_description){echo str_replace('%location_name%', $_SESSION['location_nam
   </div>
     <ul class="<?php if(get_option('ptthemes_cat_listing')=='grid'){echo 'category_grid_view';}else{ echo 'category_list_view';}?> clearfix">
 		<?php
+			$tax_query = array();
+			
+			foreach ( $_GET['qmt'] as $taxonomy => $terms ) {
+				$tax_query[] = array(
+					'taxonomy' => $taxonomy,
+					'terms' => $terms,
+					'field' => 'term_id',
+					'operator' => 'IN',
+					'include_children' => true
+				);
+			}
+
 			$posts = get_posts(array(
-				'post_type'=>$current_term->name
+				'post_type'=>$_GET['post_type'],
+				'tax_query' => $tax_query
 			));
 		?>
 		

@@ -232,10 +232,10 @@
 
            
 
-        <p class="post_bottom clearfix">  <?php 
+        <!-- <p class="post_bottom clearfix">  <?php 
 			 if($preview){echo '<span class="category">'.implode(",", $_SESSION['property_info']['category']).'</span>';
 			 if($kw_tags){echo '<span class="tags">'.$kw_tags.'</span>';}
-			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p>
+			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p> -->
 
 </div> <!-- post #end -->
 
@@ -411,7 +411,7 @@ if(get_edit_post_link()){
 		<?php }?>
 
         
-		<?php $venue_id = get_post_meta($post->ID,'pg_event_venue',true);
+		<?php $venue_id = get_post_meta($post->ID,'pg_review_venue',true);
 			$venue = get_post($venue_id);
 		?>
          <p> <span class="i_location"><?php _e('Địa điểm:'); ?> </span> <a href="<?php echo $venue->guid; ?>"><?php if($preview){echo $address;}else{echo $venue->post_title;} ?></a>   </p>

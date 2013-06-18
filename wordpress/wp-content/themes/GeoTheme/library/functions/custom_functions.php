@@ -5686,5 +5686,57 @@ function review_save_data($post_id) {
 	}
 }
 
+function pg_the_taxonomies($args = array()) {
+	$defaults = array(
+		'post' => 0,
+		'before' => '',
+		'sep' => ' ',
+		'after' => '',
+		'template' => '%s: %l.'
+	);
+
+	$r = wp_parse_args( $args, $defaults );
+	extract( $r, EXTR_SKIP );
+
+	echo $before . join($sep, pg_get_the_taxonomies($post, $r)) . $after;
+}
+
+function pg_get_the_taxonomies($post = 0, $args = array() ) {
+	$post = get_post( $post );
+
+	$args = wp_parse_args( $args, array(
+		'template' => '%s: %l.',
+	) );
+	extract( $args, EXTR_SKIP );
+
+	$taxonomies = array();
+
+	if ( !$post )
+		return $taxonomies;
+
+	foreach ( get_object_taxonomies($post) as $taxonomy ) {
+		$t = (array) get_taxonomy($taxonomy);
+		if ( empty($t['label']) )
+			$t['label'] = $taxonomy;
+		if ( empty($t['args']) )
+			$t['args'] = array();
+		if ( empty($t['template']) )
+			$t['template'] = $template;
+
+		$terms = get_object_term_cache($post->ID, $taxonomy);
+		if ( false === $terms )
+			$terms = wp_get_object_terms($post->ID, $taxonomy, $t['args']);
+
+		$links = array();
+
+		foreach ( $terms as $term )
+			$links[] = "<a href='" . get_bloginfo('url') . "?post_type=" . $post->post_type . "&qmt[" . $term->taxonomy . "][]=" . $term->term_id . "'>$term->name</a>";
+
+		if ( $links )
+			$taxonomies[$taxonomy] = wp_sprintf($t['template'], $t['label'], $links, $terms);
+	}
+	return $taxonomies;
+}
+
 
 ?>

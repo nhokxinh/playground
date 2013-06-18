@@ -570,27 +570,27 @@ function save_expire(){
 add_action("init", "playground_posttype_menu_wp_admin");
 function playground_posttype_menu_wp_admin()
 {
-	
-	register_taxonomy(	"placecategory", 
-					array('barsclubs','restaurant','shopping'),
-					array (	"hierarchical" 		=> true, 
-							"label" 			=> "Place Category", 
-							'labels' 			=> array(	'name' 				=> __('Place Categories'),
-															'singular_name' 	=> __('Place Category'),
-															'search_items' 		=> __('Search Places'),
-															'popular_items' 	=> __('Popular Place Categories'),
-															'all_items' 		=> __('All Place Categories'),
-															'parent_item' 		=> __('Parent Place Category'),
-															'parent_item_colon' => __('Parent Place Category:'),
-															'edit_item' 		=> __('Edit Place Category'),
-															'update_item'		=> __('Update Place Category'),
-															'add_new_item' 		=> __('Add New Place Category'),
-															'new_item_name' 	=> __('New Place Category Name')	), 
-							'public' 			=> true,
-							'show_ui' 			=> true,
-							//"rewrite" 			=> true
-							'rewrite' => array('slug'=>"$pcat_name",'with_front'=>false))
-					);
+	// 
+	// register_taxonomy(	"placecategory", 
+	// 				array('barsclubs','restaurant','shopping'),
+	// 				array (	"hierarchical" 		=> true, 
+	// 						"label" 			=> "Place Category", 
+	// 						'labels' 			=> array(	'name' 				=> __('Place Categories'),
+	// 														'singular_name' 	=> __('Place Category'),
+	// 														'search_items' 		=> __('Search Places'),
+	// 														'popular_items' 	=> __('Popular Place Categories'),
+	// 														'all_items' 		=> __('All Place Categories'),
+	// 														'parent_item' 		=> __('Parent Place Category'),
+	// 														'parent_item_colon' => __('Parent Place Category:'),
+	// 														'edit_item' 		=> __('Edit Place Category'),
+	// 														'update_item'		=> __('Update Place Category'),
+	// 														'add_new_item' 		=> __('Add New Place Category'),
+	// 														'new_item_name' 	=> __('New Place Category Name')	), 
+	// 						'public' 			=> true,
+	// 						'show_ui' 			=> true,
+	// 						//"rewrite" 			=> true
+	// 						'rewrite' => array('slug'=>"$pcat_name",'with_front'=>false))
+	// 				);
 	
 	
 	
