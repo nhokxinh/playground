@@ -254,10 +254,10 @@ function user_warning_msg()
 global $wpdb;
 if(is_allow_user_register())
 {
-if($wpdb->get_var("select option_value from $wpdb->options  WHERE option_name='default_role'") != 'author')
-{
-echo '<br><br><div style="background-color:#F00;color:#FFF;font-size:18px;height:60px;width:100%; text-align:center;">User role must be set to Author for correct user permissions to apply!<br />Settings>General>New User Default Role> SET TO "Author"<br />Please also check your current user roles</div>';
-}
+// if($wpdb->get_var("select option_value from $wpdb->options  WHERE option_name='default_role'") != 'author')
+// {
+// echo '<br><br><div style="background-color:#F00;color:#FFF;font-size:18px;height:60px;width:100%; text-align:center;">User role must be set to Author for correct user permissions to apply!<br />Settings>General>New User Default Role> SET TO "Author"<br />Please also check your current user roles</div>';
+// }
 }	
 }
 }

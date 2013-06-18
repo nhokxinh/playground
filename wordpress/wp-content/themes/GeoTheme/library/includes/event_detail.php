@@ -212,7 +212,7 @@
 
            
 
-      <div class="register_info">     
+      <!-- <div class="register_info">     
 
            
 
@@ -235,7 +235,7 @@
         <p class="post_bottom clearfix">  <?php 
 			 if($preview){echo '<span class="category">'.implode(",", $_SESSION['property_info']['category']).'</span>';
 			 if($kw_tags){echo '<span class="tags">'.$kw_tags.'</span>';}
-			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p>
+			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p> -->
 
 </div> <!-- post #end -->
 

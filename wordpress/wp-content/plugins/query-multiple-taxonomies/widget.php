@@ -140,7 +140,7 @@ jQuery(function($){
 
 	private function get_terms( $tax ) {
 		if ( is_taxonomy_hierarchical( $tax ) || $this->all_terms )
-			return get_terms( $tax );
+			return get_terms( $tax , array('hide_empty'=>false));
 		else
 			return QMT_Terms::get( $tax );
 	}

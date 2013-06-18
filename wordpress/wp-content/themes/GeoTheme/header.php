@@ -174,13 +174,13 @@ if ( get_option('ptthemes_show_blog_title') ) { ?>
 <?php }
 global $current_user;
 if($current_user->data->ID) { $display_name = $current_user->data->display_name; ?>
-<ul class="user_login">
-<li class="welcome"> <span><?php echo WELCOME_TEXT;?>, </span>  <a href="<?php echo get_author_posts_url($current_user->data->ID);?>" title="<?php echo $display_name;?>">  <?php echo gt_user_short($display_name);?></a></li>
-<li class="userin"><a href="<?php echo site_url();?>/?ptype=login&amp;action=logout" class="signin"><?php echo LOGOUT_TEXT;?></a></li>
+<ul class="user_login" style="width:100%;right:0">
+<li class="welcome"> <span>Xin chào, </span>  <a href="<?php echo get_author_posts_url($current_user->data->ID);?>" title="<?php echo $display_name;?>">  <?php echo gt_user_short($display_name);?></a></li>
+<li class="userin"><a href="<?php echo site_url();?>/?ptype=login&amp;action=logout" class="signin">Thoát</a></li>
 <?php }else{ ?>
-<ul class="user_login">
-<li class="welcome"><span><?php echo WELCOME_TEXT;?>, <strong><?php echo GUEST_TEXT;?></strong></span> </li>
-<li class="userin"><a href="<?php echo site_url();?>/?ptype=login&amp;page1=sign_in" class="signin"><?php echo SIGN_IN_TEXT;?></a></li>
+<ul class="user_login" style="width:100%;right:0">
+<li class="welcome"><span>Xin chào, <strong>bạn chưa đăng nhập.</strong></span> </li>
+<li class="userin"><a href="<?php echo site_url();?>/?ptype=login&amp;page1=sign_in" class="signin">Đăng nhập / Đăng ký</a></li>
 <?php }?>
 </ul>
 <?php 

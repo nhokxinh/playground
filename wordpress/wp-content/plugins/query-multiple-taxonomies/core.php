@@ -71,7 +71,7 @@ class QMT_Terms {
 		if ( empty( self::$filtered_ids ) )
 			return array();
 
-		$raw_terms = wp_get_object_terms( self::$filtered_ids, $tax );
+		$raw_terms = wp_get_object_terms( self::$filtered_ids, $tax , array('hide_empty'=>false));
 
 		// distinct terms
 		$terms = array();

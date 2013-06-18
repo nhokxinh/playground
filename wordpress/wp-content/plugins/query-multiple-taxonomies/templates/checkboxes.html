@@ -14,3 +14,14 @@
 		<a class="taxonomy-drilldown-reset" href="{{reset-url}}">{{reset-text}}</a>
 	</p>
 </form>
+
+<script type="text/javascript">
+	jQuery('input[type=checkbox]').change(function(){
+		if(jQuery(this).attr('checked') == 'checked'){
+			jQuery(this).closest('li.term-item').children('ul.child-list').show();
+		} else {
+			jQuery(this).closest('li.term-item').find('ul.child-list').hide();
+			jQuery(this).closest('li.term-item').find('ul.child-list').find('input[type=checkbox]').removeAttr('checked');
+		}
+	});
+</script>
