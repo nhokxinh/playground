@@ -56,5 +56,19 @@ else{require_once (TEMPLATEPATH . '/library/includes/place_detail.php');}
 		if($ct_on && file_exists($child_dir.'/library/includes/restaurant_detail.php')){include_once ($child_dir. '/library/includes/restaurant_detail.php');}
 else{require_once (TEMPLATEPATH . '/library/includes/restaurant_detail.php');}
 	}
+	
+	elseif($post->post_type=='shopping')
+	{
+		$is_restaurant_post = 1;
+		if($ct_on && file_exists($child_dir.'/library/includes/shopping_detail.php')){include_once ($child_dir. '/library/includes/shopping_detail.php');}
+else{require_once (TEMPLATEPATH . '/library/includes/shopping_detail.php');}
+	}
+	
+	elseif($post->post_type=='barsclubs')
+	{
+		$is_restaurant_post = 1;
+		if($ct_on && file_exists($child_dir.'/library/includes/club_detail.php')){include_once ($child_dir. '/library/includes/club_detail.php');}
+else{require_once (TEMPLATEPATH . '/library/includes/club_detail.php');}
+	}
 }
 ?>

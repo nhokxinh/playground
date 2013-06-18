@@ -21,14 +21,14 @@ class googlemmap_singlepage extends WP_Widget {
 global $post,$wp_query, $preview;
 $post = $wp_query->post;
 
-if($_REQUEST['alook'] && get_post_meta($_REQUEST['pid'],"map_zoom",true)){$zoom=get_post_meta($_REQUEST['pid'],"map_zoom",true);}
-elseif(get_post_meta($post->ID,"map_zoom",true)){$zoom=get_post_meta($post->ID,"map_zoom",true);}
+if($_REQUEST['alook'] && get_post_meta($_REQUEST['pid'],"pg_restaurant_map_zoom",true)){$zoom=get_post_meta($_REQUEST['pid'],"pg_restaurant_map_zoom",true);}
+elseif(get_post_meta($post->ID,"pg_restaurant_map_zoom",true)){$zoom=get_post_meta($post->ID,"pg_restaurant_map_zoom",true);}
 
 ?>
 <?php if($_REQUEST['alook']){?>
-<script type="text/javascript" src="<?php bloginfo('url'); ?>/?ptype=get_markers&amp;stype=cat_single&amp;ID=<?php echo mysql_real_escape_string($_REQUEST['pid']); ?>&amp;zoom=<?php echo $zoom; ?>&amp;bubble=<?php echo $bubble; if($preview){echo '&amp;pre_lat='.get_post_meta($_REQUEST['pid'], 'geo_latitude',true).'&amp;pre_lon='.get_post_meta($_REQUEST['pid'], 'geo_longitude',true).'&amp;pre_map_type='.get_post_meta($_REQUEST['pid'], 'map_view',true);}?>"></script>
+<script type="text/javascript" src="<?php bloginfo('url'); ?>/?ptype=get_markers&amp;stype=cat_single&amp;ID=<?php echo mysql_real_escape_string($_REQUEST['pid']); ?>&amp;zoom=<?php echo $zoom; ?>&amp;bubble=<?php echo $bubble; if($preview){echo '&amp;pre_lat='.get_post_meta($_REQUEST['pid'], 'pg_restaurant_geo_latitude',true).'&amp;pre_lon='.get_post_meta($_REQUEST['pid'], 'pg_restaurant_geo_longitude',true).'&amp;pre_map_type='.get_post_meta($_REQUEST['pid'], 'map_view',true);}?>"></script>
 <?php }else{?>
-<script type="text/javascript" src="<?php bloginfo('url'); ?>/?ptype=get_markers&amp;stype=cat_single&amp;ID=<?php if($post->ID){echo $post->ID;}else{echo '1';} ?>&amp;zoom=<?php echo $zoom; ?>&amp;bubble=<?php echo $bubble; if($preview){echo '&amp;pre_lat='.$_POST['geo_latitude'].'&amp;pre_lon='.$_POST['geo_longitude'].'&amp;pre_map_type='.$_POST['map_view'];}?>"></script>
+<script type="text/javascript" src="<?php bloginfo('url'); ?>/?ptype=get_markers&amp;stype=cat_single&amp;ID=<?php if($post->ID){echo $post->ID;}else{echo '1';} ?>&amp;zoom=<?php echo $zoom; ?>&amp;bubble=<?php echo $bubble; if($preview){echo '&amp;pre_lat='.$_POST['pg_restaurant_geo_latitude'].'&amp;pre_lon='.$_POST['pg_restaurant_geo_longitude'].'&amp;pre_map_type='.$_POST['map_view'];}?>"></script>
 <?php }?>
 
 <div class="top_banner_section" id="sticky_map">

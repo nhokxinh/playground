@@ -1,13 +1,13 @@
-<?php if(!$preview){get_header();} ?>
+<?php if(!$preview){get_header();}?>
 <div id="wrapper" class="clearfix">
 
          	<div id="inner_pages" class="clearfix" >
 
-                
+            	
 
-                <h1 class="main_title"><a href="<?php if($preview){echo '#';}else{the_permalink();}  ?>" rel="bookmark" title="Permanent Link to <?php if($preview){echo $proprty_name;}else{the_title_attribute();}  ?>">
+                <h1 class="main_title"><a href="<?php if($preview){echo '#';}else{the_permalink();} ?>" rel="bookmark" title="Permanent Link to <?php if($preview){echo $proprty_name;}else{the_title_attribute();} ?>">
 
-                      <?php if($preview){echo $proprty_name;}else{the_title();}  ?>
+                      <?php if($preview){echo $proprty_name;}else{the_title();} ?>
 
                       </a></h1>   
 
@@ -19,22 +19,23 @@
 
 					 <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script> 
 
-					<?php } ?>
+  					<?php } ?>
 
                      <?php if ( get_option('ptthemes_facebook_button') ) { ?>
 
- 					<iframe <?php if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){echo 'allowtransparency="true"'; }?> class="facebook" src="http://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink($post->ID)); ?>&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0"  style="border:none; overflow:hidden; width:100px; height:20px"></iframe> 
-
-                      <?php } ?>
-                      
-                      <?php if ( get_option('ptthemes_google_button') ) { ?>
-<div id="plusone-div"></div>
-<script type="text/javascript">gapi.plusone.render('plusone-div', {"size": "medium", "count": "true" });</script>
+        			<iframe <?php if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)){echo 'allowtransparency="true"'; }?> class="facebook" src="http://www.facebook.com/plugins/like.php?href=<?php echo urlencode(get_permalink($post->ID)); ?>&amp;layout=button_count&amp;show_faces=false&amp;width=100&amp;action=like&amp;colorscheme=light" scrolling="no" frameborder="0"  style="border:none; overflow:hidden; width:100px; height:20px"></iframe> 
                     <?php } ?>
+                    
+					<?php if ( get_option('ptthemes_google_button') ) { ?>
+<div id="plusone-div"></div>
+<script type="text/javascript">gapi.plusone.render('plusone-div', {"size": "medium", "count": "true" });</script>                    
+					<?php } ?>
 
                       </div>
+
                       
-                      <div class="breadcrumb clearfix">
+
+                <div class="breadcrumb clearfix">
 
                 <?php if ( get_option( 'ptthemes_breadcrumbs' )) {  ?>
 
@@ -47,6 +48,30 @@
             <?php } ?></div>
 <div class="clearfix"></div>
   		<div id="content" class="content_inner" >
+	
+			<div class="clearfix">
+				<ul>
+					<?php
+						$features = explode("\n",get_post_meta( $post->ID, 'pg_barsclubs_features', true ));
+						foreach($features as $f){
+							echo '<li style="padding-left:1em">' . $f . '</li>';
+						}
+					?>
+				</ul>
+			</div>
+			<hr style="margin-bottom:-1em" />
+			<?php $events = get_posts(array('post_type'=>array('event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID));
+				if (count($events) > 0){
+			?>
+			<ul>
+				<?php
+					foreach ($events as $event){
+						echo '<li style="padding-left:1em"><a style="color:#31b2e5" href="', $event->guid , '">', $event->post_title, '</a></li>';
+					}
+				?>
+			</ul>
+			<hr/>
+			<?php } ?>
 
         <div class="single_post">
 
@@ -55,7 +80,7 @@
 	   elseif(($preview && $_REQUEST['alook'] )||($preview && !$_SESSION['property_info']['price_select']) ){$pkg_limit = get_property_price_info_listing($_REQUEST['pid']);}
 	   else{$pkg_limit = get_property_price_info_listing($post->ID);} ?>
 
-         <?php  if($preview){
+         <?php if($preview){
 		 $thumb_img_counter = 0;
 		if($_SESSION["file_info"])
 		{	$post_images = array();
@@ -76,18 +101,18 @@
 
 		 global $thumb_url; /// get the mutiuser id
 
-		 $img_p = get_img_p(get_option('ptthemes_image_x_cut'));### added image crop position
+		$img_p = get_img_p(get_option('ptthemes_image_x_cut'));### added image crop position
 
 		$img_zc = get_img_zc(get_option('ptthemes_image_zc'));### added image zoom or crop option
 
 		$img_q = '&amp;q='.get_option('ptthemes_image_q');### added image quality option
 
-		?>
+		 ?>
 
-		  <?php if(!$preview){the_post();}?>
+		  <?php  if(!$preview){the_post();} ?>
 
               <div id="post-<?php if($preview){echo 'preview';}else{the_ID();} ?>" class="posts post_spacer">
-              
+
 <div id="galleria" <?php  if(count($post_images)==1){echo 'style="margin-bottom:-90px;"';} ?>>
 
              <?php
@@ -95,18 +120,18 @@
                 if(count($post_images)>0)
 
 				{
-
 					if($pkg_limit['image_limit']=='' || count($post_images)<$pkg_limit['image_limit']){$img_count = count($post_images);}else{$img_count =$pkg_limit['image_limit'];}
 					for($im=0;$im<$img_count;$im++)
+
 					{
 
 					?>
 
-            <div class="small"> 
+            <div class="small" > 
 
                 <a href="<?php echo get_bloginfo('template_directory').'/thumb.php?src='.$post_images[$im].'&amp;w=580&amp;h=390'.$img_zc.$img_p.$img_q.$thumb_url; ?>">
 
-                    <img src="<?php  echo get_bloginfo('template_directory').'/thumb.php?src='.$post_images[$im].'&amp;w=75&amp;h=50&amp;zc='.$img_zc.$thumb_url; ?>" alt=""  />
+                    <img src="<?php  echo get_bloginfo('template_directory').'/thumb.php?src='.$post_images[$im].'&amp;w=75&amp;h=50&amp;zc='.$img_zc.$thumb_url; ?>" alt=""  title=""/>
 
                 </a>
 
@@ -121,7 +146,6 @@
 				?>
 
         </div>
-        
 <?php if($post_images){?>
         <script type="text/javascript">
 
@@ -140,8 +164,8 @@
         image_crop: false, // crop all images to fit
 
         thumb_crop: true, // crop all thumbnails to fit
-		
-		<?php if(count($post_images)==1){ echo 'thumbnails: false,';}?>	
+
+		<?php if(count($post_images)==1){ echo 'thumbnails: false,';}?>		
 
         transition: 'fade', // crossfade photos
 
@@ -186,7 +210,9 @@
     </script>
 <?php } ?>
 
-	 <?php if(get_post_meta($post->ID,'video',true) || $video){?>
+
+
+		<?php  if(get_post_meta($post->ID,'video',true) || $video){?>
 
             <div class="video_main">
 
@@ -196,48 +222,29 @@
 
          <?php }?>
 
-                      <?php if($preview){echo apply_filters( 'the_content', $proprty_desc );}else{the_content();}  ?>
-
-                      
+         <?php if($preview){echo apply_filters( 'the_content', $proprty_desc );}else{the_content();} ?>
 
            <?php if(($proprty_feature || get_post_meta($post->ID,'proprty_feature',true)) && $pkg_limit['property_feature_pkg']){?>
 
-           <p><?php if($preview){echo $proprty_feature;}else{echo nl2br(get_post_meta($post->ID,'proprty_feature',true));}?></p>
+           	 <div class="register_info">     
+
+            <?php if($preview){echo $proprty_feature;}else{echo nl2br(get_post_meta($post->ID,'proprty_feature',true));}?> 
+
+           </div>
 
            <?php }?>
 
-           
-
-           
-
-           
-
-      <div class="register_info">     
-
-           
-
-      	<?php if(($reg_desc || get_post_meta($post->ID,'reg_desc',true)) && $pkg_limit['reg_desc_pkg']){?>
-
-      		<?php if($preview){echo $reg_desc;}else{echo get_post_meta($post->ID,'reg_desc',true);}?> 
-
-      <?php }?> 
-
-      <?php if(($reg_fees || get_post_meta($post->ID,'reg_fees',true)) && $pkg_limit['reg_fees_pkg']){?>
-
-     	 <p ><?php _e('Fees : ');?> <span class="fees"><?php if($preview){echo $reg_fees;}else{echo get_post_meta($post->ID,'reg_fees',true);}?> </span></p>   
-
-      <?php }?>    
-
-       </div>    
-
-           
-
-        <p class="post_bottom clearfix">  <?php 
+             <!-- <p class="post_bottom clearfix">  <?php 
 			 if($preview){echo '<span class="category">'.implode(",", $_SESSION['property_info']['category']).'</span>';
 			 if($kw_tags){echo '<span class="tags">'.$kw_tags.'</span>';}
-			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p>
+			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p> -->
 
-</div> <!-- post #end -->
+				
+              </div> <!-- post #end -->
+
+
+
+              
 
                
 
@@ -251,7 +258,7 @@
 
               </div> <!-- single post content #end -->
 
-              <div class="single_post_advt"><?php dynamic_sidebar(14);  ?> </div>
+              <div class="single_post_advt"><?php dynamic_sidebar(7);  ?> </div>
 
             		<?php if(get_option('ptthemes_related_on_detailpage')!='No'){ get_related_posts($post);} ?>
 
@@ -266,7 +273,7 @@
 
       <div class="company_info">
 
-     <?php //edit_post_link( __( 'Edit this Post' ), "\n\t\t\t\t\t\t<p class=\"edit-link\">", "</p>\n\t\t\t\t\t" );
+     <?php  
 
 ############################################# Fix for "Edit this Post" link taking user to backend ########################################	 
 
@@ -276,7 +283,7 @@
 
 			$var1 = array('wp-admin/post.php?post', '&amp;action=edit');
 
-			$var2  = array('?ptype=post_event&pid', '');
+			$var2  = array('?ptype=post_listing&pid', '');
 
 			$link    = get_edit_post_link();
 
@@ -286,7 +293,7 @@
 
 }
 
-############################################# Fix for "Edit this Post" link taking user to backend ########################################	
+############################################# Fix for "Edit this Post" link taking user to backend ########################################
 
 #######################OWNER VERIFIED FUNCTION ################
 
@@ -300,7 +307,7 @@ $author_role = $user->roles[0];
 
 if($preview){$is_owned = $claimed;}else{$is_owned = get_post_meta($post->ID,'claimed',true);}
 
-if(get_option('claim_event')==1) {
+
 
 if(get_option('show_owner_verified')==1){ 
 
@@ -308,13 +315,13 @@ if ($author_role =='author' && $is_owned!='0' ){?>
 
 
 
-		<p> <span class="i_verified"> <?php echo OWNER_VERIFIED_EVENT;?> </span></p>
+		<p> <span class="i_verified"> <?php echo OWNER_VERIFIED_PLACE;?> </span></p>
 
 
 
 
 
-<?php }}}
+<?php }}
 
 ###############################################################
 
@@ -322,35 +329,33 @@ if ($author_role =='author' && $is_owned!='0' ){?>
 
 if(get_option('claim_listing')==1){
 
-if ($author_role =='administrator' || $is_owned=='0' ){ 
+if ($author_role =='administrator' || $is_owned=='0' ){	
 
-if(get_option('claim_event')==1) {
-
-if ( is_user_logged_in() ) { ?>
+	if ( is_user_logged_in() ) { ?>
 
 	<p class="edit-link"><a href="#" class="b_claim_listing"><?php echo CLAIM_LISTING_OWNER;?></a></p>
 
-<?php } else{ ?>
+<?php } else { ?>
 
 	<p class="edit-link"><a href="<?php echo site_url().'/?ptype=login&msg=claim'; ?>" ><?php echo CLAIM_LISTING_OWNER;?></a></p>
 
-<?php }}}}?> 
+<?php }} }?> 
 
-      <?php if($_REQUEST['claim_request']=='success'){?>
+     <?php if(isset($_REQUEST['claim_request']) && $_REQUEST['claim_request']=='success'){?>
 
         <p class="sucess_msg"><?php echo CLAIM_LISTING_SUCCESS;?></p>
 
-         <?php }elseif($_REQUEST['emsg']=='captch'){?>
+         <?php }elseif(isset($_REQUEST['emsg']) && $_REQUEST['emsg']=='captch'){?>
 
         <p class="error_msg_fix"><?php echo WRONG_CAPTCH_MSG;?></p>
 
         <?php }
 
-###########################end claim listing function ############################
+########################### end claim listing function ############################
 
 ########################### author link function       ############################
 
-if ($is_owned=='1' && get_option('author_link')==1  && !$preview){	
+if ($is_owned=='1' && get_option('author_link')==1 && !$preview ){	
 
 	 ?>
 
@@ -361,9 +366,8 @@ if ($is_owned=='1' && get_option('author_link')==1  && !$preview){
 
 
 ########################### end author link function   ############################
-
+ 
 #################### Google Analytics function #######################################
-
 if(get_option('ga_stats')==1 && get_edit_post_link() && !$preview && $post->post_status=='publish' && $pkg_limit['google_analytics']){
 
 if(get_edit_post_link()){
@@ -372,9 +376,9 @@ if(get_edit_post_link()){
 
 	$page_url = $_SERVER['REQUEST_URI'];
 
-	$ga_start = $_REQUEST['ga_start'];
+	if(isset($_REQUEST['ga_start'])){$ga_start = $_REQUEST['ga_start'];}else{$ga_start = '';}
 
-	$ga_end = $_REQUEST['ga_end'];
+	if(isset($_REQUEST['ga_end'])){$ga_end = $_REQUEST['ga_end'];}else{$ga_end ='';}
 
 	?>
 <script type="text/javascript">
@@ -390,41 +394,21 @@ if(get_edit_post_link()){
 
 ########################### end Google Analytics function############################
 
-
-
 ?>
 
-        
+ 
 
-         <?php if(get_post_meta($post->ID,'st_date',true) || $stdate){?>
+      	<p> <span class="i_location"><?php _e('Địa chỉ:'); ?> </span> <?php if($preview){echo $address;}else{echo get_post_meta($post->ID,'pg_shopping_address',true);} ?>   </p>
 
-		<p>  <span class="i_date"> <?php echo EVENT_DATE;?> : </span>  <?php if($preview){echo get_formated_date($stdate).__(' to ').get_formated_date($enddate);}
-		else{ echo get_formated_date(get_post_meta($post->ID,'st_date',true)).__(' to ').get_formated_date(get_post_meta($post->ID,'end_date',true));}?>  </p>
+		 <?php if(get_post_meta($post->ID,'pg_shopping_url',true) || $website){
 
-		<?php }?>
-
-         <?php if(get_post_meta($post->ID,'st_time',true) || $sttime){?>
-
-		<p><span class="i_time"> <?php echo EVENT_TIME;?> : </span>  <?php if($preview){echo get_formated_time($sttime) . __(' to ') .get_formated_time($endtime);}
-		else{echo get_formated_time(get_post_meta($post->ID,'st_time',true)) . __(' to ') .get_formated_time(get_post_meta($post->ID,'end_time',true));}?>  </p>
-
-		<?php }?>
-
-        
-		<?php $venue_id = get_post_meta($post->ID,'pg_event_venue',true);
-			$venue = get_post($venue_id);
-		?>
-         <p> <span class="i_location"><?php _e('Địa điểm:'); ?> </span> <a href="<?php echo $venue->guid; ?>"><?php if($preview){echo $address;}else{echo $venue->post_title;} ?></a>   </p>
-
-		 <?php if(get_post_meta($post->ID,'pg_event_url',true) || $website){
-
-			 if($preview){}else{$website = get_post_meta($post->ID,'pg_event_url',true);}
+			 if($preview){}else{$website = get_post_meta($post->ID,'pg_shopping_url',true);}
 
 			 if(!strstr($website,'http'))
 
 			 {
 
-				 $website = 'http://'.get_post_meta($post->ID,'pg_event_url',true);
+				 $website = 'http://'.get_post_meta($post->ID,'pg_shopping_url',true);
 
 			 }
 
@@ -437,17 +421,32 @@ if(get_edit_post_link()){
         <?php }?>
 
 		<?php }?>
-
+		
 		<?php the_taxonomies(array('before'=>'<p><span>','sep'=>'</span></p><p><span>','after'=>'</span></p>')); ?>
 
+		
+		<p><span style="color:#31b2e5;font-weight:bold">Hướng dẫn đường đi: </span><?php echo get_post_meta( $post->ID, 'pg_shopping_direction', true ); ?></p>
+		<p><span style="color:#31b2e5;font-weight:bold">Nghỉ lễ: </span><?php echo get_post_meta( $post->ID, 'pg_shopping_holiday', true ); ?></p>
+		<p><span style="color:#31b2e5;font-weight:bold">Năm thành lập: </span><?php echo get_post_meta( $post->ID, 'pg_shopping_est', true ); ?></p>
+        
 
-         <?php if(($contact || get_post_meta($post->ID,'contact',true)) && $pkg_limit['contact_pkg'] && get_option('ptthemes_contact_on_detailpage')=='Yes' && get_post_meta($post->ID,'contact_show',true)!='No'){?>
+        <p>  <?php favourite_html($post->post_author,$post->ID); ?></p>
 
-		<p> <span class="i_contact"><?php echo EVENT_CONTACT_INFO;?> : </span>  <?php if($preview){echo $contact;}else{echo get_post_meta($post->ID,'contact',true);}?>  </p>
+     
+
+         <?php if(($timing || get_post_meta($post->ID,'timing',true)) && $pkg_limit['timing_pkg']){?>
+
+		<p> <span class="i_time"> <?php echo EVENT_TIMING;?> : </span>  <?php if($preview){echo $timing;}else{echo get_post_meta($post->ID,'timing',true);}?>  </p>
 
 		<?php }?>
 
-		
+         <?php if(($contact || get_post_meta($post->ID,'contact',true)) && $pkg_limit['contact_pkg'] && get_option('ptthemes_contact_on_detailpage')=='Yes' && get_post_meta($post->ID,'contact_show',true)!='No'){?>
+
+		<p> <span class="i_contact"> <?php echo EVENT_CONTACT_INFO;?> :</span>  <?php if($preview){echo $contact;}else{echo get_post_meta($post->ID,'contact',true);}?>  </p>
+
+		<?php }?>
+
+        
 
          <?php if(($email || get_post_meta($post->ID,'email',true)) && $pkg_limit['email_pkg'] && get_option('ptthemes_email_on_detailpage')=='Yes' && get_post_meta($post->ID,'email_show',true)!='No'){?>
 
@@ -469,50 +468,19 @@ if(get_edit_post_link()){
 
 		<?php }?>
 
-        
+                 
 
-        
 
-          <p><?php favourite_html($post->post_author,$post->ID); ?> </p>
-
-        
-
-    	  <?php if(!$preview){echo get_post_custom_listing_single_page($post->ID,'<p><span class="post_cus_field {#HTMLVAR#}">{#TITLE#} : </span>{#VALUE#}</p>');}
+           <?php if(!$preview){echo get_post_custom_listing_single_page($post->ID,'<p><span class="post_cus_field {#HTMLVAR#}">{#TITLE#} : </span>{#VALUE#}</p>');}
 		   elseif($preview && $_REQUEST['alook']){echo get_post_custom_listing_single_page(mysql_real_escape_string($_REQUEST['pid']),'<p><span class="{#HTMLVAR#}">{#TITLE#}</span> : {#VALUE#}</p>');}else{echo get_post_custom_listing_single_page_preview($post->ID,'<p><span class="post_cus_field {#HTMLVAR#}">{#TITLE#} : </span>{#VALUE#}</p>');} ?>
 
-       
+        
 
         </div>
 
-      
+        
 
-      
-
-      	<div class="company_info2">
-
-		 <?php if(get_post_meta($post->ID,'website',true) || $website){
-
-			 if($preview){}else{$website = get_post_meta($post->ID,'website',true);}
-
-			 if(!strstr($website,'http'))
-
-			 {
-
-				 $website = 'http://'.get_post_meta($post->ID,'website',true);
-
-			 }
-
-			 ?>
-
-        <?php if($website && $pkg_limit['website_pkg'] ){?>
-
-		<p > <span class="i_website"><a href="<?php echo $website;?>" target="_blank"><strong><?php _e('Website');?></strong></a> </span>  </p>
-
-        <?php }?>
-
-		<?php }?>
-
-       
+        <div class="company_info2">
         <?php if(!get_option('ptthemes_disable_rating')){ ?>
 <div class="hreview-aggregate">
        <p> <span class="i_rating">
@@ -534,13 +502,14 @@ if($avg_rating>=3.25 && $avg_rating<3.75 )	{echo 3.5;}
 if($avg_rating>=3.75 && $avg_rating<4.25 )	{echo 4;}
 if($avg_rating>=4.25 && $avg_rating<4.75 )	{echo 4.5;}
 if($avg_rating>=4.75 && $avg_rating<=5 )	{echo 5;}
- ?></span><?php _e('/5 based on');?> <span class="count"><?php if($preview){$rating_count = 0;}else{$rating_count = get_post_rating_count($post->ID);} echo $rating_count;  ?></span>  <?php _e('user');?> <?php if($rating_count == 1){_e('review.');}else{_e('reviews.');}?>
+ ?></span><?php _e('/5 based on');?> <span class="count"><?php  if($preview){$rating_count = 0;}else{$rating_count = get_post_rating_count($post->ID);} echo $rating_count; ?></span>  <?php _e('user');?> <?php if($rating_count == 1){_e('review.');}else{_e('reviews.');}?>
  <br />
    <span class="item">
       <span class="fn"><?php if($preview){echo $proprty_name;}else{the_title();} ?><br /> 
    <?php if($post_images[0]){ ?><img src="<?php echo get_bloginfo('template_directory').'/thumb.php?src='.$post_images[0].'&amp;w=75&amp;h=50&amp;zc='.$img_zc.$thumb_url; ?>" class="photo" alt="<?php if($preview){echo $proprty_name;}else{the_title();} ?>"/> <?php }?> </span></span>
         
-     </p></div>		<?php }?>
+     </p></div><?php }?> 
+
        <div class="share clearfix"> 
 
         <div class="addthis_toolbox addthis_default_style">
@@ -550,42 +519,63 @@ if($avg_rating>=4.75 && $avg_rating<=5 )	{echo 5;}
 </div>
 
 
- 			 	</div>
 
 
+  </div>
 
-<div class="links">
+      
+
+      <div class="links">
 
        <?php if(($twitter || get_post_meta($post->ID,'twitter',true)) && $pkg_limit['twitter_pkg']){?><a href="<?php if($preview){echo $twitter;}else{echo get_post_meta($post->ID,'twitter',true);}?>" class="i_twitter" target="_blank"> <?php _e('Twitter');?> </a> <?php }?>     
 
         <?php if(($facebook || get_post_meta($post->ID,'facebook',true)) && $pkg_limit['facebook_pkg']){?><a href="<?php if($preview){echo $facebook;}else{echo get_post_meta($post->ID,'facebook',true);}?>" class="i_facebook" target="_blank"><?php _e('Facebook');?> </a><?php }?>  
 
-</div> 
+       </div> 
 
-       
-
-        </div>  <!-- company info -->
+      
 
 
-<?php if($pkg_limit['link_business_pkg'] && get_event_place() && !$preview){ ?>
+        
 
-        <div class="widget event_venue_add">
+         
 
-		<div class="links"><h3><?php echo EVENT_VENUE; ?></h3>
+        </div>  <?php if($pkg_limit['link_business_pkg'] && get_business_events_new() && !$preview): ?>
 
-    <?php echo get_event_place(); ?>
+        <div class="widget">
+
+		<div class="links"><h3><?php _e('Events'); ?></h3>
+
+    <?php echo get_business_events_new(); ?>
 
     </div></div>
 
-	<?php } ?>
+	<?php endif; ?>
 
 
- 	<div class="sidebar_in"><?php dynamic_sidebar(13);  ?> </div>
+
+    <?php if($pkg_limit['link_business_pkg'] && get_business_events_old() && !$preview): ?>
+
+        <div class="widget">
+
+		<div class="links"><h3><?php _e('Past Events'); ?></h3>
+
+    <?php echo get_business_events_old(); ?>
+
+    </div></div>           
+
+	<?php endif; ?>
+
+
+
+    <!-- company info -->
+
+ 	<div class="sidebar_in"><?php  dynamic_sidebar(8);  ?> </div>
 
     </div> <!-- sidebar #end -->
 
     </div>
 
-<?php if(!$preview){require_once (TEMPLATEPATH . '/library/includes/popup_frms.php');}?>
-
-<?php get_footer(); ?>
+    <?php if(!$preview){require_once (TEMPLATEPATH . '/library/includes/popup_frms.php');}?>
+</div>
+ <?php get_footer(); ?>

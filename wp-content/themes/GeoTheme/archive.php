@@ -6,6 +6,10 @@ if (file_exists($child_dir.'/child.txt')) {
     $ct_on=1;
 } else{$ct_on=0;}
 $current_term = $wp_query->get_queried_object();
+if (in_array($current_term->name,array('restaurant','shopping','barsclubs','event'))){
+	if($ct_on && file_exists($child_dir.'/library/includes/place_listing.php')){include_once ($child_dir. '/library/includes/place_listing.php');}
+else{require_once (TEMPLATEPATH . '/library/includes/place_listing.php');}
+}
 //$blog_cat = get_blog_sub_cats_str($type='array');
 if($current_term->taxonomy=='eventcategory')
 {

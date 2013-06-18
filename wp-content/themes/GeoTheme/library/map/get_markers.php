@@ -360,15 +360,15 @@ $bubble = mysql_real_escape_string($_REQUEST['bubble']);
 
 	global $post,$wp_query;
 if($ID){
-if(get_post_meta($ID,'address',true))
+if(get_post_meta($ID,'pg_restaurant_address',true))
 {
-	$address = get_post_meta($ID,'address',true);
+	$address = get_post_meta($ID,'pg_restaurant_address',true);
 }else
 {
-	$address = get_post_meta($ID,'geo_address',true);
+	$address = get_post_meta($ID,'pg_restaurant_address',true);
 }
-if($_REQUEST['pre_lat']){$address_latitude =$_REQUEST['pre_lat'];}else{$address_latitude = get_post_meta($ID,'geo_latitude',true);}
-if($_REQUEST['pre_lon']){$address_longitude =$_REQUEST['pre_lon'];}else{$address_longitude = get_post_meta($ID,'geo_longitude',true);}
+if($_REQUEST['pre_lat']){$address_latitude =$_REQUEST['pre_lat'];}else{$address_latitude = get_post_meta($ID,'pg_restaurant_latitude',true);}
+if($_REQUEST['pre_lon']){$address_longitude =$_REQUEST['pre_lon'];}else{$address_longitude = get_post_meta($ID,'pg_restaurant_longitude',true);}
 if($_REQUEST['pre_map_type']){$map_type =$_REQUEST['pre_map_type'];}else{$map_type = get_post_meta($ID,'map_view',true);}
 if($_REQUEST['zoom']){$zoom = $_REQUEST['zoom'];}else{$zoom = 13;}
 if($map_type=='G_NORMAL_MAP')

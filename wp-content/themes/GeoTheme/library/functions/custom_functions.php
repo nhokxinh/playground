@@ -4428,7 +4428,7 @@ $restaurant_meta_box = array(
 						Phong cách ẩm thực Nhật Bản<br/>
 						Nội thất được trang trí sang trọng và hiện đại cùng cách phục vụ chu đáo<br/>
 						Lý tưởng với những bữa ăn trưa, ăn gia đình, hẹn hò',
-	        'id' => $barsclubs_prefix . 'restaurant_features',
+	        'id' => $restaurant_prefix . 'restaurant_features',
 	        'type' => 'textarea',
 	        'std' => ''
 	    )
@@ -5096,7 +5096,7 @@ $shopping_meta_box = array(
 	        'desc' => '<i>Xuống dòng cho mỗi đặc điểm.VD:</i><br/>
 						Mẫu mã cập nhật phong phú<br/>
 						Không gian mua sắm hiện đại cùng phong cách phục vụ nhiệt tình',
-	        'id' => $barsclubs_prefix . 'shopping_features',
+	        'id' => $shopping_prefix . 'shopping_features',
 	        'type' => 'textarea',
 	        'std' => ''
 	    )

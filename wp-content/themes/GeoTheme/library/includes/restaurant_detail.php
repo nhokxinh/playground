@@ -49,6 +49,30 @@
 <div class="clearfix"></div>
   		<div id="content" class="content_inner" >
 
+		<div class="clearfix">
+			<ul>
+				<?php
+					$features = explode("\n",get_post_meta( $post->ID, 'pg_restaurant_features', true ));
+					foreach($features as $f){
+						echo '<li style="padding-left:1em">' . $f . '</li>';
+					}
+				?>
+			</ul>
+		</div>
+		<hr style="margin-bottom:-1em" />
+		<?php $events = get_posts(array('post_type'=>array('event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID));
+			if (count($events) > 0){
+		?>
+		<ul>
+			<?php
+				foreach ($events as $event){
+					echo '<li style="padding-left:1em"><a style="color:#31b2e5" href="', $event->guid , '">', $event->post_title, '</a></li>';
+				}
+			?>
+		</ul>
+		<hr/>
+		<?php } ?>
+		
         <div class="single_post">
 
       <?php if(have_posts() || $preview) : 
@@ -210,13 +234,13 @@
 
            <?php }?>
 
-             <p class="post_bottom clearfix">  <?php 
+             <!-- <p class="post_bottom clearfix">  <?php 
 			 if($preview){echo '<span class="category">'.implode(",", $_SESSION['property_info']['category']).'</span>';
 			 if($kw_tags){echo '<span class="tags">'.$kw_tags.'</span>';}
-			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p>
+			 }else{the_taxonomies(array('before'=>'<span class="category">','sep'=>'</span><span class="tags">','after'=>'</span>')); }?> </p> -->
 
+				
               </div> <!-- post #end -->
-
               
 
                
@@ -371,30 +395,37 @@ if(get_edit_post_link()){
 
  
 
-      	<p> <span class="i_location"><?php _e('Address :'); ?> </span> <?php if($preview){echo $address;}else{echo get_post_meta($post->ID,'address',true);} ?>   </p>
+      	<p> <span class="i_location"><?php _e('Địa chỉ:'); ?> </span> <?php if($preview){echo $address;}else{echo get_post_meta($post->ID,'pg_restaurant_address',true);} ?>   </p>
 
-		 <?php if(get_post_meta($post->ID,'website',true) || $website){
+		 <?php if(get_post_meta($post->ID,'pg_restaurant_url',true) || $website){
 
-			 if($preview){}else{$website = get_post_meta($post->ID,'website',true);}
+			 if($preview){}else{$website = get_post_meta($post->ID,'pg_restaurant_url',true);}
 
 			 if(!strstr($website,'http'))
 
 			 {
 
-				 $website = 'http://'.get_post_meta($post->ID,'website',true);
+				 $website = 'http://'.get_post_meta($post->ID,'pg_restaurant_url',true);
 
 			 }
 
 			 ?>
 
-        <?php if($website && $pkg_limit['website_pkg']){?>
+        <?php if($website){?>
 
-		<p>  <span class="i_website"><a href="<?php echo $website;?>" target="_blank" ><strong><?php _e('Website');?></strong></a>  </span> </p>
+		<p>  <span class="i_website"><a href="<?php echo $website;?>" target="_blank" ><strong><?php _e('Website:');?></strong> <?php echo $website;?></a>  </span> </p>
 
         <?php }?>
 
 		<?php }?>
+		
+		<?php the_taxonomies(array('before'=>'<p><span>','sep'=>'</span></p><p><span>','after'=>'</span></p>')); ?>
 
+		
+		<p><span style="color:#31b2e5;font-weight:bold">Hướng dẫn đường đi: </span><?php echo get_post_meta( $post->ID, 'pg_restaurant_direction', true ); ?></p>
+		<p><span style="color:#31b2e5;font-weight:bold">Thời gian chuẩn bị món: </span><?php echo get_post_meta( $post->ID, 'pg_restaurant_servingtime', true ); ?></p>
+		<p><span style="color:#31b2e5;font-weight:bold">Nghỉ lễ: </span><?php echo get_post_meta( $post->ID, 'pg_restaurant_holiday', true ); ?></p>
+		<p><span style="color:#31b2e5;font-weight:bold">Năm thành lập: </span><?php echo get_post_meta( $post->ID, 'pg_restaurant_est', true ); ?></p>
         
 
         <p>  <?php favourite_html($post->post_author,$post->ID); ?></p>
