@@ -1,0 +1,81 @@
+<div data-role="page" id="eventdetailpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1 id="headertitle">Nhà hàng</h1>
+		<a href="#" data-role="button" data-icon="refresh" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="eventlistrefreshbtn"></a>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="fieldcontain" class="posterimg">
+			</li>
+			<li data-role="fieldcontain">
+				<a id="venuelink">
+					<h2 id="venuename"></h2>
+					<p id="venueaddress"></p>
+				</a>
+			</li>
+		</ul>
+			
+		<ul data-role="listview" data-inset="true" data-theme="d" class="postcontent">
+			<li data-role="fieldcontain" id="content">
+			</li>
+		</ul>
+		
+		<ul data-role="listview" data-inset="true" id="attributes" data-theme="d" class="postcontent">
+			<li data-role="fieldcontain" id="date"></li>
+			<li data-role="fieldcontain" id="time"></li>
+			<li data-role="fieldcontain" id="area"></li>
+			<li data-role="fieldcontain" id="event_types"></li>
+			<li data-role="fieldcontain" id="capacity"></li>
+			<li data-role="fieldcontain" id="ticketprice"></li>
+		</ul>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="eventlist.html" data-transition="flip" id="eventpagelink" class="ui-btn-active ui-state-persist">Sự Kiện</a></li>
+				<li><a href="clublist.html" data-transition="flip" id="clubpagelink">Bars/Clubs</a></li>
+				<li><a href="restaurantlist.html" data-transition="flip" id="restaurantpagelink">Nhà hàng</a></li>
+				<li><a href="shoppinglist.html" data-transition="flip" id="shoppingpagelink">Mua sắm</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	<script type="text/javascript">
+		$('div#eventdetailpage').on('pageshow',function(){
+			showLoading();
+			var post_id = getUrlVars().post_id;
+			var cached_post = false;
+			if (eventList.length > 0){
+				eventList.forEach(function(post){
+					if (post.id == post_id){
+						cached_post = post;
+					}
+				});
+			}
+
+			if (cached_post){
+				$('h1#headertitle').html(cached_post.name);
+				$('li.posterimg').css('background-image','url(' + cached_post.featured_img[0] + ')');
+				$('h2#venuename').html(cached_post.venue.name);
+				$('p#venueaddress').html(cached_post.venue.address);
+				var venue_type = cached_post.venue.type;
+				if (cached_post.venue.type == 'barsclubs'){
+					venue_type = 'club';
+				}
+				$('a#venuelink').attr('href',venue_type + 'detail.html?post_id=' + cached_post.venue.id);
+				$('li#content').html(cached_post.content.replace("\n",'<br/><br/>'));
+				$('li#content *').css('max-width','100%').css('height','auto');
+				$('li#area').html('<strong>Khu vực</strong> ' + cached_post.area);
+				$('li#event_types').html('<strong>Loại Sự Kiện:</strong> ' + cached_post.event_types);
+				$('li#capacity').html('<strong>Số lượng chỗ:</strong> ' + cached_post.capacity);
+				$('li#ticketprice').html('<strong>Giá vé:</strong> ' + cached_post.ticketprice);
+				$('li#date').html('<strong>Ngày tổ chức:</strong> ' + cached_post.date);
+				$('li#time').html('<strong>Thời gian tổ chức:</strong> ' + cached_post.time);
+				
+			}
+			hideLoading();
+		});
+	</script>
+</div><!-- /page#eventlist -->

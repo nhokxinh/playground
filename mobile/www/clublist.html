@@ -1,0 +1,76 @@
+<div data-role="page" id="clublistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>Bars/Clubs</h1>
+		<a href="#" data-role="button" data-icon="refresh" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="clublistrefreshbtn"></a>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" data-filter="true" data-filter-placeholder="Tìm kiếm..." id="clublist">
+		</ul>
+	</div><!-- /content -->
+
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="eventlist.html" data-transition="flip" id="eventpagelink">Sự Kiện</a></li>
+				<li><a href="clublist.html" data-transition="flip" id="clubpagelink" class="ui-btn-active ui-state-persist">Bars/Clubs</a></li>
+				<li><a href="restaurantlist.html" data-transition="flip" id="restaurantpagelink">Nhà hàng</a></li>
+				<li><a href="shoppinglist.html" data-transition="flip" id="shoppingpagelink">Mua sắm</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	<script type="text/javascript">
+		function downloadClubList(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getClubList',
+			   {},
+			   function (result) {
+					clubList = result;
+					$('ul#clublist').empty();
+					clubList.forEach(function(post){
+						$('ul#clublist').append(
+							'<li>' +
+								'<a href="clubdetail.html?post_id=' + post.id + '">' + 
+									'<img src="' + post.thumbnail[0] + '"/>' +
+									'<h2>' + post.name + '</h2>' +
+									'<p>' + post.address + '</p>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#clublist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#clublistpage').on('pageshow',function(){
+			if (clubList.length == 0){
+				downloadClubList();
+			} else {
+				$('ul#clublist').empty();
+				clubList.forEach(function(post){
+					$('ul#clublist').append(
+						'<li>' +
+							'<a href="clubdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p>' + post.address + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#clublist').listview('refresh');
+			}
+		});
+		
+		$('a#clublistrefreshbtn').click(function(){
+			clubList = [];
+			downloadClubList();
+		});
+	</script>
+</div><!-- /page#clublist -->

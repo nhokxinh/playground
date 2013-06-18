@@ -1,0 +1,50 @@
+<div data-role="page" id="eventdetailpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1 id="headertitle">Sự Kiện</h1>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview">
+			<li data-role="fieldcontain" class="mapembed">
+			</li>
+			<li>
+				<h2 id="address"></h2>
+				<p id="direction"></p>
+			</li>
+		</ul>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="eventlist.html" data-transition="flip" id="eventpagelink">Sự Kiện</a></li>
+				<li><a href="clublist.html" data-transition="flip" id="clubpagelink">Bars/Clubs</a></li>
+				<li><a href="restaurantlist.html" data-transition="flip" id="restaurantpagelink">Nhà hàng</a></li>
+				<li><a href="shoppinglist.html" data-transition="flip" id="shoppingpagelink">Mua sắm</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	<script type="text/javascript">
+		$('div#eventdetailpage').on('pageshow',function(){
+			var post_id = getUrlVars().post_id;
+			var post = false;
+			var placeList = clubList.concat(restaurantList,shoppingList);
+			if (placeList.length > 0){
+				placeList.forEach(function(p){
+					if (p.id == post_id){
+						post = p;
+					}
+				});
+			}
+
+			$('h1#headertitle').html(post.name);
+			$('li.mapembed').html(post.map);
+			$('h2#address').html(post.address);
+			$('p#direction').html(post.direction);
+			
+			var section = getUrlVars().section;
+			$('a#' + section + 'pagelink').addClass('ui-btn-active').addClass('ui-state-persist');
+		});
+	</script>
+</div><!-- /page#eventlist -->

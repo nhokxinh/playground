@@ -1,0 +1,57 @@
+.hide{
+	display: none;
+}
+
+.custom-iconpos-left{
+	margin-left: 1.5em;
+}
+
+.categorylink.sub-cat{
+	padding-left:1em;
+}
+
+.withdescription{
+	display: inline-table;
+	margin-left: 0.5em;
+}
+
+.mapembed{
+	padding: 0 !important;
+}
+
+.mapembed iframe{
+	width: 100%;
+	height:500px;
+}
+
+.postcontent li{
+	font-weight: normal;
+}
+
+.center{
+	text-align: center;
+}
+
+.posterimg{
+	margin:0px; 
+    padding:0px;
+/*    background-image:url('http://www.flightcentre.com.au/global-images/AIRFARE_SPECIALS_2/Paris.jpg');*/
+    background-repeat:no-repeat;
+	background-position:center;
+    background-size:100%;
+    height: 400px;
+}
+
+@media (max-width: 640px){
+	.ui-li-aside{
+		display:none;
+	}
+	
+	.posterimg{
+		height: 250px;
+	}
+	
+	.mapembed iframe{
+		height:250px;
+	}
+}
