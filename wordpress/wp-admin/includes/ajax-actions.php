@@ -593,7 +593,7 @@ function wp_ajax_add_tag() {
 
 	if ( !current_user_can( $tax->cap->edit_terms ) )
 		wp_die( -1 );
-
+	
 	$x = new WP_Ajax_Response();
 
 	$tag = wp_insert_term($_POST['tag-name'], $taxonomy, $_POST );
@@ -633,6 +633,7 @@ function wp_ajax_add_tag() {
 		'position' => $level,
 		'supplemental' => (array) $tag
 		) );
+	
 	$x->send();
 }
 

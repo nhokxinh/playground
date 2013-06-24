@@ -8,20 +8,70 @@
 	</div>
 	{{/taxonomy}}
 
-	<p>
-		<input type="hidden" name="post_type" value="{{post_type}}">
+	<!-- <p>
 		<input type="submit" value="{{submit-text}}" />
 		<a class="taxonomy-drilldown-reset" href="{{reset-url}}">{{reset-text}}</a>
-	</p>
+	</p> -->
 </form>
 
 <script type="text/javascript">
-	jQuery('input[type=checkbox]').change(function(){
+	jQuery('input:checked').closest('li.term-item').children('ul.child-list').show();
+	
+	jQuery('form.taxonomy-drilldown-checkboxes input[type=checkbox]').change(function(){
 		if(jQuery(this).attr('checked') == 'checked'){
 			jQuery(this).closest('li.term-item').children('ul.child-list').show();
 		} else {
 			jQuery(this).closest('li.term-item').find('ul.child-list').hide();
 			jQuery(this).closest('li.term-item').find('ul.child-list').find('input[type=checkbox]').removeAttr('checked');
 		}
+
+		var params = {
+			action : 'get_place_list',
+			post_type: '{{post_type}}'
+		};
+
+		jQuery('form.taxonomy-drilldown-checkboxes input:checked').each(function(i){
+			var name = jQuery(this).attr('name').replace('[]','[' + i + ']');
+			var val = jQuery(this).val();
+			params[name] = val;
+		});
+
+		jQuery.post(
+		   MyAjax.ajaxurl, 
+		   params, 
+		   function(response){
+				jQuery('div.category-items').html('');
+				jQuery('nav.paginate-links').hide();
+				
+				response.forEach(function(i){
+					var str_li = '<ul class="items">' +
+					'<li class="item clear' + (isNaN(i.packageClass) ? '' : i.packageClass) + '">';
+					// if (!isNaN(i.thumbnailDir)){
+						str_li += '<div class="thumbnail">' +
+										'<img src="wp-content/themes/directory/tn.php?src='+i.thumbnailDir+'&w=100&h=100" alt="Item thumbnail">' +
+										'<div class="comment-count">' + i.comment_count + '</div>' +
+									'</div>'
+					// }
+					
+					str_li += '<div class="description">' +
+							'<h3>' +
+								'<a href="' + i.link + '">' + i.post_title + '</a>';
+					if (i.rating){
+						str_li += '<span class="rating">';
+						for (var idx = 1; idx <= i.rating.max; idx++){
+							str_li += '<span class="star ' + (idx <= i.rating.val ? 'active' : '') + '"></span>';
+						}
+						str_li += '</span>'
+					}
+					str_li += '</h3>' +
+							i.post_excerpt +
+						'</div>' +
+					'</li>' +
+					'</ul>';
+					
+					jQuery('div.category-items').append(str_li);
+				});
+		   }
+		);
 	});
 </script>

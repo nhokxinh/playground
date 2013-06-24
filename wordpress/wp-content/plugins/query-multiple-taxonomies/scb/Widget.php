@@ -33,7 +33,16 @@ abstract class scbWidget extends WP_Widget {
 		$title = apply_filters( 'widget_title', isset( $instance['title'] ) ? $instance['title'] : '', $instance, $this->id_base );
 
 		if ( ! empty( $title ) )
-			echo $before_title . $title . $after_title;
+			$title_suffix = '';
+			switch($_GET['post_type']){
+				case 'ait-dir-item':
+					$title_suffix = ' Địa điểm';
+					break;
+				case 'ait-dir-event':
+					$title_suffix = ' Sự kiện';
+					break;
+			}
+			echo $before_title . $title . $title_suffix . $after_title;
 
 		$this->content( $instance );
 

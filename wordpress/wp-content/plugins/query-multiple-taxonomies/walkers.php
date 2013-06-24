@@ -147,7 +147,7 @@ class QMT_List_Walker extends QMT_Walker {
 			$data['title'] = __( 'Remove term', 'query-multiple-taxonomies' );
 		}
 
-		$data['url'] = QMT_URL::for_tax( $this->taxonomy, $tmp );
+		$data['url'] = QMT_URL::for_tax( $this->taxonomy, $tmp ) . '&post_type=' . $_GET['post_type'];
 
 		return $data;
 	}

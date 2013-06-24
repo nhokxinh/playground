@@ -41,7 +41,6 @@ add_screen_option( 'per_page', array( 'label' => $title, 'default' => 20, 'optio
 switch ( $wp_list_table->current_action() ) {
 
 case 'add-tag':
-
 	check_admin_referer( 'add-tag', '_wpnonce_add-tag' );
 
 	if ( !current_user_can( $tax->cap->edit_terms ) )

@@ -529,6 +529,7 @@ function meta_form() {
 <th><label for="metavalue"><?php _e( 'Value' ) ?></label></th>
 </tr>
 </thead>
+
 <tbody>
 <tr>
 <td id="newmetaleft" class="left">

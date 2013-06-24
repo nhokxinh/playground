@@ -37,28 +37,28 @@ jQuery(document).ready(function($) {
 			var res = wpAjax.parseAjaxResponse(r, 'ajax-response');
 			if ( ! res || res.errors )
 				return;
-
+		
 			var parent = form.find('select#parent').val();
-
+		
 			if ( parent > 0 && $('#tag-' + parent ).length > 0 ) // If the parent exists on this page, insert it below. Else insert it at the top of the list.
 				$('.tags #tag-' + parent).after( res.responses[0].supplemental['noparents'] ); // As the parent exists, Insert the version with - - - prefixed
 			else
 				$('.tags').prepend( res.responses[0].supplemental['parents'] ); // As the parent is not visible, Insert the version with Parent - Child - ThisTerm
-
+		
 			$('.tags .no-items').remove();
-
+		
 			if ( form.find('select#parent') ) {
 				// Parents field exists, Add new term to the list.
 				var term = res.responses[1].supplemental;
-
+		
 				// Create an indent for the Parent field
 				var indent = '';
 				for ( var i = 0; i < res.responses[1].position; i++ )
 					indent += '&nbsp;&nbsp;&nbsp;';
-
+		
 				form.find('select#parent option:selected').after('<option value="' + term['term_id'] + '">' + indent + term['name'] + '</option>');
 			}
-
+		
 			$('input[type="text"]:visible, textarea:visible', form).val('');
 		});
 

@@ -210,7 +210,46 @@ jQuery(function($){
 			'submit-text' => __( 'Lọc', 'query-multiple-taxonomies' ),
 			'post_type' => $_GET['post_type']
 		) );
-
+		
+		$taxonomies = array();
+		switch($_GET['post_type']){
+			case 'ait-dir-item':
+				$taxonomies = array(
+					'ait-dir-item-location',
+					'ait-dir-item-category',
+					'purpose',
+					'culture',
+					'dishes',
+					'facility',
+					'timeframe',
+					'avgprice',
+					'capacity'
+				);
+				break;
+			case 'ait-dir-event':
+				$taxonomies = array(
+					'ait-dir-item-location',
+					'event_types',
+					'ticketprice',
+					'capacity'
+				);
+				break;
+			default:
+				$taxonomies = array(
+					'ait-dir-item-location',
+					'purpose',
+					'culture',
+					'dishes',
+					'facility',
+					'timeframe',
+					'avgprice',
+					'capacity',
+					'event_types',
+					'ticketprice'
+				);
+				break;
+		}
+		
 		foreach ( $taxonomies as $taxonomy ) {
 			$terms = $this->get_terms( $taxonomy );
 
@@ -247,4 +286,3 @@ jQuery(function($){
 		return $m->render( file_get_contents( $template_path ), $data );
 	}
 }
-

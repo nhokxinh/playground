@@ -1,0 +1,416 @@
+# Copyright (C) 2013 AitThemes http://www.ait-themes.com
+# This file is distributed under the same license as the AIT Directory WordPress Theme.
+msgid ""
+msgstr ""
+"Project-Id-Version: Directory 2.6\n"
+"Report-Msgid-Bugs-To: http://support.ait-themes.com/categories/wp-wp.directory.ait.sk\n"
+"POT-Creation-Date: 2013-04-05T10:52:43+02:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: \Templates\archive.php:14
+#: \Templates\snippets\ajaxfunctions-javascript.php:378
+msgid "Search result"
+msgstr ""
+
+#: \Templates\archive.php:38
+msgid "Daily Archives:"
+msgstr ""
+
+#: \Templates\archive.php:40
+msgid "Monthly Archives:"
+msgstr ""
+
+#: \Templates\archive.php:42
+msgid "Yearly Archives:"
+msgstr ""
+
+#: \Templates\archive.php:44
+msgid "Blog Archives"
+msgstr ""
+
+#: \Templates\author.php:12
+msgid "Author Archives:"
+msgstr ""
+
+#: \Templates\author.php:25
+msgctxt "about author"
+msgid "About"
+msgstr ""
+
+#: \Templates\category.php:12
+msgid "Category Archives:"
+msgstr ""
+
+#: \Templates\comments-dir.php:13
+msgid "Close Reviews"
+msgstr ""
+
+#: \Templates\comments-dir.php:15
+msgid "Show Reviews"
+msgstr ""
+
+#: \Templates\comments-dir.php:35
+#: \Templates\comments.php:35
+msgid "Pingback"
+msgstr ""
+
+#: \Templates\comments-dir.php:53
+#: \Templates\comments.php:54
+msgctxt "comment publish time"
+msgid "at"
+msgstr ""
+
+#: \Templates\comments-dir.php:56
+#: \Templates\comments.php:57
+msgid "Reply <span>&darr;</span>"
+msgstr ""
+
+#: \Templates\comments-dir.php:63
+msgid "Your review is awaiting moderation."
+msgstr ""
+
+#: \Templates\comments-dir.php:77
+msgid "Reviews are closed."
+msgstr ""
+
+#: \Templates\comments-dir.php:83
+msgctxt "noun"
+msgid "Review"
+msgstr ""
+
+#: \Templates\comments-dir.php:84
+msgid "You must be <a href=\"%s\">logged in</a> to post a review."
+msgstr ""
+
+#: \Templates\comments-dir.php:85
+msgid "Leave a Review"
+msgstr ""
+
+#: \Templates\comments-dir.php:86
+msgid "Leave a Review to %s"
+msgstr ""
+
+#: \Templates\comments-dir.php:87
+msgid "Cancel review"
+msgstr ""
+
+#: \Templates\comments-dir.php:88
+msgid "Post Review"
+msgstr ""
+
+#: \Templates\comments-dir.php:100
+msgid "This post is password protected. Enter the password to view any reviews."
+msgstr ""
+
+#: \Templates\comments.php:13
+msgid "Close Comments"
+msgstr ""
+
+#: \Templates\comments.php:15
+msgid "Show Comments"
+msgstr ""
+
+#: \Templates\comments.php:64
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: \Templates\comments.php:78
+msgid "Comments are closed."
+msgstr ""
+
+#: \Templates\comments.php:85
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: \Templates\header.php:128
+msgid "You canceled payment. Your account was registered but without option to add items. Upgrade your account in admin to add items."
+msgstr ""
+
+#: \Templates\header.php:189
+msgid "Main menu"
+msgstr ""
+
+#: \Templates\header.php:217
+msgid "Search keyword..."
+msgstr ""
+
+#: \Templates\header.php:225
+msgid "Radius:"
+msgstr ""
+
+#: \Templates\header.php:242
+msgid "All categories"
+msgstr ""
+
+#: \Templates\header.php:245
+msgid "All locations"
+msgstr ""
+
+#: \Templates\header.php:256
+msgid "Search"
+msgstr ""
+
+#: \Templates\index.php:25
+#: \Templates\page-dir-home.php:14
+#: \Templates\page.php:9
+#: \Templates\single.php:9
+#: \Templates\snippets\content-loop.php:21
+msgid "Permalink to"
+msgstr ""
+
+#: \Templates\page-fullwidth.php:14
+#: \Templates\page.php:14
+msgid "Posted on"
+msgstr ""
+
+#: \Templates\page-fullwidth.php:19
+#: \Templates\page.php:19
+msgid "by"
+msgstr ""
+
+#: \Templates\page-fullwidth.php:21
+msgid "View all posts by"
+msgstr ""
+
+#: \Templates\page-fullwidth.php:27
+#: \Templates\page.php:27
+#: \Templates\single.php:44
+#: \Templates\snippets\content-loop.php:55
+msgid "Comment on"
+msgstr ""
+
+#: \Templates\page.php:21
+#: \Templates\single.php:32
+#: \Templates\snippets\content-loop.php:44
+msgid "View all posts by %s"
+msgstr ""
+
+#: \Templates\search.php:8
+msgid "Search Results for:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:14
+msgid "You are here"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:15
+#: \Templates\taxonomy-ait-dir-item-category.php:15
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Home"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:30
+msgid "Item image"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:71
+msgid "Our address"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:74
+msgid "Address:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:79
+msgid "GPS:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:84
+msgid "Telephone:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:89
+msgid "Email:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:94
+msgid "Web:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:104
+msgid "Opening Hours"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:107
+msgid "Monday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:112
+msgid "Tuesday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:117
+msgid "Wednesday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:122
+msgid "Thursday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:127
+msgid "Friday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:132
+msgid "Saturday:"
+msgstr ""
+
+#: \Templates\single-ait-dir-item.php:137
+msgid "Sunday:"
+msgstr ""
+
+#: \Templates\single.php:27
+#: \Templates\snippets\content-loop.php:39
+msgid "On:"
+msgstr ""
+
+#: \Templates\single.php:30
+#: \Templates\snippets\content-loop.php:42
+msgid "By:"
+msgstr ""
+
+#: \Templates\single.php:38
+#: \Templates\snippets\content-loop.php:50
+msgid "Posted in"
+msgstr ""
+
+#: \Templates\snippets\ajaxfunctions-javascript.php:213
+#: \Templates\snippets\map-javascript.php:50
+#: \Templates\snippets\map-single-javascript.php:49
+#: \Templates\snippets\map-single-javascript.php:125
+msgid "VIEW MORE"
+msgstr ""
+
+#: \Templates\snippets\ajaxfunctions-javascript.php:376
+msgid "No result found"
+msgstr ""
+
+#: \Templates\snippets\comments-link.php:7
+msgid "Leave a reply"
+msgstr ""
+
+#: \Templates\snippets\comments-link.php:13
+msgctxt "one reply"
+msgid "Reply"
+msgstr ""
+
+#: \Templates\snippets\comments-link.php:15
+msgctxt "more replies"
+msgid "Replies"
+msgstr ""
+
+#: \Templates\snippets\comments-pagination.php:4
+msgid "&larr; Older Comments"
+msgstr ""
+
+#: \Templates\snippets\comments-pagination.php:5
+msgid "Newer Comments &rarr;"
+msgstr ""
+
+#: \Templates\snippets\content-loop-dir-search.php:6
+#: \Templates\taxonomy-ait-dir-item-category.php:56
+msgid "Item thumbnail"
+msgstr ""
+
+#: \Templates\snippets\content-nav.php:3
+msgid "%s Newer posts"
+msgstr ""
+
+#: \Templates\snippets\content-nav.php:4
+msgid "%s Older posts"
+msgstr ""
+
+#: \Templates\snippets\map-javascript.php:124
+#: \Templates\snippets\map-javascript.php:131
+#: \Templates\snippets\map-single-javascript.php:135
+#: \Templates\snippets\map-single-javascript.php:142
+msgid "Deactivate map"
+msgstr ""
+
+#: \Templates\snippets\map-javascript.php:124
+#: \Templates\snippets\map-javascript.php:128
+#: \Templates\snippets\map-single-javascript.php:135
+#: \Templates\snippets\map-single-javascript.php:139
+msgid "Activate map"
+msgstr ""
+
+#: \Templates\snippets\nothing-found.php:3
+msgid "Nothing Found"
+msgstr ""
+
+#: \Templates\snippets\nothing-found.php:7
+msgid "Apologies, but no results were found for the request. Perhaps searching will help find a related post."
+msgstr ""
+
+#: \Templates\snippets\post-nav.php:2
+msgid "%s Previous"
+msgstr ""
+
+#: \Templates\snippets\post-nav.php:3
+msgid "%s Next"
+msgstr ""
+
+#: \Templates\snippets\search-form.php:2
+msgctxt "assistive-text"
+msgid "Search"
+msgstr ""
+
+#: \Templates\snippets\search-form.php:3
+msgctxt "search field placeholder"
+msgid "Search"
+msgstr ""
+
+#: \Templates\snippets\search-form.php:4
+msgctxt "search button text"
+msgid "Search"
+msgstr ""
+
+#: \Templates\taxonomy-ait-dir-item-category.php:14
+msgid "You are here:"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Page %s"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Edit This"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Edit comment"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Category: \"%s\""
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Posts tagged &quot;%s&quot;"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Author: &quot;%s&quot;"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Search results for &quot;%s&quot;"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Prev"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Next"
+msgstr ""
+
+#: AIT\Framework\WpLatte\WpLatteFunctions.php:
+msgid "Error 404"
+msgstr ""
