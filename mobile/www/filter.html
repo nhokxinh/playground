@@ -40,8 +40,8 @@
 					for (tax in result){
 						if (tax != 'tax_names'){
 							var terms = result[tax];
-							var str_ul = '<li data-role="fieldcontain">' +
-								'<label for="' + tax + '">' + result['tax_names'][tax] + '</label>' +
+							var str_ul = '<li>' +
+								'<label for="' + tax + '">' + result['tax_names'][tax] + '</label><br/>' +
 								'<select class="filtercriteria" name="' + tax + '" id ="' + tax + '">' +
 									'<option value="__NULL__">-- Chọn ' + result['tax_names'][tax] + ' --</option>'
 							for (i in terms){
