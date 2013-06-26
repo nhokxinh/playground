@@ -55,3 +55,33 @@
 		height:250px;
 	}
 }
+
+#searchsection li.ui-field-contain,
+#eventsearchsection li.ui-field-contain{
+	padding-top:0.5em;
+}
+
+#searchsection li.ui-field-contain div.ui-input-search,
+#eventsearchsection li.ui-field-contain div.ui-input-search{
+	width:100%;
+}
+
+#searchsection li.ui-field-contain div.button-wrapper,
+#eventsearchsection li.ui-field-contain div.button-wrapper{
+	margin-bottom:0.75em;
+	margin-top:0.25em;
+	text-align:center;
+}
+
+#searchsection li.ui-field-contain div.button-wrapper a,
+#eventsearchsection li.ui-field-contain div.button-wrapper a{
+	width:49%;
+}
+
+.ul-info{
+	margin-left: 1em;
+}
+
+.filter-button-wrapper{
+	padding:0;
+}

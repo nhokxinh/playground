@@ -7,6 +7,361 @@
  *
  */
 
+register_taxonomy( 'ait-dir-item-category', array( 'ait-dir-item' ), array(
+	'hierarchical' => true,
+	'labels' => array(
+		'name'			=> 'Loại Địa Điểm',
+		'singular_name' => _x( 'Loại Địa Điểm', 'taxonomy singular name', 'ait'),
+		'search_items'	=> __( 'Tìm Loại Địa Điểm', 'ait'),
+		'all_items'		=> __( 'Tất cả Loại Địa Điểm', 'ait'),
+		'parent_item'	=> __( 'Loại Địa Điểm cấp cha', 'ait'),
+		'parent_item_colon' => __( 'Loại Địa Điểm cấp cha:', 'ait'),
+		'edit_item'		=> __( 'Sửa Loại Địa Điểm', 'ait'),
+		'update_item'	=> __( 'Cập nhật Loại Địa Điểm', 'ait'),
+		'add_new_item'	=> __( 'Thêm Loại Địa Điểm mới', 'ait'),
+		'new_item_name' => __( 'Tên Loại Địa Điểm mới', 'ait'),
+	),
+	'show_ui' => true,
+	'rewrite' => array( 'slug' => 'cat' ),
+	'query_var' => 'dir-item-category',
+	'capabilities' => array(
+			'assign_terms' => 'assign_dir_category'
+		)
+));
+
+register_taxonomy( 'ait-dir-item-location', array( 'ait-dir-item','ait-dir-event' ), array(
+	'hierarchical' => true,
+	'labels' => array(
+		'name'			=> 'Khu Vực',
+		'singular_name' => _x( 'Khu Vực', 'taxonomy singular name', 'ait'),
+		'search_items'	=> __( 'Tìm Khu Vực', 'ait'),
+		'all_items'		=> __( 'Tất cả Khu Vực', 'ait'),
+		'parent_item'	=> __( 'Khu Vực cấp cha', 'ait'),
+		'parent_item_colon' => __( 'Khu Vực cấp cha:', 'ait'),
+		'edit_item'		=> __( 'Sửa Khu Vực', 'ait'),
+		'update_item'	=> __( 'Cập nhật Khu Vực', 'ait'),
+		'add_new_item'	=> __( 'Thêm Khu Vực mới', 'ait'),
+		'new_item_name' => __( 'Tên Khu Vực mới', 'ait'),
+	),
+	'show_ui' => true,
+	'rewrite' => false,
+	'query_var' => 'dir-item-location',
+	'capabilities' => array(
+			'assign_terms' => 'assign_dir_location'
+		)
+));
+
+
+//Purpose
+$labels = array(
+    'name'                          => __( 'Mục Đích', 'site5framework' ),
+    'singular_name'                 => __( 'Mục Đích', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Mục Đích', 'site5framework' ),
+    'popular_items'                 => __( 'Mục Đích phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Mục Đích', 'site5framework' ),
+    'parent_item'                   => __( 'Mục Đích cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Mục Đích', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Mục Đích', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Mục Đích', 'site5framework' ),
+    'new_item_name'                 => __( 'Mục Đích mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Mục Đích bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Mục Đích', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Mục Đích phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Mục Đích', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'purpose', 'with_front' => false ),
+    'query_var'                     => 'purpose'
+);
+
+register_taxonomy( 'purpose', array('ait-dir-item'), $args );
+
+//Culture taxonomy
+$labels = array(
+    'name'                          => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
+    'singular_name'                 => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Văn Hoá Ẩm Thực', 'site5framework' ),
+    'popular_items'                 => __( 'Văn Hoá Ẩm Thực phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Văn Hoá Ẩm Thực', 'site5framework' ),
+    'parent_item'                   => __( 'Văn Hoá Ẩm Thực cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Văn Hoá Ẩm Thực', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Văn Hoá Ẩm Thực', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Văn Hoá Ẩm Thực', 'site5framework' ),
+    'new_item_name'                 => __( 'Văn Hoá Ẩm Thực mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Văn Hoá Ẩm Thực bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Văn Hoá Ẩm Thực', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Văn Hoá Ẩm Thực phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'culture', 'with_front' => false ),
+    'query_var'                     => 'culture'
+);
+
+register_taxonomy( 'culture', array('ait-dir-item'), $args );
+
+//Dishes taxonomy
+$labels = array(
+    'name'                          => __( 'Thể Loại Món', 'site5framework' ),
+    'singular_name'                 => __( 'Thể Loại Món', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Thể Loại Món', 'site5framework' ),
+    'popular_items'                 => __( 'Thể Loại Món phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Thể Loại Món', 'site5framework' ),
+    'parent_item'                   => __( 'Thể Loại Món cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Thể Loại Món', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Thể Loại Món', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Thể Loại Món', 'site5framework' ),
+    'new_item_name'                 => __( 'Thể Loại Món mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Thể Loại Món bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Thể Loại Món', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Thể Loại Món phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Thể Loại Món', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'dishes', 'with_front' => false ),
+    'query_var'                     => 'dishes'
+);
+
+register_taxonomy( 'dishes', array('ait-dir-item'), $args );
+
+//Facility taxonomy
+$labels = array(
+    'name'                          => __( 'Tiện Nghi', 'site5framework' ),
+    'singular_name'                 => __( 'Tiện Nghi', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Tiện Nghi', 'site5framework' ),
+    'popular_items'                 => __( 'Tiện Nghi phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Tiện Nghi', 'site5framework' ),
+    'parent_item'                   => __( 'Tiện Nghi cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Tiện Nghi', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Tiện Nghi', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Tiện Nghi', 'site5framework' ),
+    'new_item_name'                 => __( 'Tiện Nghi mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Tiện Nghi bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Tiện Nghi', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Tiện Nghi phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Tiện Nghi', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'facility', 'with_front' => false ),
+    'query_var'                     => 'facility'
+);
+
+register_taxonomy( 'facility', array('ait-dir-item'), $args );
+
+//Timeframe taxonomy
+$labels = array(
+    'name'                          => __( 'Thời Gian Hoạt Động', 'site5framework' ),
+    'singular_name'                 => __( 'Thời Gian Hoạt Động', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Thời Gian Hoạt Động', 'site5framework' ),
+    'popular_items'                 => __( 'Thời Gian Hoạt Động phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Thời Gian Hoạt Động', 'site5framework' ),
+    'parent_item'                   => __( 'Thời Gian Hoạt Động cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Thời Gian Hoạt Động', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Thời Gian Hoạt Động', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Thời Gian Hoạt Động', 'site5framework' ),
+    'new_item_name'                 => __( 'Thời Gian Hoạt Động mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Thời Gian Hoạt Động bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Thời Gian Hoạt Động', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Thời Gian Hoạt Động phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Thời Gian Hoạt Động', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'timeframe', 'with_front' => false ),
+    'query_var'                     => 'timeframe'
+);
+
+register_taxonomy( 'timeframe', array('ait-dir-item'), $args );
+
+//Avgprice taxonomy
+$labels = array(
+    'name'                          => __( 'Mức Giá Trung Bình', 'site5framework' ),
+    'singular_name'                 => __( 'Mức Giá Trung Bình', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Mức Giá Trung Bình', 'site5framework' ),
+    'popular_items'                 => __( 'Mức Giá Trung Bình phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Mức Giá Trung Bình', 'site5framework' ),
+    'parent_item'                   => __( 'Mức Giá Trung Bình cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Mức Giá Trung Bình', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Mức Giá Trung Bình', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Mức Giá Trung Bình', 'site5framework' ),
+    'new_item_name'                 => __( 'Mức Giá Trung Bình mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Mức Giá Trung Bình bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Mức Giá Trung Bình', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Mức Giá Trung Bình phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Mức Giá Trung Bình', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'avgprice', 'with_front' => false ),
+    'query_var'                     => 'avgprice'
+);
+
+register_taxonomy( 'avgprice', array('ait-dir-item'), $args );
+
+//Merchandise taxonomy
+$labels = array(
+    'name'                          => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'singular_name'                 => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'popular_items'                 => __( 'Sản Phẩm/Hàng Hoá phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Toàn bộ Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'parent_item'                   => __( 'Sản Phẩm/Hàng Hoá cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'new_item_name'                 => __( 'Sản Phẩm/Hàng Hoá mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách tên Sản Phẩm/Hàng Hoá bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Sản Phẩm/Hàng Hoá', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Sản Phẩm/Hàng Hoá phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'merchandise', 'with_front' => false ),
+    'query_var'                     => 'merchandise'
+);
+
+register_taxonomy( 'merchandise', array('ait-dir-item'), $args );
+
+//capacity
+$labels = array(
+    'name'                          => __( 'Số Lượng Chỗ', 'site5framework' ),
+    'singular_name'                 => __( 'Số Lượng Chỗ', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Số Lượng Chỗ', 'site5framework' ),
+    'popular_items'                 => __( 'Số Lượng Chỗ phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Tất cả Số Lượng Chỗ', 'site5framework' ),
+    'parent_item'                   => __( 'Số Lượng Chỗ cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Số Lượng Chỗ', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Số Lượng Chỗ', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Số Lượng Chỗ', 'site5framework' ),
+    'new_item_name'                 => __( 'Số Lượng Chỗ mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách Số Lượng Chỗ bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Số Lượng Chỗ', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Số Lượng Chỗ phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Số Lượng Chỗ', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'capacity', 'with_front' => false ),
+    'query_var'                     => 'capacity'
+);
+
+register_taxonomy( 'capacity', array('ait-dir-item','ait-dir-event'), $args );
+
+//event type
+$labels = array(
+    'name'                          => __( 'Loại Sự Kiện', 'site5framework' ),
+    'singular_name'                 => __( 'Loại Sự Kiện', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Loại Sự Kiện', 'site5framework' ),
+    'popular_items'                 => __( 'Loại Sự Kiện phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Tất cả Loại Sự Kiện', 'site5framework' ),
+    'parent_item'                   => __( 'Loại Sự Kiện cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Loại Sự Kiện', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Loại Sự Kiện', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Loại Sự Kiện', 'site5framework' ),
+    'new_item_name'                 => __( 'Loại Sự Kiện mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách Loại Sự Kiện bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Loại Sự Kiện', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Loại Sự Kiện phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Loại Sự Kiện', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'event/event_types', 'with_front' => false ),
+    'query_var'                     => 'event_types'
+);
+
+register_taxonomy( 'event_types', 'ait-dir-event', $args );
+
+//ticket
+$labels = array(
+    'name'                          => __( 'Giá Vé', 'site5framework' ),
+    'singular_name'                 => __( 'Giá Vé', 'site5framework' ),
+    'search_items'                  => __( 'Tìm kiếm Giá Vé', 'site5framework' ),
+    'popular_items'                 => __( 'Giá Vé phổ biến', 'site5framework' ),
+    'all_items'                     => __( 'Tất cả Giá Vé', 'site5framework' ),
+    'parent_item'                   => __( 'Giá Vé cấp cha', 'site5framework' ),
+    'edit_item'                     => __( 'Sửa Giá Vé', 'site5framework' ),
+    'update_item'                   => __( 'Cập nhật Giá Vé', 'site5framework' ),
+    'add_new_item'                  => __( 'Thêm Giá Vé', 'site5framework' ),
+    'new_item_name'                 => __( 'Giá Vé mới', 'site5framework' ),
+    'separate_items_with_commas'    => __( 'Phân cách Giá Vé bằng dấu phẩy (,)', 'site5framework' ),
+    'add_or_remove_items'           => __( 'Thêm/bớt Giá Vé', 'site5framework' ),'',
+    'choose_from_most_used'         => __( 'Chọn trong danh sách Giá Vé phổ biến', 'site5framework' )
+);
+
+$args = array(
+    'label'                         => __( 'Giá Vé', 'site5framework' ),
+    'labels'                        => $labels,
+    'public'                        => true,
+    'hierarchical'                  => true,
+    'show_ui'                       => true,
+    'show_in_nav_menus'             => true,
+    'args'                          => array( 'orderby' => 'term_order' ),
+    'rewrite'                       => array( 'slug' => 'event/ticketprice', 'with_front' => false ),
+    'query_var'                     => 'ticketprice'
+);
+
+register_taxonomy( 'ticketprice', 'ait-dir-event', $args );
+
 function aitDirItemPostType()
 {
 	register_post_type( 'ait-dir-item',
@@ -125,360 +480,7 @@ function aitDirItemPostType()
 function aitDirItemTaxonomies()
 {
 
-	register_taxonomy( 'ait-dir-item-category', array( 'ait-dir-item' ), array(
-		'hierarchical' => true,
-		'labels' => array(
-			'name'			=> 'Loại Địa Điểm',
-			'singular_name' => _x( 'Loại Địa Điểm', 'taxonomy singular name', 'ait'),
-			'search_items'	=> __( 'Tìm Loại Địa Điểm', 'ait'),
-			'all_items'		=> __( 'Tất cả Loại Địa Điểm', 'ait'),
-			'parent_item'	=> __( 'Loại Địa Điểm cấp cha', 'ait'),
-			'parent_item_colon' => __( 'Loại Địa Điểm cấp cha:', 'ait'),
-			'edit_item'		=> __( 'Sửa Loại Địa Điểm', 'ait'),
-			'update_item'	=> __( 'Cập nhật Loại Địa Điểm', 'ait'),
-			'add_new_item'	=> __( 'Thêm Loại Địa Điểm mới', 'ait'),
-			'new_item_name' => __( 'Tên Loại Địa Điểm mới', 'ait'),
-		),
-		'show_ui' => true,
-		'rewrite' => array( 'slug' => 'cat' ),
-		'query_var' => 'dir-item-category',
-		'capabilities' => array(
-				'assign_terms' => 'assign_dir_category'
-			)
-	));
-
-	register_taxonomy( 'ait-dir-item-location', array( 'ait-dir-item','ait-dir-event' ), array(
-		'hierarchical' => true,
-		'labels' => array(
-			'name'			=> 'Khu Vực',
-			'singular_name' => _x( 'Khu Vực', 'taxonomy singular name', 'ait'),
-			'search_items'	=> __( 'Tìm Khu Vực', 'ait'),
-			'all_items'		=> __( 'Tất cả Khu Vực', 'ait'),
-			'parent_item'	=> __( 'Khu Vực cấp cha', 'ait'),
-			'parent_item_colon' => __( 'Khu Vực cấp cha:', 'ait'),
-			'edit_item'		=> __( 'Sửa Khu Vực', 'ait'),
-			'update_item'	=> __( 'Cập nhật Khu Vực', 'ait'),
-			'add_new_item'	=> __( 'Thêm Khu Vực mới', 'ait'),
-			'new_item_name' => __( 'Tên Khu Vực mới', 'ait'),
-		),
-		'show_ui' => true,
-		'rewrite' => false,
-		'query_var' => 'dir-item-location',
-		'capabilities' => array(
-				'assign_terms' => 'assign_dir_location'
-			)
-	));
 	
-	
-	//Purpose
-	$labels = array(
-	    'name'                          => __( 'Mục Đích', 'site5framework' ),
-	    'singular_name'                 => __( 'Mục Đích', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Mục Đích', 'site5framework' ),
-	    'popular_items'                 => __( 'Mục Đích phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Mục Đích', 'site5framework' ),
-	    'parent_item'                   => __( 'Mục Đích cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Mục Đích', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Mục Đích', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Mục Đích', 'site5framework' ),
-	    'new_item_name'                 => __( 'Mục Đích mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Mục Đích bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Mục Đích', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Mục Đích phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Mục Đích', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'purpose', 'with_front' => false ),
-	    'query_var'                     => 'purpose'
-	);
-
-	register_taxonomy( 'purpose', array('ait-dir-item'), $args );
-
-	//Culture taxonomy
-	$labels = array(
-	    'name'                          => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'singular_name'                 => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'popular_items'                 => __( 'Văn Hoá Ẩm Thực phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'parent_item'                   => __( 'Văn Hoá Ẩm Thực cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'new_item_name'                 => __( 'Văn Hoá Ẩm Thực mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Văn Hoá Ẩm Thực bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Văn Hoá Ẩm Thực', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Văn Hoá Ẩm Thực phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Văn Hoá Ẩm Thực', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'culture', 'with_front' => false ),
-	    'query_var'                     => 'culture'
-	);
-
-	register_taxonomy( 'culture', array('ait-dir-item'), $args );
-
-	//Dishes taxonomy
-	$labels = array(
-	    'name'                          => __( 'Thể Loại Món', 'site5framework' ),
-	    'singular_name'                 => __( 'Thể Loại Món', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Thể Loại Món', 'site5framework' ),
-	    'popular_items'                 => __( 'Thể Loại Món phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Thể Loại Món', 'site5framework' ),
-	    'parent_item'                   => __( 'Thể Loại Món cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Thể Loại Món', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Thể Loại Món', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Thể Loại Món', 'site5framework' ),
-	    'new_item_name'                 => __( 'Thể Loại Món mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Thể Loại Món bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Thể Loại Món', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Thể Loại Món phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Thể Loại Món', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'dishes', 'with_front' => false ),
-	    'query_var'                     => 'dishes'
-	);
-
-	register_taxonomy( 'dishes', array('ait-dir-item'), $args );
-
-	//Facility taxonomy
-	$labels = array(
-	    'name'                          => __( 'Tiện Nghi', 'site5framework' ),
-	    'singular_name'                 => __( 'Tiện Nghi', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Tiện Nghi', 'site5framework' ),
-	    'popular_items'                 => __( 'Tiện Nghi phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Tiện Nghi', 'site5framework' ),
-	    'parent_item'                   => __( 'Tiện Nghi cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Tiện Nghi', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Tiện Nghi', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Tiện Nghi', 'site5framework' ),
-	    'new_item_name'                 => __( 'Tiện Nghi mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Tiện Nghi bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Tiện Nghi', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Tiện Nghi phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Tiện Nghi', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'facility', 'with_front' => false ),
-	    'query_var'                     => 'facility'
-	);
-
-	register_taxonomy( 'facility', array('ait-dir-item'), $args );
-
-	//Timeframe taxonomy
-	$labels = array(
-	    'name'                          => __( 'Thời Gian Hoạt Động', 'site5framework' ),
-	    'singular_name'                 => __( 'Thời Gian Hoạt Động', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Thời Gian Hoạt Động', 'site5framework' ),
-	    'popular_items'                 => __( 'Thời Gian Hoạt Động phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Thời Gian Hoạt Động', 'site5framework' ),
-	    'parent_item'                   => __( 'Thời Gian Hoạt Động cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Thời Gian Hoạt Động', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Thời Gian Hoạt Động', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Thời Gian Hoạt Động', 'site5framework' ),
-	    'new_item_name'                 => __( 'Thời Gian Hoạt Động mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Thời Gian Hoạt Động bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Thời Gian Hoạt Động', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Thời Gian Hoạt Động phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Thời Gian Hoạt Động', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'timeframe', 'with_front' => false ),
-	    'query_var'                     => 'timeframe'
-	);
-
-	register_taxonomy( 'timeframe', array('ait-dir-item'), $args );
-
-	//Avgprice taxonomy
-	$labels = array(
-	    'name'                          => __( 'Mức Giá Trung Bình', 'site5framework' ),
-	    'singular_name'                 => __( 'Mức Giá Trung Bình', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Mức Giá Trung Bình', 'site5framework' ),
-	    'popular_items'                 => __( 'Mức Giá Trung Bình phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Mức Giá Trung Bình', 'site5framework' ),
-	    'parent_item'                   => __( 'Mức Giá Trung Bình cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Mức Giá Trung Bình', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Mức Giá Trung Bình', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Mức Giá Trung Bình', 'site5framework' ),
-	    'new_item_name'                 => __( 'Mức Giá Trung Bình mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Mức Giá Trung Bình bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Mức Giá Trung Bình', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Mức Giá Trung Bình phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Mức Giá Trung Bình', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'avgprice', 'with_front' => false ),
-	    'query_var'                     => 'avgprice'
-	);
-
-	register_taxonomy( 'avgprice', array('ait-dir-item'), $args );
-
-	//Merchandise taxonomy
-	$labels = array(
-	    'name'                          => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'singular_name'                 => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'popular_items'                 => __( 'Sản Phẩm/Hàng Hoá phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Toàn bộ Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'parent_item'                   => __( 'Sản Phẩm/Hàng Hoá cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'new_item_name'                 => __( 'Sản Phẩm/Hàng Hoá mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách tên Sản Phẩm/Hàng Hoá bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Sản Phẩm/Hàng Hoá', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Sản Phẩm/Hàng Hoá phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Sản Phẩm/Hàng Hoá', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'merchandise', 'with_front' => false ),
-	    'query_var'                     => 'merchandise'
-	);
-
-	register_taxonomy( 'merchandise', array('ait-dir-item'), $args );
-
-	//capacity
-	$labels = array(
-	    'name'                          => __( 'Số Lượng Chỗ', 'site5framework' ),
-	    'singular_name'                 => __( 'Số Lượng Chỗ', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Số Lượng Chỗ', 'site5framework' ),
-	    'popular_items'                 => __( 'Số Lượng Chỗ phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Tất cả Số Lượng Chỗ', 'site5framework' ),
-	    'parent_item'                   => __( 'Số Lượng Chỗ cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Số Lượng Chỗ', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Số Lượng Chỗ', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Số Lượng Chỗ', 'site5framework' ),
-	    'new_item_name'                 => __( 'Số Lượng Chỗ mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách Số Lượng Chỗ bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Số Lượng Chỗ', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Số Lượng Chỗ phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Số Lượng Chỗ', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'capacity', 'with_front' => false ),
-	    'query_var'                     => 'capacity'
-	);
-
-	register_taxonomy( 'capacity', array('ait-dir-item','ait-dir-event'), $args );
-	
-	//event type
-	$labels = array(
-	    'name'                          => __( 'Loại Sự Kiện', 'site5framework' ),
-	    'singular_name'                 => __( 'Loại Sự Kiện', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Loại Sự Kiện', 'site5framework' ),
-	    'popular_items'                 => __( 'Loại Sự Kiện phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Tất cả Loại Sự Kiện', 'site5framework' ),
-	    'parent_item'                   => __( 'Loại Sự Kiện cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Loại Sự Kiện', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Loại Sự Kiện', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Loại Sự Kiện', 'site5framework' ),
-	    'new_item_name'                 => __( 'Loại Sự Kiện mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách Loại Sự Kiện bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Loại Sự Kiện', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Loại Sự Kiện phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Loại Sự Kiện', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'event/event_types', 'with_front' => false ),
-	    'query_var'                     => 'event_types'
-	);
-
-	register_taxonomy( 'event_types', 'ait-dir-event', $args );
-
-	//ticket
-	$labels = array(
-	    'name'                          => __( 'Giá Vé', 'site5framework' ),
-	    'singular_name'                 => __( 'Giá Vé', 'site5framework' ),
-	    'search_items'                  => __( 'Tìm kiếm Giá Vé', 'site5framework' ),
-	    'popular_items'                 => __( 'Giá Vé phổ biến', 'site5framework' ),
-	    'all_items'                     => __( 'Tất cả Giá Vé', 'site5framework' ),
-	    'parent_item'                   => __( 'Giá Vé cấp cha', 'site5framework' ),
-	    'edit_item'                     => __( 'Sửa Giá Vé', 'site5framework' ),
-	    'update_item'                   => __( 'Cập nhật Giá Vé', 'site5framework' ),
-	    'add_new_item'                  => __( 'Thêm Giá Vé', 'site5framework' ),
-	    'new_item_name'                 => __( 'Giá Vé mới', 'site5framework' ),
-	    'separate_items_with_commas'    => __( 'Phân cách Giá Vé bằng dấu phẩy (,)', 'site5framework' ),
-	    'add_or_remove_items'           => __( 'Thêm/bớt Giá Vé', 'site5framework' ),'',
-	    'choose_from_most_used'         => __( 'Chọn trong danh sách Giá Vé phổ biến', 'site5framework' )
-	);
-
-	$args = array(
-	    'label'                         => __( 'Giá Vé', 'site5framework' ),
-	    'labels'                        => $labels,
-	    'public'                        => true,
-	    'hierarchical'                  => true,
-	    'show_ui'                       => true,
-	    'show_in_nav_menus'             => true,
-	    'args'                          => array( 'orderby' => 'term_order' ),
-	    'rewrite'                       => array( 'slug' => 'event/ticketprice', 'with_front' => false ),
-	    'query_var'                     => 'ticketprice'
-	);
-
-	register_taxonomy( 'ticketprice', 'ait-dir-event', $args );
 
 }
 add_action( 'init', 'aitDirItemPostType');

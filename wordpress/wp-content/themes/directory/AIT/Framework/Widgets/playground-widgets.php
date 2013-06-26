@@ -47,6 +47,18 @@ class pg_past_events extends WP_Widget {
             echo $before_title; echo do_shortcode($instance['title']); echo $after_title;
         }
 
+		if (count($post_ids) <= 0){?>
+			<div class="postitems-wrapper">
+           		<div class="no-content">No posts</div>
+           </div>
+
+
+			<?php /* After widget(defined by theme)*/
+			echo $after_widget;
+			wp_reset_query();
+			return;
+		}
+
         $i = 1;
         $num_posts = sizeof( query_posts( $query ) );
 
@@ -222,6 +234,7 @@ class pg_upcoming_events extends WP_Widget {
 		extract ($args);
 		global $wp_query,$wpdb;
 		/* Before widget(defined by theme)*/
+		echo $before_widget;
 
 		$post_count = $instance['number_of_posts'];
 		$sql = "select p.ID from $wpdb->posts p, $wpdb->postmeta m where p.post_type='ait-dir-event' and p.post_status='publish' and (p.ID = m.post_id and m.meta_key = 'pg_event_expire_date' and (m.meta_value = 'Never' or date(m.meta_value) >= curdate())) limit $post_count";

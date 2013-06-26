@@ -644,8 +644,8 @@ var wpJSON = (function(scope) {
 			callbacks[id] = [successCallback, failureCallback];
 
 			JSONstring = '{"jsonrpc":"2.0","method":"' + method + '","params":' + paramsString + ',"id":' + id + '}';
-			postReq('http://thegioiuudai.com.vn/playground/xmlrpc.php', {'json-rpc-request':JSONstring}, actOnResponse );
-			// postReq('http://localhost/~longlc/playground/xmlrpc.php', {'json-rpc-request':JSONstring}, actOnResponse );
+			// postReq('http://27.0.15.183/pg/xmlrpc.php', {'json-rpc-request':JSONstring}, actOnResponse );
+			postReq('http://localhost/~longlc/playground/wordpress/xmlrpc.php', {'json-rpc-request':JSONstring}, actOnResponse );
 			// postReq('http://192.168.1.32/~longlc/playground/xmlrpc.php', {'json-rpc-request':JSONstring}, actOnResponse );
 		}
 	};

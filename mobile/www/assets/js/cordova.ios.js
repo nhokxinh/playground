@@ -6391,7 +6391,7 @@ require('cordova/channel').onNativeReady.fire();
 
 	//Comment out while developing
 	//TODO: uncomment before packaging to XCode
-	finishPluginLoading();
+	// finishPluginLoading();
 
     // Try to XHR the cordova_plugins.json file asynchronously.
     // try { // we commented we were going to try, so let us actually try and catch

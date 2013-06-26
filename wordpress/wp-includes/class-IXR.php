@@ -418,6 +418,16 @@ EOD;
 
     function call($methodname, $args)
     {
+		//LongLC added this part to deal with JSON request parameters
+		if ($methodname != 'pg.doFilter'){
+			$params = (array)$args[0];
+			$args = array();
+			foreach ($params as $p){
+				array_push($args,$p);
+			}
+		}
+		//End of changes from LongLC
+		
         if (!$this->hasMethod($methodname)) {
             return new IXR_Error(-32601, 'server error. requested method '.$methodname.' does not exist.');
         }

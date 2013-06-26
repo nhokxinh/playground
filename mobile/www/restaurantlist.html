@@ -1,11 +1,22 @@
 <div data-role="page" id="restaurantlistpage">
 	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="filter.html" data-role="button" data-icon="bars" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="togglefilterbtn" data-transition="flip"></a>
 		<h1>Nhà hàng</h1>
-		<a href="#" data-role="button" data-icon="refresh" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="restaurantlistrefreshbtn"></a>
+		<a href="#" data-role="button" data-icon="search" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="togglesearchbtn"></a>
 	</div><!-- /header -->
 
 	<div data-role="content">
-		<ul data-role="listview" data-filter="true" data-filter-placeholder="Tìm kiếm..." id="restaurantlist">
+		<ul data-role="listview" id="searchsection" class="hide" data-theme="e">
+			<li data-role="fieldcontain">
+				<input type="search" name="search-term" id="search-term" value="" placeholder="Tìm kiếm...">
+				<div class="button-wrapper" data-role="controlgroup" data-type="horizontal" data-mini="true">
+					<a href="#" data-role="button" data-icon="search" id="search-submit" data-theme="b">Tìm</a>
+					<a href="#" data-role="button" data-icon="delete" id="search-cancel" data-theme="a" data-iconpos="right">Đóng</a>
+				</div>
+			</li>
+		</ul>
+		
+		<ul data-role="listview" id="restaurantlist">
 		</ul>
 	</div><!-- /content -->
 
@@ -49,6 +60,19 @@
 		}
 		
 		$('div#restaurantlistpage').on('pageshow',function(){
+			$('#togglesearchbtn').click(function(){
+				$('ul#searchsection').slideDown();
+			});
+			
+			$('a#search-cancel').click(function(){
+				$('ul#searchsection').slideUp();
+			});
+			
+			$('a#search-submit').click(function(){
+				var searchTerm = $('input#search-term').val().replace(/\s/g,'+');
+				$(this).attr('href','search.html?type=restaurant&s=' + searchTerm);
+			});
+			
 			if (restaurantList.length == 0){
 				downloadRestaurantList();
 			} else {

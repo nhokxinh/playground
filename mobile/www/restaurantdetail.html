@@ -9,15 +9,13 @@
 		<ul data-role="listview" data-inset="true">
 			<li data-role="fieldcontain" class="posterimg">
 			</li>
+		</ul>
+		<ul data-role="listview" data-inset="true">
 			<li data-role="fieldcontain">
 				<a id="weblink" class="external">
 					<h2 id="phone"></h2>
 					<p id="url"></p>
 				</a>
-			</li>
-		</ul>
-		<ul data-role="listview" data-inset="true" class="postcontent">
-			<li data-role="fieldcontain" id="features">
 			</li>
 			<li data-role="fieldcontain">
 				<a id="maplink">
@@ -43,9 +41,9 @@
 			<li data-role="fieldcontain" id="timeframe"></li>
 			<li data-role="fieldcontain" id="purpose"></li>
 			<li data-role="fieldcontain" id="capacity"></li>
-			<li data-role="fieldcontain" id="servingtime"></li>
+			<!-- <li data-role="fieldcontain" id="servingtime"></li>
 			<li data-role="fieldcontain" id="holiday"></li>
-			<li data-role="fieldcontain" id="est"></li>
+			<li data-role="fieldcontain" id="est"></li> -->
 		</ul>
 	</div><!-- /content -->
 	
@@ -84,9 +82,9 @@
 				$('li#avgprice').html('<strong>Mức giá trung bình: </strong> ' + cached_post.avgprice);
 				$('li#purpose').html('<strong>Phù hợp </strong> ' + cached_post.purpose);
 				$('li#capacity').html('<strong>Sức chứa</strong> ' + cached_post.capacity);
-				$('li#servingtime').html('<strong>Thời gian chuẩn bị món: </strong> ' + cached_post.servingtime);
-				$('li#holiday').html('<strong>Nghỉ lễ:</strong> ' + cached_post.holiday);
-				$('li#est').html('<strong>Thành lập năm</strong> ' + cached_post.est);
+				// $('li#servingtime').html('<strong>Thời gian chuẩn bị món: </strong> ' + cached_post.servingtime);
+				// $('li#holiday').html('<strong>Nghỉ lễ:</strong> ' + cached_post.holiday);
+				// $('li#est').html('<strong>Thành lập năm</strong> ' + cached_post.est);
 				
 				if (cached_post.events.length > 0){
 					cached_post.events.forEach(function(event){

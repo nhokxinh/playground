@@ -225,7 +225,10 @@ class WP_JSON_RPC_Server extends IXR_Server
 			'pg.getRestaurant' => 'this:getRestaurant',
 			'pg.getShopping' => 'this:getShopping',
 			'pg.getShoppingList' => 'this:getShoppingList',
-			'pg.getEventList' => 'this:getEventList'
+			'pg.getEventList' => 'this:getEventList',
+			'pg.search' => 'this:search',
+			'pg.getFilter' => 'this:getFilter',
+			'pg.doFilter' => 'this:doFilter'
 		);
 	}
 	
@@ -249,11 +252,27 @@ class WP_JSON_RPC_Server extends IXR_Server
 	
 	//start messing	
 	function getClubList($args){
-		$posts = get_posts(array('post_type'=>'barsclubs','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
+		$posts = get_posts(
+			array(
+				'post_type'=>'ait-dir-item',
+				'numberposts'=>10,
+				'offset'=>0,
+				'post_status'=> 'publish',
+				'tax_query'=>array(
+					array(
+						'taxonomy'=>'ait-dir-item-category',
+						'field'=>'slug',
+						'terms'=>'barsclubs',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				)
+			)
+		);
 		$club_list = array();
 		if ($posts){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'timeframe',
 				'avgprice'
 			);
@@ -281,12 +300,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 					$term_sql = "select term.name from $wpdb->terms term, $wpdb->term_taxonomy tax, $wpdb->term_relationships r where term.term_id = tax.term_id and tax.term_taxonomy_id = r.term_taxonomy_id and r.object_id = $post->ID and tax.taxonomy = '$term'";
 					$term_val = $wpdb->get_results($term_sql);
 					// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
-					$club[$term] = $term_val[0];
+					if ($term == 'ait-dir-item-location'){
+						$club['area'] = $term_val[0]->name;
+					} else {
+						$club[$term] = $term_val[0]->name;
+					}
 				}
 				foreach ($meta_list as $meta){
 					$club[$meta] = get_post_meta($post->ID, 'pg_barsclubs_' . $meta, true);
 				}
-				$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+				$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 				$club['events'] = array();
 				foreach($events as $event){
 					array_push($club['events'],array(
@@ -295,6 +318,12 @@ class WP_JSON_RPC_Server extends IXR_Server
 						'url' => $event->guid
 					));
 				}
+				
+				$club_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+				$club['address'] = $club_info_option['address'];
+				$club['url'] = $club_info_option['web'];
+				$club['phone'] = $club_info_option['telephone'];
+				
 				array_push($club_list,$club);
 			}
 		}
@@ -308,7 +337,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		$club = false;
 		if ($post){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'timeframe',
 				'avgprice'
 			);
@@ -336,11 +365,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$term_val = $wpdb->get_results($term_sql);
 				// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
 				$club[$term] = $term_val[0];
+				if ($term == 'ait-dir-item-location'){
+					$club['area'] = $term_val[0]->name;
+				} else {
+					$club[$term] = $term_val[0]->name;
+				}
 			}
 			foreach ($meta_list as $meta){
 				$club[$meta] = get_post_meta($post->ID, 'pg_barsclubs_' . $meta, true);
 			}
-			$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+			$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 			$club['events'] = array();
 			foreach($events as $event){
 				array_push($club['events'],array(
@@ -349,16 +383,37 @@ class WP_JSON_RPC_Server extends IXR_Server
 					'url' => $event->guid
 				));
 			}
+			
+			$club_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+			$club['address'] = $club_info_option['address'];
+			$club['url'] = $club_info_option['web'];
+			$club['phone'] = $club_info_option['telephone'];
 		}
 		return $club;
 	}
 	
 	function getRestaurantList($args){
-		$posts = get_posts(array('post_type'=>'restaurant','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
+		$posts = get_posts(
+			array(
+				'post_type'=>'ait-dir-item',
+				'numberposts'=>10,
+				'offset'=>0,
+				'post_status'=> 'publish',
+				'tax_query'=>array(
+					array(
+						'taxonomy'=>'ait-dir-item-category',
+						'field'=>'slug',
+						'terms'=>'nha-hang',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				)
+			)
+		);
 		$restaurant_list = array();
 		if ($posts){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'purpose',
 				'culture',
 				'dishes',
@@ -392,11 +447,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 					$term_val = $wpdb->get_results($term_sql);
 					// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
 					$restaurant[$term] = $term_val[0];
+					if ($term == 'ait-dir-item-location'){
+						$restaurant['area'] = $term_val[0]->name;
+					} else {
+						$restaurant[$term] = $term_val[0]->name;
+					}
 				}
 				foreach ($meta_list as $meta){
 					$restaurant[$meta] = get_post_meta($post->ID, 'pg_restaurant_' . $meta, true);
 				}
-				$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+				$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 				$restaurant['events'] = array();
 				foreach($events as $event){
 					array_push($restaurant['events'],array(
@@ -405,6 +465,12 @@ class WP_JSON_RPC_Server extends IXR_Server
 						'url' => $event->guid
 					));
 				}
+				
+				$restaurant_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+				$restaurant['address'] = $restaurant_info_option['address'];
+				$restaurant['url'] = $restaurant_info_option['web'];
+				$restaurant['phone'] = $restaurant_info_option['telephone'];
+				
 				array_push($restaurant_list,$restaurant);
 			}
 		}
@@ -418,7 +484,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		$restaurant = false;
 		if ($post){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'purpose',
 				'culture',
 				'dishes',
@@ -451,11 +517,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$term_val = $wpdb->get_results($term_sql);
 				// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
 				$restaurant[$term] = $term_val[0];
+				if ($term == 'ait-dir-item-location'){
+					$restaurant['area'] = $term_val[0]->name;
+				} else {
+					$restaurant[$term] = $term_val[0]->name;
+				}
 			}
 			foreach ($meta_list as $meta){
 				$restaurant[$meta] = get_post_meta($post->ID, 'pg_restaurant_' . $meta, true);
 			}
-			$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+			$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 			$restaurant['events'] = array();
 			foreach($events as $event){
 				array_push($restaurant['events'],array(
@@ -464,16 +535,37 @@ class WP_JSON_RPC_Server extends IXR_Server
 					'url' => $event->guid
 				));
 			}
+			
+			$restaurant_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+			$restaurant['address'] = $restaurant_info_option['address'];
+			$restaurant['url'] = $restaurant_info_option['web'];
+			$restaurant['phone'] = $restaurant_info_option['telephone'];
 		}
 		return $restaurant;
 	}
 	
 	function getShoppingList($args){
-		$posts = get_posts(array('post_type'=>'shopping','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
+		$posts = get_posts(
+			array(
+				'post_type'=>'ait-dir-item',
+				'numberposts'=>10,
+				'offset'=>0,
+				'post_status'=> 'publish',
+				'tax_query'=>array(
+					array(
+						'taxonomy'=>'ait-dir-item-category',
+						'field'=>'slug',
+						'terms'=>'mua-sam',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				)
+			)
+		);
 		$shopping_list = array();
 		if ($posts){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'timeframe',
 				'avgprice',
 				'merchandise'
@@ -502,11 +594,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 					$term_val = $wpdb->get_results($term_sql);
 					// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
 					$shopping[$term] = $term_val[0];
+					if ($term == 'ait-dir-item-location'){
+						$shopping['area'] = $term_val[0]->name;
+					} else {
+						$shopping[$term] = $term_val[0]->name;
+					}
 				}
 				foreach ($meta_list as $meta){
 					$shopping[$meta] = get_post_meta($post->ID, 'pg_shopping_' . $meta, true);
 				}
-				$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+				$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 				$shopping['events'] = array();
 				foreach($events as $event){
 					array_push($shopping['events'],array(
@@ -515,6 +612,12 @@ class WP_JSON_RPC_Server extends IXR_Server
 						'url' => $event->guid
 					));
 				}
+				
+				$shopping_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+				$shopping['address'] = $shopping_info_option['address'];
+				$shopping['url'] = $shopping_info_option['web'];
+				$shopping['phone'] = $shopping_info_option['telephone'];
+				
 				array_push($shopping_list,$shopping);
 			}
 		}
@@ -528,7 +631,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		$shopping = false;
 		if ($post){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'timeframe',
 				'avgprice',
 				'merchandise'
@@ -556,11 +659,16 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$term_val = $wpdb->get_results($term_sql);
 				// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
 				$shopping[$term] = $term_val[0];
+				if ($term == 'ait-dir-item-location'){
+					$shopping['area'] = $term_val[0]->name;
+				} else {
+					$shopping[$term] = $term_val[0]->name;
+				}
 			}
 			foreach ($meta_list as $meta){
 				$shopping[$meta] = get_post_meta($post->ID, 'pg_shopping_' . $meta, true);
 			}
-			$events = get_posts(array('post_type'=>array('event'),'meta_key'=>'snbp_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+			$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
 			$shopping['events'] = array();
 			foreach($events as $event){
 				array_push($shopping['events'],array(
@@ -569,16 +677,21 @@ class WP_JSON_RPC_Server extends IXR_Server
 					'url' => $event->guid
 				));
 			}
+			
+			$shopping_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+			$shopping['address'] = $shopping_info_option['address'];
+			$shopping['url'] = $shopping_info_option['web'];
+			$shopping['phone'] = $shopping_info_option['telephone'];
 		}
 		return $shopping;
 	}
 	
 	function getEventList($args){
-		$posts = get_posts(array('post_type'=>'event','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
+		$posts = get_posts(array('post_type'=>'ait-dir-event','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
 		$event_list = array();
 		if ($posts){
 			$term_list = array(
-				'area',
+				'ait-dir-item-location',
 				'event_types',
 				'capacity',
 				'ticketprice'
@@ -601,26 +714,249 @@ class WP_JSON_RPC_Server extends IXR_Server
 					$term_sql = "select term.name from $wpdb->terms term, $wpdb->term_taxonomy tax, $wpdb->term_relationships r where term.term_id = tax.term_id and tax.term_taxonomy_id = r.term_taxonomy_id and r.object_id = $post->ID and tax.taxonomy = '$term'";
 					$term_val = $wpdb->get_results($term_sql);
 					// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
-					$event[$term] = $term_val[0];
+					if ($term == 'ait-dir-item-location'){
+						$event['area'] = $term_val[0]->name;
+					} else {
+						$event[$term] = $term_val[0]->name;
+					}
 				}
 				foreach ($meta_list as $meta){
 					$event[$meta] = get_post_meta($post->ID, 'pg_event_' . $meta, true);
 				}
 				$venue_id = get_post_meta( $post->ID, 'pg_event_venue', true );
 				$venue = get_post($venue_id);
-				$venue_type = get_post_type($venue->ID);
+				$venue_category = wp_get_post_terms($venue->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+				$venue_type = 'place';
+				switch($venue_category[0]){
+					case 'barsclubs':
+						$venue_type = 'club';
+						break;
+					case 'nha-hang':
+						$venue_type = 'restaurant';
+						break;
+					case 'mua-sam':
+						$venue_type = 'shopping';
+						break;
+				}
+				$venue_info = get_post_meta($venue->ID, '_ait-dir-item', true);
 				$event['venue'] = array(
 					'id' => $venue->ID,
 					'name' => $venue->post_title,
 					'type' => $venue_type,
 					'thumbnail' => wp_get_attachment_image_src(get_post_meta($venue->ID, '_thumbnail_id', true),'thumbnail',true),
-					'address' => get_post_meta($venue->ID, ('pg_' . $venue_type . '_address'), true),
-					'direction' => get_post_meta($venue->ID, ('pg_' . $venue_type . '_direction'), true)
+					'address' => $venue_info['address']
+					// 'direction' => get_post_meta($venue->ID, ('pg_' . $venue_type . '_direction'), true)
 				);
 				array_push($event_list,$event);
 			}
 		}
 		return $event_list;
+	}
+	
+	function getEvent($args){
+		$this->escape($args);
+		$post_id = $args;
+		$post = get_post($post_id);
+		$event = false;
+		if ($post){
+			$term_list = array(
+				'ait-dir-item-location',
+				'event_types',
+				'capacity',
+				'ticketprice'
+			);
+			$meta_list = array(
+				'venue',
+				'date',
+				'time'
+			);
+			$event = array(
+				'id' => $post->ID,
+				'name' => $post->post_title,
+				'thumbnail' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'thumbnail',true),
+				'featured_img' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'full',true),
+				'content' => $post->post_content
+			);
+			global $wpdb;
+			foreach ($term_list as $term){
+				$term_sql = "select term.name from $wpdb->terms term, $wpdb->term_taxonomy tax, $wpdb->term_relationships r where term.term_id = tax.term_id and tax.term_taxonomy_id = r.term_taxonomy_id and r.object_id = $post->ID and tax.taxonomy = '$term'";
+				$term_val = $wpdb->get_results($term_sql);
+				// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
+				if ($term == 'ait-dir-item-location'){
+					$event['area'] = $term_val[0]->name;
+				} else {
+					$event[$term] = $term_val[0]->name;
+				}
+			}
+			foreach ($meta_list as $meta){
+				$event[$meta] = get_post_meta($post->ID, 'pg_event_' . $meta, true);
+			}
+			$venue_id = get_post_meta( $post->ID, 'pg_event_venue', true );
+			$venue = get_post($venue_id);
+			$venue_category = wp_get_post_terms($venue->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+			$venue_type = 'place';
+			switch($venue_category[0]){
+				case 'barsclubs':
+					$venue_type = 'club';
+					break;
+				case 'nha-hang':
+					$venue_type = 'restaurant';
+					break;
+				case 'mua-sam':
+					$venue_type = 'shopping';
+					break;
+			}
+			$venue_info = get_post_meta($venue->ID, '_ait-dir-item', true);
+			$event['venue'] = array(
+				'id' => $venue->ID,
+				'name' => $venue->post_title,
+				'type' => $venue_type,
+				'thumbnail' => wp_get_attachment_image_src(get_post_meta($venue->ID, '_thumbnail_id', true),'thumbnail',true),
+				'address' => $venue_info['address']
+				// 'direction' => get_post_meta($venue->ID, ('pg_' . $venue_type . '_direction'), true)
+			);
+		}
+		return $event;
+	}
+	
+	function search($args){
+		$this->escape($args);
+		$type = $args[0];
+		$s = $args[1];
+		$query = array(
+			'numberposts'=>10,
+			'offset'=>0,
+			'post_status'=> 'publish',
+			's' => $s
+		);
+		$category = 'unknown';
+		switch($type){
+			case 'club':
+				$query['post_type'] = 'ait-dir-item';
+				$query['tax_query'] = array(
+					array(
+						'taxonomy' => 'ait-dir-item-category',
+						'field' => 'slug',
+						'terms' => 'barsclubs',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				);
+				break;
+			case 'restaurant':
+				$query['post_type'] = 'ait-dir-item';
+				$query['tax_query'] = array(
+					array(
+						'taxonomy' => 'ait-dir-item-category',
+						'field' => 'slug',
+						'terms' => 'nha-hang',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				);
+				break;
+			case 'shopping':
+				$query['post_type'] = 'ait-dir-item';
+				$query['tax_query'] = array(
+					array(
+						'taxonomy' => 'ait-dir-item-category',
+						'field' => 'slug',
+						'terms' => 'mua-sam',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				);
+				break;
+			case 'event':
+				$query['post_type'] = 'ait-dir-event';
+				break;
+		}
+		
+		$posts = get_posts($query);
+		
+		$search_results = array();
+		foreach ($posts as $post){
+			switch ($type){
+				case 'club':
+					array_push($search_results,$this->getClub($post->ID));
+					break;
+				case 'restaurant':
+					array_push($search_results,$this->getRestaurant($post->ID));
+					break;
+				case 'shopping':
+					array_push($search_results,$this->getShopping($post->ID));
+					break;
+				case 'event':
+					array_push($search_results,$this->getEvent($post->ID));
+					break;
+			}
+		}
+		
+		return $search_results;
+	}
+	
+	function getFilter($agrs){
+		$taxonomies = array(
+			'ait-dir-item-category',
+			'ait-dir-item-location',
+			'purpose',
+			'culture',
+			'dishes',
+			'facility',
+			'timeframe',
+			'avgprice',
+			'capacity',
+			'event_types',
+			'ticketprice'
+		);
+		
+		$terms = array();
+		foreach ($taxonomies as $tax){
+			$terms[$tax] = get_terms($tax);
+			$terms['tax_names'][$tax] = get_taxonomy($tax)->label;
+		}
+		return $terms;
+	}
+	
+	function doFilter($args){
+		$tax_query = array();
+		$query = array(
+			'post_type'=>$args->post_type
+		);
+		foreach ($args as $taxonomy => $terms ) {
+			if ($taxonomy != 'post_type'){
+				$query['tax_query'][] = array(
+					'taxonomy' => $taxonomy,
+					'terms' => $terms,
+					'field' => 'term_id',
+					'operator' => 'IN',
+					'include_children' => true
+				);
+			}
+		}
+		$posts = get_posts($query);
+		$filter_results = array();
+		foreach ($posts as $post){
+			$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+			switch ($category[0]){
+				case 'nha-hang':
+					$place = $this->getRestaurant($post->ID);
+					$place['type'] = 'restaurant';
+					array_push($filter_results,$place);
+					break;
+				case 'mua-sam':
+					$place = $this->getShopping($post->ID);
+					$place['type'] = 'shopping';
+					array_push($filter_results,$place);
+					break;
+				case 'barsclubs':
+					$place = $this->getClub($post->ID);
+					$place['type'] = 'restaurant';
+					array_push($filter_results,$place);
+					break;
+			}
+		}
+		return $filter_results;
 	}
 	
 	/**
