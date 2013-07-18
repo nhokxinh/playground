@@ -1,0 +1,102 @@
+<div data-role="page" id="eventlistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Quanh đây</h1>
+		<!-- <a href="#account-panel" data-role="button" data-icon="bars" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="account-panel-toggle"></a> -->
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview">
+			<li id="map" style="padding:0;height:250px">
+			</li>
+		</ul>
+		<ul data-role="listview" id="searchresultlist" style="margin-top:1em">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		// Wait for PhoneGap to load
+	    //
+	    document.addEventListener("deviceready", onDeviceReady, false);
+
+	    // PhoneGap is ready
+	    //
+	    function onDeviceReady() {
+	        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	    }
+
+	    // onSuccess Geolocation
+	    //
+	    function onSuccess(position) {
+			var map;
+			var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+			var mapOptions = {
+				zoom: 13,
+				center: latlng,
+				mapTypeControl: false,
+				navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById('map'),mapOptions);
+			
+			var marker = new google.maps.Marker({
+				position: latlng,
+				map: map,
+				icon: 'assets/img/gpsloc_17x17.png',
+				title: "Vị trí của bạn (sai số bán kính	"+position.coords.accuracy+"m)"
+			});
+			
+			showLoading();
+			wpJSON.request(
+                'pg.searchNearBy',
+                {
+                    'latitude':position.coords.latitude,
+					'longitude':position.coords.longitude,
+					'radius':10
+                },
+                function (result) {
+					$('ul#searchresultlist').empty();
+					if (result.length <= 0){
+						$('ul#searchresultlist').append('<p class="ul-info">Không tìm thấy kết quả nào.</p>');
+					} else {
+						result.forEach(function(post){
+							$('ul#searchresultlist').append(
+								'<li>' +
+									'<a href="' + post.type + 'detail.html?post_id=' + post.id + '">' + 
+										'<img src="' + post.thumbnail[0] + '"/>' +
+										'<h2>' + post.name + '</h2>' +
+										'<p>' + post.address + '</p>' +
+									'</a>' +
+								'</li>'
+							);
+							
+							var post_latlng = new google.maps.LatLng(post.latitude, post.longitude);
+							var post_marker = new google.maps.Marker({
+								position: post_latlng,
+								map: map, 
+								title: post.name
+							});
+						});
+						$('ul#searchresultlist').listview('refresh');
+					}
+					hideLoading();
+                },
+                function( code, error, data ) {
+                    console.log('error: ' + error);
+                }
+            );
+	    }
+
+	    // onError Callback receives a PositionError object
+	    //
+	    function onError(error) {
+	        alert('code: '    + error.code    + '\n' +
+	              'message: ' + error.message + '\n');
+	    }
+	
+		$('div#eventlistpage').on('pageshow',function(){
+//			var position = {coords:{latitude:10.773467,longitude:106.700267}};
+//			onSuccess(position);
+		});
+	</script>
+</div><!-- /page#eventlist -->

@@ -311,7 +311,7 @@ class pg_upcoming_events extends WP_Widget {
             ?>
                 <div class="postitem clearfix <?php echo $post_class; ?>">
 
-                <h3><a href="<?php the_permalink(); ?>"><?php the_title_attribute(); ?></a></h3>
+                
 
 				<?php if ( has_post_thumbnail ( get_the_ID() ) && $instance['show_thumbnails'] ) : ?>
 
@@ -328,7 +328,7 @@ class pg_upcoming_events extends WP_Widget {
                     </div><!-- /.thumb-wrap -->
                 <?php endif; ?>
 
-                <p><small><?php echo $text; ?></small></p>
+                <p><h3><a href="<?php the_permalink(); ?>"><?php the_title_attribute(); ?></a></h3><small><?php //echo $text; ?></small></p>
 
                 <?php if ( !empty( $instance['show_read_more'] ) ) : ?>
                 <div class="read-more">
@@ -610,7 +610,7 @@ class pg_latest_places extends WP_Widget {
 				<option>--</option>
 				<?php foreach ($category_terms as $cat){ ?>
 					<option value="<?php echo $cat->term_id; ?>" <?php if ($instance['place_category'] == $cat->term_id) { echo 'selected="selected"'; } ?> ><?php echo $cat->name; ?></option>
-				<? } ?>
+				<?php } ?>
 			</select>
         </p>
 		<p>

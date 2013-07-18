@@ -1,0 +1,79 @@
+<div data-role="page" id="shoppinglistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Mua sắm</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="shoppinglist">
+		</ul>
+	</div><!-- /content -->
+
+	<script type="text/javascript">
+		function downloadShoppingList(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getShoppingList',
+			   {},
+			   function (result) {
+					shoppingList = result;
+					$('ul#shoppinglist').empty();
+					shoppingList.forEach(function(post){
+						$('ul#shoppinglist').append(
+							'<li>' +
+								'<a href="shoppingdetail.html?post_id=' + post.id + '">' + 
+									'<img src="' + post.thumbnail[0] + '"/>' +
+									'<h2>' + post.name + '</h2>' +
+									'<p>' + post.address + '</p>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#shoppinglist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#shoppinglistpage').on('pageshow',function(){
+			$('#togglesearchbtn').click(function(){
+				$('ul#searchsection').slideDown();
+			});
+			
+			$('a#search-cancel').click(function(){
+				$('ul#searchsection').slideUp();
+			});
+			
+			$('a#search-submit').click(function(){
+				var searchTerm = $('input#search-term').val().replace(/\s/g,'+');
+				$(this).attr('href','search.html?type=shopping&s=' + searchTerm);
+			});
+			
+			if (shoppingList.length == 0){
+				downloadShoppingList();
+			} else {
+				$('ul#shoppinglist').empty();
+				shoppingList.forEach(function(post){
+					$('ul#shoppinglist').append(
+						'<li>' +
+							'<a href="shoppingdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p>' + post.address + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#shoppinglist').listview('refresh');
+			}
+		});
+		
+		$('a#shoppinglistrefreshbtn').click(function(){
+			shoppingList = [];
+			downloadShoppingList();
+		});
+	</script>
+</div><!-- /page#shoppinglist -->

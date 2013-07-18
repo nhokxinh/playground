@@ -1,19 +1,19 @@
-<?php //netteCache[01]000462a:2:{s:4:"time";s:21:"0.50883600 1371809880";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:73:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/index.php";i:2;i:1371801493;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000462a:2:{s:4:"time";s:21:"0.74988600 1374054152";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:73:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/index.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/index.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, '6j3rcc736g')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'dhpd763fr9')
 ;//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb23173d1413_content')) { function _lb23173d1413_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb45accc4b9c_content')) { function _lb45accc4b9c_content($_l, $_args) { extract($_args)
 ?>
 
 <?php if ($posts): ?>
 	
 <?php if ($type): ?>
 
-<?php NCoreMacros::includeTemplate("snippets/content-loop-dir-search.php", array('posts' => $posts) + $template->getParams(), $_l->templates['6j3rcc736g'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/content-loop-dir-search.php", array('posts' => $posts) + $template->getParams(), $_l->templates['dhpd763fr9'])->render() ?>
 
 <?php if($GLOBALS["wp_query"]->max_num_pages > 1): ?>
 		<nav class="paginate-links">
@@ -49,11 +49,11 @@ if (!function_exists($_l->blocks['content'][] = '_lb23173d1413_content')) { func
 		</article><!-- /#post-<?php echo NTemplateHelpers::escapeHtmlComment($post->id) ?> -->	
 <?php endif ?>
 
-<?php NCoreMacros::includeTemplate("snippets/content-nav.php", array('location' => 'nav-above') + $template->getParams(), $_l->templates['6j3rcc736g'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/content-nav.php", array('location' => 'nav-above') + $template->getParams(), $_l->templates['dhpd763fr9'])->render() ?>
 
-<?php NCoreMacros::includeTemplate("snippets/content-loop.php", array('posts' => $posts) + $template->getParams(), $_l->templates['6j3rcc736g'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/content-loop.php", array('posts' => $posts) + $template->getParams(), $_l->templates['dhpd763fr9'])->render() ?>
 
-<?php NCoreMacros::includeTemplate("snippets/content-nav.php", array('location' => 'nav-below') + $template->getParams(), $_l->templates['6j3rcc736g'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/content-nav.php", array('location' => 'nav-below') + $template->getParams(), $_l->templates['dhpd763fr9'])->render() ?>
 
 <?php endif ?>
 
@@ -66,7 +66,7 @@ if (!function_exists($_l->blocks['content'][] = '_lb23173d1413_content')) { func
 
 <?php else: ?>
 
-<?php NCoreMacros::includeTemplate("snippets/nothing-found.php", $template->getParams(), $_l->templates['6j3rcc736g'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/nothing-found.php", $template->getParams(), $_l->templates['dhpd763fr9'])->render() ?>
 
 <?php endif ?>
 

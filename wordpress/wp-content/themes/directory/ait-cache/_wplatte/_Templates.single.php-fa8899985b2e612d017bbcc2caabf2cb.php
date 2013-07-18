@@ -1,12 +1,12 @@
-<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.34131000 1371784396";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single.php";i:2;i:1371744556;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.82924400 1372642967";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single.php";i:2;i:1372075520;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'o0a09gffmt')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'v6ncktti7d')
 ;//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb40ec61cae7_content')) { function _lb40ec61cae7_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lba8e9677606_content')) { function _lba8e9677606_content($_l, $_args) { extract($_args)
 ?>
 <article id="post-<?php echo htmlSpecialChars($post->id) ?>" class="<?php echo htmlSpecialChars($post->htmlClasses) ?>">
 
@@ -67,7 +67,7 @@ if (!function_exists($_l->blocks['content'][] = '_lb40ec61cae7_content')) { func
 
 </article><!-- /#post-<?php echo NTemplateHelpers::escapeHtmlComment($post->id) ?> -->
 
-<?php NCoreMacros::includeTemplate("comments.php", array('closeable' => $themeOptions->general->closeComments, 'defaultState' => $themeOptions->general->defaultPosition) + $template->getParams(), $_l->templates['o0a09gffmt'])->render() ?>
+<?php NCoreMacros::includeTemplate("comments.php", array('closeable' => $themeOptions->general->closeComments, 'defaultState' => $themeOptions->general->defaultPosition) + $template->getParams(), $_l->templates['v6ncktti7d'])->render() ?>
 
 <?php if (isset($themeOptions->advertising->showBox4)): ?>
 <div id="advertising-box-4" class="advertising-box">

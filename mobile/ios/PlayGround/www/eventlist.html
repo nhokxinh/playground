@@ -1,0 +1,84 @@
+<div data-role="page" id="eventlistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Sự Kiện</h1>
+		<!-- <a href="#account-panel" data-role="button" data-icon="bars" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="account-panel-toggle"></a> -->
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="eventlist">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		function downloadEventList(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getEventList',
+			   {},
+			   function (result) {
+					eventList = result;
+					$('ul#eventlist').empty();
+					eventList.forEach(function(post){
+						$('ul#eventlist').append(
+							'<li>' +
+								'<a href="eventdetail.html?post_id=' + post.id + '">' + 
+									'<img src="' + post.thumbnail[0] + '"/>' +
+									'<h2>' + post.name + '</h2>' +
+									'<p><strong>' + post.venue.name + '</strong> - ' + post.venue.address + '</p>' +
+									'<p class="ui-li-aside"><strong>' + post.date + '</strong><br/>' + post.time + '</p>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#eventlist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#eventlistpage').on('pageshow',function(){
+			$('a#clubpagelink,a#restaurantpagelink,a#shoppingpagelink').removeClass('ui-btn-active').removeClass('ui-state-persist');
+			
+			$('#toggleeventsearchbtn').click(function(){
+				$('ul#eventsearchsection').slideDown();
+			});
+
+			$('a#search-cancel').click(function(){
+				$('ul#eventsearchsection').slideUp();
+			});
+
+			$('a#search-submit').click(function(){
+				var searchTerm = $('input#event-search-term').val().replace(/\s/g,'+');
+				$(this).attr('href','search.html?type=event&s=' + searchTerm);
+			});
+			
+			if (eventList.length == 0){
+				downloadEventList();
+			} else {
+				$('ul#eventlist').empty();
+				eventList.forEach(function(post){
+					$('ul#eventlist').append(
+						'<li>' +
+							'<a href="eventdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p><strong>' + post.venue.name + '</strong> - ' + post.venue.address + '</p>' +
+								'<p class="ui-li-aside"><strong>' + post.date + '</strong><br/><br/>' + post.time + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#eventlist').listview('refresh');
+			}
+		});
+		
+		$('a#eventlistrefreshbtn').click(function(){
+			eventList = [];
+			downloadEventList();
+		});
+	</script>
+</div><!-- /page#eventlist -->

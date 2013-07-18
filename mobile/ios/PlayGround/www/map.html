@@ -1,0 +1,55 @@
+<div data-role="page" id="eventdetailpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1 id="headertitle">Vị trí</h1>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview">
+			<li id="detailmap" style="padding:0;height:250px">
+			</li>
+			<li id="postname"></li>
+			<li id="address"></li>
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		$('div#eventdetailpage').on('pageshow',function(){
+			var post_id = getUrlVars().post_id;
+			var post = false;
+			var placeList = clubList.concat(restaurantList,shoppingList,eventList);
+			if (placeList.length > 0){
+				placeList.forEach(function(p){
+					if (p.id == post_id){
+						post = p;
+					}
+				});
+			}
+
+			$('li#postname').html(post.name);
+			$('li.mapembed').html(post.map);
+			$('li#address').html(post.address);
+			
+			var map;
+			var latlng = new google.maps.LatLng(post.latitude, post.longitude);
+			var mapOptions = {
+				zoom: 15,
+				center: latlng,
+				mapTypeControl: false,
+				navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById('detailmap'),mapOptions);
+			
+			var marker = new google.maps.Marker({
+				position: latlng,
+				map: map, 
+				title: post.name
+			});
+
+			
+			var section = getUrlVars().section;
+			$('a#' + section + 'pagelink').addClass('ui-btn-active').addClass('ui-state-persist');
+		});
+	</script>
+</div><!-- /page#eventlist -->

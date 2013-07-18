@@ -226,9 +226,20 @@ class WP_JSON_RPC_Server extends IXR_Server
 			'pg.getShopping' => 'this:getShopping',
 			'pg.getShoppingList' => 'this:getShoppingList',
 			'pg.getEventList' => 'this:getEventList',
+			'pg.getEvent' => 'this:getEvent',
 			'pg.search' => 'this:search',
+			'pg.searchNearBy' => 'this:searchNearBy',
 			'pg.getFilter' => 'this:getFilter',
-			'pg.doFilter' => 'this:doFilter'
+			'pg.doFilter' => 'this:doFilter',
+			'pg.regUser' => 'this:regUser',
+			'pg.loginUser' => 'this:loginUser',
+			'pg.sharePost' => 'this:sharePost',
+			'pg.checkContactList' => 'this:checkContactList',
+			'pg.getNewMessages' => 'this:getNewMessages',
+			'pg.getPost' => 'this:getPGPost',
+			'pg.markMsgAsRead' => 'this:markMsgAsRead',
+			'pg.getPhotoGallery' => 'this:getPhotoGallery',
+			'pg.getVideoGallery' => 'this:getVideoGallery'
 		);
 	}
 	
@@ -323,6 +334,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$club['address'] = $club_info_option['address'];
 				$club['url'] = $club_info_option['web'];
 				$club['phone'] = $club_info_option['telephone'];
+				$club['latitude'] = $club_info_option['gpsLatitude'];
+				$club['longitude'] = $club_info_option['gpsLongitude'];
+				$club['type'] = 'club';
 				
 				array_push($club_list,$club);
 			}
@@ -388,6 +402,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 			$club['address'] = $club_info_option['address'];
 			$club['url'] = $club_info_option['web'];
 			$club['phone'] = $club_info_option['telephone'];
+			$club['latitude'] = $club_info_option['gpsLatitude'];
+			$club['longitude'] = $club_info_option['gpsLongitude'];
+			$club['type'] = 'club';
 		}
 		return $club;
 	}
@@ -470,6 +487,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$restaurant['address'] = $restaurant_info_option['address'];
 				$restaurant['url'] = $restaurant_info_option['web'];
 				$restaurant['phone'] = $restaurant_info_option['telephone'];
+				$restaurant['latitude'] = $restaurant_info_option['gpsLatitude'];
+				$restaurant['longitude'] = $restaurant_info_option['gpsLongitude'];
+				$restaurant['type'] = 'restaurant';
 				
 				array_push($restaurant_list,$restaurant);
 			}
@@ -540,6 +560,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 			$restaurant['address'] = $restaurant_info_option['address'];
 			$restaurant['url'] = $restaurant_info_option['web'];
 			$restaurant['phone'] = $restaurant_info_option['telephone'];
+			$restaurant['latitude'] = $restaurant_info_option['gpsLatitude'];
+			$restaurant['longitude'] = $restaurant_info_option['gpsLongitude'];
+			$restaurant['type'] = 'restaurant';
 		}
 		return $restaurant;
 	}
@@ -617,6 +640,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$shopping['address'] = $shopping_info_option['address'];
 				$shopping['url'] = $shopping_info_option['web'];
 				$shopping['phone'] = $shopping_info_option['telephone'];
+				$shopping['latitude'] = $shopping_info_option['gpsLatitude'];
+				$shopping['longitude'] = $shopping_info_option['gpsLongitude'];
+				$shopping['type'] = 'shopping';
 				
 				array_push($shopping_list,$shopping);
 			}
@@ -682,6 +708,9 @@ class WP_JSON_RPC_Server extends IXR_Server
 			$shopping['address'] = $shopping_info_option['address'];
 			$shopping['url'] = $shopping_info_option['web'];
 			$shopping['phone'] = $shopping_info_option['telephone'];
+			$shopping['latitude'] = $shopping_info_option['gpsLatitude'];
+			$shopping['longitude'] = $shopping_info_option['gpsLongitude'];
+			$shopping['type'] = 'shopping';
 		}
 		return $shopping;
 	}
@@ -821,78 +850,75 @@ class WP_JSON_RPC_Server extends IXR_Server
 	
 	function search($args){
 		$this->escape($args);
-		$type = $args[0];
-		$s = $args[1];
+		$s = $args;
 		$query = array(
+			'post_type'=>array('ait-dir-item','ait-dir-event'),
 			'numberposts'=>10,
 			'offset'=>0,
 			'post_status'=> 'publish',
 			's' => $s
 		);
-		$category = 'unknown';
-		switch($type){
-			case 'club':
-				$query['post_type'] = 'ait-dir-item';
-				$query['tax_query'] = array(
-					array(
-						'taxonomy' => 'ait-dir-item-category',
-						'field' => 'slug',
-						'terms' => 'barsclubs',
-						'include_children'=>true,
-						'operator'=>'AND'
-					)
-				);
-				break;
-			case 'restaurant':
-				$query['post_type'] = 'ait-dir-item';
-				$query['tax_query'] = array(
-					array(
-						'taxonomy' => 'ait-dir-item-category',
-						'field' => 'slug',
-						'terms' => 'nha-hang',
-						'include_children'=>true,
-						'operator'=>'AND'
-					)
-				);
-				break;
-			case 'shopping':
-				$query['post_type'] = 'ait-dir-item';
-				$query['tax_query'] = array(
-					array(
-						'taxonomy' => 'ait-dir-item-category',
-						'field' => 'slug',
-						'terms' => 'mua-sam',
-						'include_children'=>true,
-						'operator'=>'AND'
-					)
-				);
-				break;
-			case 'event':
-				$query['post_type'] = 'ait-dir-event';
-				break;
-		}
 		
 		$posts = get_posts($query);
 		
 		$search_results = array();
 		foreach ($posts as $post){
-			switch ($type){
-				case 'club':
-					array_push($search_results,$this->getClub($post->ID));
-					break;
-				case 'restaurant':
-					array_push($search_results,$this->getRestaurant($post->ID));
-					break;
-				case 'shopping':
-					array_push($search_results,$this->getShopping($post->ID));
-					break;
-				case 'event':
-					array_push($search_results,$this->getEvent($post->ID));
-					break;
+			if ($post->post_type == 'ait-dir-event'){
+				$place = $this->getEvent($post->ID);
+				$place['type'] = 'event';
+				array_push($search_results,$place);
+			} else {
+				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+				switch ($category[0]){
+					case 'nha-hang':
+						$place = $this->getRestaurant($post->ID);
+						$place['type'] = 'restaurant';
+						array_push($search_results,$place);
+						break;
+					case 'mua-sam':
+						$place = $this->getShopping($post->ID);
+						$place['type'] = 'shopping';
+						array_push($search_results,$place);
+						break;
+					case 'barsclubs':
+						$place = $this->getClub($post->ID);
+						$place['type'] = 'club';
+						array_push($search_results,$place);
+						break;
+				}
 			}
 		}
 		
 		return $search_results;
+	}
+	
+	function getPGPost($args){
+		$post_id = $args;
+		$ret_post = false;
+		$post = get_post($post_id);
+		if ($post){
+			if ($post->post_type == 'ait-dir-event'){
+				$ret_post = $this->getEvent($post_id);
+				$ret_post['type'] = 'event';
+			} else {
+				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+				switch ($category[0]){
+					case 'nha-hang':
+						$ret_post = $this->getRestaurant($post->ID);
+						$ret_post['type'] = 'restaurant';
+						break;
+					case 'mua-sam':
+						$ret_post = $this->getShopping($post->ID);
+						$ret_post['type'] = 'shopping';
+						break;
+					case 'barsclubs':
+						$ret_post = $this->getClub($post->ID);
+						$ret_post['type'] = 'club';
+						break;
+				}
+			}
+		}
+		return $ret_post;
 	}
 	
 	function getFilter($agrs){
@@ -957,6 +983,270 @@ class WP_JSON_RPC_Server extends IXR_Server
 			}
 		}
 		return $filter_results;
+	}
+	
+	function regUser($args){
+		$phone_number = $args[0];
+		$pwd = $args[1];
+		
+		$res = array(
+			'return_type' => 'ERROR',
+			'user_id' => '-1',
+			'error_msg' => ''
+		);
+	
+		if (username_exists($phone_number)){
+			$res['error_msg'] = 'Đăng ký không thành công: Tài khoản đã tồn tại.';
+		} else {
+			$user_id = wp_create_user($phone_number,$pwd);
+			add_user_meta($user_id,'pg_user_phone_number',$phone_number,true);
+			$creds = array(
+				'user_login' => $phone_number,
+				'user_password' => $pwd,
+				'remember' => true
+			);
+			$user = wp_signon($creds,false);
+			$res['return_type'] = 'SUCCESS';
+			$res['user_id'] = $user_id;
+		}
+		
+		return $res;
+	}
+	
+	function loginUser($args){
+		$phone_number = $args[0];
+		$pwd = $args[1];
+		$res = array(
+			'return_type' => 'ERROR',
+			'user_id' => '-1',
+			'error_msg' => ''
+		);
+		$users = get_users(array(
+			'meta_key' => 'pg_user_phone_number',
+			'meta_value' => $phone_number
+		));
+		if (count($users) > 0){
+			$creds = array(
+				'user_login' => $users[0]->user_login,
+				'user_password' => $pwd,
+				'remember' => true
+			);
+			$user = wp_signon($creds,false);
+			if (is_wp_error($user)){
+				$res['error_msg'] = 'Đăng nhập không thành công. Xin thử lại.';
+			} else {
+				global $wpdb;
+				$msgs = $wpdb->get_results( 'SELECT p.`id`, p.`sender`, p.`subject`, p.`content`, p.`post_id`, p.`read`, p.`date`, post.`post_title` FROM ' . $wpdb->prefix . 'pm p, '. $wpdb->prefix . 'posts post WHERE p.`recipient` = "' . $user->user_login . '" AND p.`deleted` != "2" AND p.`post_id` = post.`ID` ORDER BY p.`date` DESC' );
+				foreach ($msgs as $msg){
+					$post_type = get_post_type($msg->post_id);
+					if ($post_type == 'ait-dir-event'){
+						$msg->post_type = 'event';
+					} else if ($post_type == 'ait-dir-item'){
+						$post_cats = wp_get_post_terms($msg->post_id,'ait-dir-item-category',array('fields'=>'slugs'));
+						switch ($post_cats[0]){
+							case 'nha-hang':
+								$msg->post_type = 'restaurant';
+								break;
+							case 'mua-sam':
+								$msg->post_type = 'shopping';
+								break;
+							case 'barsclubs':
+								$msg->post_type = 'club';
+								break;
+						}
+					}
+				}
+				$res['msgs'] = $msgs;
+				$res['return_type'] = 'SUCCESS';
+				$res['user_id'] = $user->ID;
+			}
+		} else {
+			$res['error_msg'] = 'Số điện thoại không hợp lệ.';
+		}
+		
+		return $res;
+	}
+	
+	function sharePost($args){
+		global $wpdb;
+		$post_id = $args[0];
+		$sender_phone_number = $args[1];
+		$senders = get_users(array(
+			'meta_key' => 'pg_user_phone_number',
+			'meta_value' => $sender_phone_number
+		));
+		$sender = false;
+		if (count($senders) > 0){
+			$sender = $senders[0];
+		}
+		$post = get_post($post_id);
+		$post_link = (get_bloginfo('url') . '/?p=' . $post->ID);
+		$recipient_phones = $args[2];
+		$subject = $args[3];
+		$content = $args[4];
+		$sent_recs = array();
+		foreach ($recipient_phones as $phone){
+			$phone = preg_replace('/\s+/', '', $phone);
+			$phone = str_replace('-','',$phone);
+			if (strpos($phone,'+84') == 0){
+				$phone = str_replace('+84','0',$phone);
+			}
+			$recipient = get_users(array(
+				'meta_key' => 'pg_user_phone_number',
+				'meta_value' => $phone
+			));
+			if (count($recipient) > 0){
+				$new_message = array(
+					'id'        => NULL,
+					'subject'   => $subject,
+					'content'   => $content,
+					'sender'    => $sender->user_login,
+					'recipient' => $recipient[0]->user_login,
+					'post_id'	=> $post_id,
+					'date'      => current_time( 'mysql' ),
+					'read'      => 0,
+					'deleted'   => 0
+				);
+				
+				if ( $wpdb->insert( $wpdb->prefix . 'pm', $new_message, array( '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%d', '%d' ) ) ) {
+					array_push($sent_recs,$phone);
+				}
+			}
+		}
+		return $sent_recs;
+	}
+	
+	function checkContactList($args){
+		$contact_list = $args;
+		$friends = array();
+		foreach ($contact_list as $phone){
+			$recipient = get_users(array(
+				'meta_key' => 'pg_user_phone_number',
+				'meta_value' => $phone
+			));
+			if (count($recipient) > 0){
+				array_push($friends,$phone);
+			}
+		}
+		return $friends;
+	}
+	
+	function searchNearBy($args){
+		$latitude = $args[0];
+		$longitude = $args[1];
+		$radius = $args[2];
+		
+		$query = array(
+			'post_type'=>array('ait-dir-item'),
+			'numberposts'=>-1,
+			'offset'=>0,
+			'post_status'=> 'publish'
+		);
+		
+		$posts = get_posts($query);
+		$search_results = array();
+		foreach ($posts as $post){
+			$optionsDir = get_post_meta($post->ID, '_ait-dir-item', true);
+			if (isPointInRadius($radius, $latitude, $longitude, $optionsDir['gpsLatitude'], $optionsDir['gpsLongitude'])){
+				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+				switch ($category[0]){
+					case 'nha-hang':
+						$place = $this->getRestaurant($post->ID);
+						$place['type'] = 'restaurant';
+						array_push($search_results,$place);
+						break;
+					case 'mua-sam':
+						$place = $this->getShopping($post->ID);
+						$place['type'] = 'shopping';
+						array_push($search_results,$place);
+						break;
+					case 'barsclubs':
+						$place = $this->getClub($post->ID);
+						$place['type'] = 'club';
+						array_push($search_results,$place);
+						break;
+				}
+			}
+		}
+		return $search_results;
+	}
+	
+	function getNewMessages($args){
+		$phone_number = $args;
+		$users = get_users(array(
+			'meta_key' => 'pg_user_phone_number',
+			'meta_value' => $phone_number
+		));
+		$msgs = false;
+		if (count($users) > 0){
+			global $wpdb;
+			$msgs = $wpdb->get_results( 'SELECT p.`id`, p.`sender`, p.`subject`, p.`content`, p.`post_id`, p.`read`, p.`date`, post.`post_title` FROM ' . $wpdb->prefix . 'pm p, '. $wpdb->prefix . 'posts post WHERE p.`recipient` = "' . $users[0]->user_login . '" AND p.`deleted` != "2" AND p.`post_id` = post.`ID` ORDER BY p.`date` DESC' );
+			foreach ($msgs as $msg){
+				$post_type = get_post_type($msg->post_id);
+				if ($post_type == 'ait-dir-event'){
+					$msg->post_type = 'event';
+				} else if ($post_type == 'ait-dir-item'){
+					$post_cats = wp_get_post_terms($msg->post_id,'ait-dir-item-category',array('fields'=>'slugs'));
+					switch ($post_cats[0]){
+						case 'nha-hang':
+							$msg->post_type = 'restaurant';
+							break;
+						case 'mua-sam':
+							$msg->post_type = 'shopping';
+							break;
+						case 'barsclubs':
+							$msg->post_type = 'club';
+							break;
+					}
+				}
+			}
+		}
+		return $msgs;
+	}
+	
+	function markMsgAsRead($args){
+		$msg_id = $args;
+		global $wpdb;
+		$wpdb->update( $wpdb->prefix . 'pm', array( 'read' => 1 ), array( 'id' => $msg_id ) );
+		return true;
+	}
+	
+	function getPhotoGallery($args){
+		$posts = get_posts(array('post_type'=>'ait-grid-portfolio','numberposts'=>-1,'offset'=>0,'post_status'=> 'publish'));
+		$gallery = array();
+		foreach ($posts as $post){
+			$photo = array(
+				'id' => $post->ID,
+				'thumbnail' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'thumbnail',true),
+				'featured_img' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'full',true)
+			);
+			$photo_info = get_post_meta($post->ID, '_ait-grid-portfolio', true);
+			if ($photo_info['itemType'] == 'image'){
+				$photo['title'] = $photo_info['itemTitle'];
+				$photo['description'] = $photo_info['itemDescription'];
+				array_push($gallery,$photo);
+			}
+		}
+		return $gallery;
+	}
+	
+	function getVideoGallery($args){
+		$posts = get_posts(array('post_type'=>'ait-grid-portfolio','numberposts'=>-1,'offset'=>0,'post_status'=> 'publish'));
+		$gallery = array();
+		foreach ($posts as $post){
+			$video = array(
+				'id' => $post->ID,
+				'thumbnail' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'thumbnail',true)
+			);
+			$video_info = get_post_meta($post->ID, '_ait-grid-portfolio', true);
+			if ($video_info['itemType'] == 'video'){
+				$video['title'] = $video_info['itemTitle'];
+				$video['description'] = $video_info['itemDescription'];
+				$video['videoLink'] = $video_info['videoLink'];
+				array_push($gallery,$video);
+			}
+		}
+		return $gallery;
 	}
 	
 	/**

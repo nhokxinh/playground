@@ -1,0 +1,61 @@
+<div data-role="page" id="searchresultlistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1>Kết quả tìm kiếm</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="searchresultlist">
+		</ul>
+	</div><!-- /content -->
+
+	<script type="text/javascript">
+		$('div#searchresultlistpage').on('pageshow',function(){
+			showLoading();
+			var s = getUrlVars().search_term;
+			
+			wpJSON.request(
+			   'pg.search',
+			   {
+					's':s
+				},
+			   function (result) {
+					$('ul#searchresultlist').empty();
+					if (result.length <= 0){
+						$('ul#searchresultlist').append('<p class="ul-info">Không tìm thấy kết quả nào.</p>');
+					} else {
+						result.forEach(function(post){
+							if (post.type == 'event'){
+								$('ul#searchresultlist').append(
+									'<li>' +
+										'<a href="eventdetail.html?post_id=' + post.id + '">' + 
+											'<img src="' + post.thumbnail[0] + '"/>' +
+											'<h2>' + post.name + '</h2>' +
+											'<p><strong>' + post.venue.name + '</strong> - ' + post.venue.address + '</p>' +
+											'<p class="ui-li-aside"><strong>' + post.date + '</strong><br/><br/>' + post.time + '</p>' +
+										'</a>' +
+									'</li>'
+								);
+							} else {
+								$('ul#searchresultlist').append(
+									'<li>' +
+										'<a href="' + post.type + 'detail.html?post_id=' + post.id + '">' + 
+											'<img src="' + post.thumbnail[0] + '"/>' +
+											'<h2>' + post.name + '</h2>' +
+											'<p>' + post.address + '</p>' +
+										'</a>' +
+									'</li>'
+								);
+							}
+						});
+						$('ul#searchresultlist').listview('refresh');
+					}
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		});
+	</script>
+</div><!-- /page#searchresultlist -->

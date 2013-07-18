@@ -1,0 +1,79 @@
+<div data-role="page" id="restaurantlistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Nhà hàng</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="restaurantlist">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		function downloadRestaurantList(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getRestaurantList',
+			   {},
+			   function (result) {
+					restaurantList = result;
+					$('ul#restaurantlist').empty();
+					restaurantList.forEach(function(post){
+						$('ul#restaurantlist').append(
+							'<li>' +
+								'<a href="restaurantdetail.html?post_id=' + post.id + '">' + 
+									'<img src="' + post.thumbnail[0] + '"/>' +
+									'<h2>' + post.name + '</h2>' +
+									'<p>' + post.address + '</p>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#restaurantlist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#restaurantlistpage').on('pageshow',function(){
+			$('#togglesearchbtn').click(function(){
+				$('ul#searchsection').slideDown();
+			});
+			
+			$('a#search-cancel').click(function(){
+				$('ul#searchsection').slideUp();
+			});
+			
+			$('a#search-submit').click(function(){
+				var searchTerm = $('input#search-term').val().replace(/\s/g,'+');
+				$(this).attr('href','search.html?type=restaurant&s=' + searchTerm);
+			});
+			
+			if (restaurantList.length == 0){
+				downloadRestaurantList();
+			} else {
+				$('ul#restaurantlist').empty();
+				restaurantList.forEach(function(post){
+					$('ul#restaurantlist').append(
+						'<li>' +
+							'<a href="restaurantdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p>' + post.address + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#restaurantlist').listview('refresh');
+			}
+		});
+		
+		$('a#restaurantlistrefreshbtn').click(function(){
+			restaurantList = [];
+			downloadRestaurantList();
+		});
+	</script>
+</div><!-- /page#restaurantlist -->

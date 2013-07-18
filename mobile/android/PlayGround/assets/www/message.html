@@ -1,0 +1,105 @@
+<div data-role="page" id="messagedetailpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1 id="headertitle">Tin nhắn</h1>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview" id="msg_details">
+			<li id="sender" data-theme="d">
+				<h2 id="name"></h2>
+				<p id="phone"></p>
+			</li>
+			<li id="subject" data-theme="d">
+			</li>
+			<li id="content" data-theme="d" style="font-weight:normal">
+			</li>
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		$('div#messagedetailpage').on('pageshow',function(){
+			function displayPost(post){
+				if (post.type == 'event'){
+					$('ul#msg_details').append(
+						'<li>' +
+							'<a href="eventdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p><strong>' + post.venue.name + '</strong> - ' + post.venue.address + '</p>' +
+								'<p class="ui-li-aside"><strong>' + post.date + '</strong><br/><br/>' + post.time + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				} else {
+					$('ul#msg_details').append(
+						'<li>' +
+							'<a href="' + post.type + 'detail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p>' + post.address + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				}
+				$('ul#msg_details').listview('refresh');
+			}
+			
+			showLoading();
+			var msg_id = getUrlVars().msg_id;
+			cached_msg = false;
+			if (msgList.length > 0){
+				msgList.forEach(function(msg){
+					if (msg.id == msg_id){
+						cached_msg = msg;
+					}
+				});
+			}
+			
+			if (cached_msg){
+				$('h2#name').html('Người gửi: ' + cached_msg.contact_name);
+				$('p#phone').html('Số điện thoại: ' + cached_msg.sender);
+				$('li#subject').html(cached_msg.subject);
+				$('li#content').html(cached_msg.content);
+				
+				var post = false;
+				var placeList = clubList.concat(restaurantList,shoppingList,eventList);
+				if (placeList.length > 0){
+					placeList.forEach(function(p){
+						if (p.id == cached_msg.post_id){
+							post = p;
+						}
+					});
+				}
+				
+				wpJSON.request(
+						   'pg.markMsgAsRead',
+						   {'msg_id':msg_id},
+						   function (result) {
+								cached_msg.read = 1;
+						   },
+						   function( code, error, data ) {
+								console.log('error: ' + error);
+						   }
+						);
+
+				if (post){
+					displayPost(post);
+					hideLoading();
+				} else {
+					wpJSON.request(
+					   'pg.getPost',
+					   {'post_id':cached_msg.post_id},
+					   function (result) {
+							displayPost(result);
+							hideLoading();
+					   },
+					   function( code, error, data ) {
+							console.log('error: ' + error);
+					   }
+					);
+				}
+			}
+		});
+	</script>
+</div><!-- /page#eventlist -->

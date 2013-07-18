@@ -1,0 +1,72 @@
+<div data-role="page" id="setuppage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<h1>PlayGround</h1>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview">
+			<li>
+				Chào mừng bạn đến với kho thông tin giải trí và ẩm thực PlayGround!<br/>Để chúng tôi có thể phục vụ bạn những dịch vụ tốt nhất, vui lòng nhập số điện thoại mà bạn đang sử dụng!
+			</li>
+			<li>
+				<input type="tel" placeholder="Số điện thoại" id="phone_number" />
+				<button id="submit_phone_number" data-theme="e">OK</button>
+			</li>
+		</ul>
+	</div><!-- /content -->
+	
+	<div id="setup-alert" data-role="popup" data-overlay-theme="a" data-theme="e" class="ui-content">
+	  <p id="setup-alert-content"></p>
+	</div>
+	
+	<script type="text/javascript">
+		$('button#submit_phone_number').click(function(){
+			user_phone_number = $('input#phone_number').val();
+			if (user_phone_number != ''){
+				showLoading('Đang kiểm tra thông tin. Vui lòng chờ trong giây lát.');
+				wpJSON.request(
+					'pg.regUser',
+					{
+						'phone_number':user_phone_number,
+						'pwd':user_phone_number
+					},
+					function (result) {
+						window.localStorage.setItem('playground_user_phone_number', user_phone_number);
+						window.localStorage.setItem('playground_initialized', '1');
+						hideLoading();
+						$.mobile.changePage('index.html',{transition:'pop'});
+					},
+					function( code, error, data ) {
+						console.log('error: ' + error);
+					}
+				);
+			} else {
+				$('p#setup-alert-content').html('Vui lòng nhập số điện thoại!');
+				$('div#setup-alert').popup('open',{transition:'flow'});
+			}
+		});
+		
+//		var MyPhoneNumberPlugin = {
+//			getMyPhoneNumber: function(onSuccess, onError) {
+//				console.log("at getMyPhoneNumber");
+//				cordova.exec(onSuccess, GetFunctionName(onError), "MyPhoneNumberPlugin", "getMyPhoneNumber");
+//			}
+//		}
+//		
+//		$('div#setuppage').on('pageshow',function(){
+//			console.log("in onDeviceReady");
+//			getMyPhoneNumber();
+//		});
+//		
+//		function getMyPhoneNumber() {
+//			console.log("in getMyPhoneNumber");
+//			onSuccess = function(result) {
+//				console.log("My phone number: " + result.phoneNumber);
+//			}
+//			onError = function(err) {
+//				console.log("Could not get my phone number: " + err);
+//			}
+//			MyPhoneNumberPlugin.getMyPhoneNumber(onSuccess, onError);
+//		}
+	</script>
+</div><!-- /page -->

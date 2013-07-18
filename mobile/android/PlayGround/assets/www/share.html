@@ -1,0 +1,163 @@
+<div data-role="page" id="sharepage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1>Chia sẻ</h1>
+		<a href="#" data-role="button" data-icon="arrow-r" class="ui-btn-right" data-iconpos="right" data-theme="e" data-iconshadow="false" data-inline="true" id="content-btn">Nội dung</a>
+		<!-- <a href="#account-panel" data-role="button" class="ui-btn-right" data-theme="e" data-iconshadow="false" data-inline="true" id="share-btn">Gửi</a> -->
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<form id="contact-form">
+            <fieldset data-role="controlgroup" id="contactlist">
+				<ul data-role="listview" data-filter="true" data-filter-placeholder="Tìm người nhận..." data-autodividers="true" data-divider-theme="c">
+				</ul>
+            </fieldset>
+        </form>
+		<form id="content-form" class="hide">
+			     <input type="text" name="txt-subject" id="txt-subject" value="" placeholder="Tiêu đề">
+			    <textarea rows="10" name="txt-content" id="txt-content" placeholder="Nội dung"></textarea>
+		</form>
+	</div><!-- /content -->
+	
+	<div data-role="footer" data-position="fixed">
+		<div data-role="navbar">
+			<ul>
+				<li><a href="#" id="share-btn">Gửi</a></li>
+			</ul>
+		</div><!-- /navbar -->
+	</div><!-- /footer -->
+	
+	<div id="share-alert" data-role="popup" data-overlay-theme="a" data-theme="e" class="ui-content">
+	  <p id="share-alert-content"></p>
+	</div>
+	
+	<script type="text/javascript">
+		$('div#sharepage').on('pageshow',function(){
+            showLoading();
+			var post_id = getUrlVars().post_id;
+			var post = false;
+			var placeList = clubList.concat(restaurantList,shoppingList,eventList);
+			if (placeList.length > 0){
+				placeList.forEach(function(p){
+					if (p.id == post_id){
+						post = p;
+					}
+				});
+			}
+			
+			if (post){
+				$('textarea#txt-content').val('Cùng trải nghiệm "' + post.name + '" qua thông tin từ PlayGround.');
+			} else {
+				wpJSON.request(
+				   'pg.getPost',
+				   {'post_id':cached_msg.post_id},
+				   function (result) {
+						$('textarea#txt-content').val('Cùng trải nghiệm "' + result.name + '" qua thông tin từ PlayGround.');
+				   },
+				   function( code, error, data ) {
+						console.log('error: ' + error);
+				   }
+				);
+			}
+			
+			$('input#txt-subject').val('Trải nghiệm với PlayGround');
+			
+			var contact_on = true;
+            
+            if (contactList.length <= 0){
+				getContacts();
+			}
+            
+            $('fieldset#contactlist ul').empty();
+			for (var i = 0; i < contactList.length; i++) {
+				if (contactList[i].phoneNumbers != null){
+					for (var j = 0; j < contactList[i].phoneNumbers.length; j++){
+						$('fieldset#contactlist ul').append(
+							'<li data-role="fieldcontain"><input type="checkbox" class="recipients" id="' + i + '" value="' + contactList[i].phoneNumbers[j].value + '">' +
+							'<label for="' + i + '">' + contactList[i].name.formatted + ' (' + contactList[i].phoneNumbers[j].value + ')</label></li>');
+					}
+				}
+			}
+			// $('fieldset#contactlist ul li input[type=checkbox]').checkboxradio();
+			$('fieldset#contactlist ul').listview('refresh');
+			hideLoading();
+            
+            $('a#share-btn').click(function(){
+				if ($('input#txt-subject').val() == '' || $('textarea#txt-content').val() == ''){
+					$('p#share-alert-content').html('Vui lòng soạn nội dung tin nhắn.');
+					$('div#share-alert').popup('open',{transition:'flow'});
+					return false;
+				}
+				
+                var checkValues = $('input.recipients:checked').map(function() {
+                    return $(this).val().replace(/\s/g,'').replace(/-/g,'').replace(/\(|\)/g, "");
+                }).get();
+				if (checkValues.length <= 0){
+					$('p#share-alert-content').html('Vui lòng chọn người nhận.');
+					$('div#share-alert').popup('open',{transition:'flow'});
+					return false;
+				}
+                showLoading();
+                wpJSON.request(
+                    'pg.sharePost',
+                    {
+                        'post_id':post_id,
+                        'sender':user_phone_number,
+                        'recipients':checkValues,
+						'subject':$('input#txt-subject').val(),
+						'content':$('textarea#txt-content').val()
+                    },
+                    function (result) {
+						if (result.length == checkValues.length){
+							$('p#share-alert-content').html('Đã gửi Nội dung tới ' + result.length + ' thành viên.');
+							hideLoading();
+							$('div#share-alert').popup('open',{transition:'flow'});
+						} else {
+							hideLoading();
+									var unsentRecipients = [];
+									checkValues.forEach(function(rec){
+										if (result.indexOf(rec) == -1){
+											unsentRecipients.push(rec);
+										}
+									});
+									navigator.notification.confirm(
+										'Đã gửi tin nhắn tới ' + result.length + ' người sử dụng PlayGround trong số ' + checkValues.length + ' người đã chọn.\nBạn có muốn gửi tin nhắn qua SMS tới ' + unsentRecipients.length + ' người còn lại?',
+										function(buttonIndex){
+											if (buttonIndex == 1){
+												var body = 'Cung trai nghiem "' + normalize(post.name) + '" qua PlayGround. Thong tin chi tiet xem tai: http://27.0.15.183/pg/?p=' + post_id;
+												var recipients = unsentRecipients.join().replace(/,/g,';').replace(/\s/g,'').replace(/-/g,'').replace(/\(|\)/g, "");
+												window.location = 'sms:' + recipients + '?body=' + body;
+											}
+										},
+										'Chia sẻ',
+										'Gửi,Bỏ qua'
+									);
+						}
+					},
+                    function( code, error, data ) {
+                        console.log('error: ' + error);
+                    }
+                );
+            });
+
+			$('a#content-btn').click(function(){
+				if (contact_on){
+					$('form#contact-form').hide({transition:'slide'});
+					$('form#content-form').show({transition:'slide'});
+					$(this).removeClass('ui-btn-icon-right').addClass('ui-btn-icon-left');
+					$(this).find('span.ui-btn-text').html('Danh bạ');
+					$(this).find('span.ui-icon').removeClass('ui-icon-arrow-r').addClass('ui-icon-arrow-l');
+					contact_on = false;
+				} else {
+					$('form#content-form').hide({transition:'slide'});
+					$('form#contact-form').show({transition:'slide'});
+					$(this).removeClass('ui-btn-icon-left').addClass('ui-btn-icon-right');
+					$(this).find('span.ui-btn-text').html('Nội dung');
+					$(this).find('span.ui-icon').removeClass('ui-icon-arrow-l').addClass('ui-icon-arrow-r');
+					contact_on = true;
+				}
+				return false;
+			});
+		});
+	</script>
+</div><!-- /page#sharelist -->

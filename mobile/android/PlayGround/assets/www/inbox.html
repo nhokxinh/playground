@@ -1,0 +1,32 @@
+<div data-role="page" id="clublistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Hộp thư</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="msg-list">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		$('div#clublistpage').on('pageshow',function(){
+			showLoading();
+			$('ul#msg-list').empty();
+			msgList.forEach(function(msg){
+				$('ul#msg-list').append(
+					'<li data-theme="' + (msg.read == 0 ? 'e' : 'c') + '">' +
+						'<a href="message.html?msg_id=' + msg.id + '">' +
+							'<h2>' + msg.post_title + '</h2>' +
+							'<p><strong>' + msg.subject + '</strong></p>' +
+							'<p>' + msg.content + '</p>' +
+							'<p class="ui-li-aside"><strong>' + msg.contact_name + ' (' + msg.sender + ')</strong><br/>' + msg.date + '</p>' +
+						'</a>' +
+					'</li>'
+				);
+			});
+			$('ul#msg-list').listview('refresh');
+			hideLoading();
+		});
+	</script>
+</div><!-- /page#clublist -->

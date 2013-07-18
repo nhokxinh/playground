@@ -1,0 +1,79 @@
+<div data-role="page" id="clublistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Bars/Clubs</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="clublist">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		function downloadClubList(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getClubList',
+			   {},
+			   function (result) {
+					clubList = result;
+					$('ul#clublist').empty();
+					clubList.forEach(function(post){
+						$('ul#clublist').append(
+							'<li>' +
+								'<a href="clubdetail.html?post_id=' + post.id + '">' + 
+									'<img src="' + post.thumbnail[0] + '"/>' +
+									'<h2>' + post.name + '</h2>' +
+									'<p>' + post.address + '</p>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#clublist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#clublistpage').on('pageshow',function(){
+			$('#togglesearchbtn').click(function(){
+				$('ul#searchsection').slideDown();
+			});
+			
+			$('a#search-cancel').click(function(){
+				$('ul#searchsection').slideUp();
+			});
+			
+			$('a#search-submit').click(function(){
+				var searchTerm = $('input#search-term').val().replace(/\s/g,'+');
+				$(this).attr('href','search.html?type=club&s=' + searchTerm);
+			});
+			
+			if (clubList.length == 0){
+				downloadClubList();
+			} else {
+				$('ul#clublist').empty();
+				clubList.forEach(function(post){
+					$('ul#clublist').append(
+						'<li>' +
+							'<a href="clubdetail.html?post_id=' + post.id + '">' + 
+								'<img src="' + post.thumbnail[0] + '"/>' +
+								'<h2>' + post.name + '</h2>' +
+								'<p>' + post.address + '</p>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#clublist').listview('refresh');
+			}
+		});
+		
+		$('a#clublistrefreshbtn').click(function(){
+			clubList = [];
+			downloadClubList();
+		});
+	</script>
+</div><!-- /page#clublist -->

@@ -215,7 +215,7 @@ function aitGetPostExcerpt($excerpt, $content){
 	$newExcerpt = '';
 	$trimExcerpt = trim($excerpt);
 	if(empty($trimExcerpt)){
-		$exc = substr($content, 0, 300);
+		$exc = substr(strip_tags($content), 0, 300);
         $pos = strrpos($exc, " ");
 	    $newExcerpt = substr($exc, 0, ($pos ? $pos : -1)) . "...";
 	} else {

@@ -1,1 +1,10 @@
 wp-config.php
+.DS_Store
+
+mobile/.DS_Store
+
+mobile/www/.DS_Store
+
+mobile/www/assets/js/jsonrpc.js
+
+mobile/www/assets/.DS_Store

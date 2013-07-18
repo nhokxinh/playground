@@ -2,19 +2,13 @@ address:
 	label: Address
 	type: textarea
 gpsLatitude:
-	label: GPS Latitude
-	type: text
+	label: 
+	type: hidden
 	default: 0
 gpsLongitude:
-	label: GPS Longitude
-	type: text
+	label: 
+	type: hidden
 	default: 0
-showStreetview:
-	label: Show Streetview instead of the map in detail
-	type: checkbox
-	default:
-		enable:
-			label: 'Show'
 streetViewLatitude:
 	label: StreetView Latitude
 	type: text

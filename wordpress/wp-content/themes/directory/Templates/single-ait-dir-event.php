@@ -163,7 +163,6 @@
 
 {!getAitRatingElement($post->id)}
 
-{include comments-dir.php, closeable => $themeOptions->general->closeComments, defaultState => $themeOptions->general->defaultPosition}
 
 {ifset $themeOptions->advertising->showBox4}
 <div id="advertising-box-4" class="advertising-box">

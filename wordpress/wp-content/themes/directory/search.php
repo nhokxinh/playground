@@ -5,7 +5,9 @@
  *
  * Copyright (c) 2012, Affinity Information Technology, s.r.o. (http://ait-themes.com)
  */
+
 $latteParams['type'] = (isset($_GET['dir-search'])) ? true : false;
+$ajax = (isset($_GET['ajax'])) ? true : false;
 if($latteParams['type']){
 	$latteParams['isDirSearch'] = true;
 	// show all items on map
@@ -37,5 +39,28 @@ if($latteParams['type']){
 	$posts = WpLatte::createPostEntity($wp_query->posts);
 }
 $latteParams['posts'] = $posts;
-
-WPLatte::createTemplate(basename(__FILE__, '.php'), $latteParams)->render();
+if (!$ajax){
+    WPLatte::createTemplate(basename(__FILE__, '.php'), $latteParams)->render();
+} else {
+    $result = '';
+    $self = str_replace('ajax=yes&', '', $_SERVER["REQUEST_URI"]);
+    $current_url = 'http://' . $_SERVER["SERVER_NAME"] . $self;
+    if (!empty($posts)) {
+        $str_li = '';
+        foreach ($posts as $item) {
+            $str_li .= '<li class="s_item">
+                            <a href="' . $item->link . '"><img src="' . $item->thumbnailDir . '" alt="' . $item->post_title . '" />
+                            <h3>' . $item->post_title. '</h3>
+                            <span>' . $item->post_excerpt . '</span></a>
+                        </li>';
+        }
+        if ($str_li != "") {
+            $result = '<ul class="s_ul">' . $str_li . '
+                    <li class="s_item s_last"><a href="' . $current_url . '">Xem thêm</a></li>
+                    </ul>';
+        }
+    } else {
+        $result = '<center>Không có kết quả nào được tìm thấy.</center>';
+    }
+    echo $result;
+}

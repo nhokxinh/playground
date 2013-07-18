@@ -26,6 +26,34 @@
 
         <script type="text/javascript">
         jQuery(document).ready(function($) {
+            $('body').click(function(){
+                $('#s_result').attr('style', 'display:none');
+            })
+            var globalTimeout = null;  
+            $('#dir-searchinput-text').keyup(function(){
+                if (globalTimeout != null) {
+                    clearTimeout(globalTimeout);
+                  }
+                var $that = $(this);
+                globalTimeout = setTimeout(function(){
+                    globalTimeout = null;  
+                    if ($that.val().trim() != "") {
+                        var path = '/?ajax=yes&categories=0&locations=0&dir-search=yes&post_type=ait-dir-item&s=' + $that.val();
+                       $.ajax({
+                        url: '<?php echo get_home_url();?>' + path,
+                        type: 'html',
+                        beforeSend: function(){
+                            $('#s_result').attr('style', 'display:block');
+                            $('#s_result').html('<center><img style="padding: 10px" src="<?php echo get_home_url();?>/loading.gif" /></center>');
+                        },
+                        success: function(data){
+                            $('#s_result').attr('style', 'display:block');
+                            $('#s_result').html(data);
+                        }
+                       });
+                    }
+                },800);
+            });
             var categories = [
 
 			<?php function add_sub_term($list,$term,$prefix){
@@ -54,11 +82,12 @@
 				{/if}
             {/foreach}
             ];
+            
             var catInput = $( "#dir-searchinput-category" ),
                 catInputID = $( "#dir-searchinput-category-id" ),
                 locInput = $( "#dir-searchinput-location" ),
                 locInputID = $( "#dir-searchinput-location-id" );
-
+            
             catInput.autocomplete({
                 minLength: 0,
                 source: categories,
@@ -69,7 +98,7 @@
                 select: function( event, ui ) {
                     catInput.val( ui.item.label.replace(/&amp;/g, "&") );
                     catInputID.val( ui.item.value );
-                    return false;
+                    $('#dir-search-form').submit();
                 }
             }).data( "autocomplete" )._renderItem = function( ul, item ) {
                 return $( "<li>" )
@@ -96,7 +125,7 @@
                 select: function( event, ui ) {
                     locInput.val( ui.item.label.replace(/&amp;/g, "&") );
                     locInputID.val( ui.item.value );
-                    return false;
+                    $('#dir-search-form').submit();
                 },
                 open: function(event, ui) {
 
@@ -175,8 +204,10 @@
                  </div>
             </div>
             {/ifset}
-
-            <div class="topbar clearfix">
+            <div id="top-slider-wrapper" class="defaultContentWidth">
+                {? putRevSlider('topbanner')}
+            </div>
+            <div class="topbar clearfix defaultContentWidth">
                     {if !empty($themeOptions->general->topBarContact)}
                     <div id="tagLineHolder">
                         <div class="defaultContentWidth clearfix">
@@ -188,9 +219,9 @@
                     </div>
                     {/if}
             </div>
-
-            <header id="branding" role="banner">
-                <div class="defaultContentWidth clearfix">
+            
+            <header id="branding" class="defaultContentWidth" role="banner">
+                <div class="defaultContentWidth clearfix top-header">
                     <div id="logo" class="left">
                         {if !empty($themeOptions->general->logo_img)}
                         <a class="trademark" href="{$homeUrl}">
@@ -202,30 +233,17 @@
                         </a>
                         {/if}
                     </div>
-
-                    <nav id="access" role="navigation">
-                        <h3 class="assistive-text">{__ 'Main menu'}</h3>
-                        {menu 'theme_location' => 'primary-menu', 'fallback_cb' => 'default_menu', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'menu' }
-                    </nav><!-- #accs -->
+                    
                 </div>
             </header><!-- #branding -->
-
-            {ifset $isDirSingle}
-                {include 'snippets/map-single-javascript.php'}
-            {else}
-                {if $headerType == 'map'}
-                    {include 'snippets/map-javascript.php'}
-                {/if}
-            {/ifset}
-
-            <div id="directory-search" data-interactive="{ifset $themeOptions->search->enableInteractiveSearch}yes{else}no{/ifset}">
-                <div class="defaultContentWidth clearfix">
-                    <form action="{$homeUrl}" id="dir-search-form" method="get" class="dir-searchform">
+            <div id="menu" class="defaultContentWidth clearfix">
+            <form action="{$homeUrl}" id="dir-search-form" method="get" class="dir-searchform">
                         <div id="dir-search-inputs">
                             <div id="dir-holder">
                             	<div class="dir-holder-wrap">
-                                <input type="text" name="s" id="dir-searchinput-text" placeholder="{__ 'Tìm kiếm...'}" class="dir-searchinput"{ifset $isDirSearch} value="{$site->searchQuery}"{/ifset}>
-                                
+                                <input autocomplete="off" type="text" name="s" id="dir-searchinput-text" placeholder="{__ 'Tìm kiếm...'}" class="dir-searchinput"{ifset $isDirSearch} value="{$site->searchQuery}"{/ifset}>
+                                <div id="s_result" style="display: none;">
+                                </div>
                                 {ifset $themeOptions->search->showAdvancedSearch}
                                 <div id="dir-searchinput-settings" class="dir-searchinput-settings">
                                     <div class="icon"></div>
@@ -254,7 +272,7 @@
                                 
                                 <input type="text" id="dir-searchinput-location" placeholder="{__ 'Khu vực'}">
                                 <input type="text" name="locations" id="dir-searchinput-location-id" value="0" style="display: none;">
-
+                         
                                 <div class="reset-ajax"></div>
                                 </div>
                             </div>
@@ -262,11 +280,29 @@
                         {ifset $themeOptions->search->showAdvancedSearch}
                         
                         {/ifset}
-                        <div id="dir-search-button">
-                            <input type="submit" value="{__ 'Tìm địa điểm'}" class="dir-searchsubmit" style="background-position-x:70px">
-                        </div>
+                        <!--<div id="dir-search-button">
+                            <input type="submit" value="{__ 'Tìm địa điểm'}" class="dir-searchsubmit" style="background-position-x:20px">
+                        </div>-->
                         <input type="hidden" name="dir-search" value="yes" />
                         <input type="hidden" name="post_type" value="ait-dir-item">
                     </form>
-                </div>
+            <nav id="access" role="navigation">
+                        <h3 class="assistive-text">{__ 'Main menu'}</h3>
+                        {menu 'theme_location' => 'primary-menu', 'fallback_cb' => 'default_menu', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'menu' }
+                        <div id="bg_access" class="tp-bannershadow tp-shadow1" style="width: 960px;"></div>
+                    </nav><!-- #accs -->
             </div>
+
+            {ifset $isDirSingle}
+                {include 'snippets/map-single-javascript.php'}
+            {else}
+                {if $headerType == 'map'}
+                    {include 'snippets/map-javascript.php'}
+                {/if}
+            {/ifset}
+
+            <!--<div class="defaultContentWidth" id="directory-search" data-interactive="{ifset $themeOptions->search->enableInteractiveSearch}yes{else}no{/ifset}">
+                <div class="defaultContentWidth clearfix">
+                    
+                </div>
+            </div>-->

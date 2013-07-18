@@ -1,8 +1,8 @@
-<?php //netteCache[01]000476a:2:{s:4:"time";s:21:"0.20990200 1371801547";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:87:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/snippets/wpml-flags.php";i:2;i:1371801504;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000476a:2:{s:4:"time";s:21:"0.31860600 1373943211";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:87:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/snippets/wpml-flags.php";i:2;i:1373943066;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/snippets/wpml-flags.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'zsg5rweqhi')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'rge61ey957')
 ;
 // snippets support
 if (!empty($control->snippetMode)) {

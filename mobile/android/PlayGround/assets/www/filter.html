@@ -1,0 +1,116 @@
+<div data-role="page" id="filterlistpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1>Lọc địa điểm</h1>
+		<a href="#" data-role="button" data-icon="bars" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="togglefilterbtn" data-transition="flip"></a>
+	</div><!-- /header -->
+
+	<div data-role="content">
+		<ul data-role="listview" id="filterlist" data-inset="true">
+		</ul>
+		<ul data-role="listview" data-inset="true" id="filter-button" data-theme="e">
+			<li>
+				<a href="#" id="filter-submit" data-icon="search">Lọc</a>
+			</li>
+		</ul>
+		<ul data-role="listview" id="filter-result" class="hide">
+		</ul>
+	</div><!-- /content -->
+
+	<script type="text/javascript">
+		$('div#filterlistpage').on('pageshow',function(){
+			showLoading();
+			var filterFormVisible = true;
+			
+			wpJSON.request(
+			   'pg.getFilter',
+			   {},
+			   function (result) {
+					$('ul#filterlist').empty();
+					for (tax in result){
+						if (tax != 'tax_names'){
+							var terms = result[tax];
+							var str_ul = '<li>' +
+								'<select class="filtercriteria" name="' + tax + '" id ="' + tax + '">' +
+									'<option value="__NULL__">-- ' + result['tax_names'][tax] + ' --</option>'
+							for (i in terms){
+								str_ul += '<option value="' + terms[i].term_id + '">' + terms[i].name + '</option>';
+							}
+							str_ul += '</select></li>';
+							$('ul#filterlist').append(str_ul);
+						}
+					}
+					$('select.filtercriteria').selectmenu();
+					$('ul#filterlist').listview('refresh');
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+			
+			$('a#filter-submit').click(function(){
+				showLoading();
+				var params = {
+					post_type: 'ait-dir-item'
+				};
+				$('select.filtercriteria').each(function(i){
+					if ($(this).val() != '__NULL__'){
+						var name = $(this).attr('name');
+						var val = $(this).val();
+						params[name] = val;
+					}
+				});
+				
+				wpJSON.request(
+				   'pg.doFilter',
+				   params,
+				   function (result) {
+						if (result.length <= 0){
+							$('ul#filter-result').append('<h3 class="ul-info">Không tìm thấy kết quả nào.</h3>');
+						} else {
+							$('ul#filter-result').empty();
+							result.forEach(function(post){
+								$('ul#filter-result').append(
+									'<li>' +
+										'<a href="' + post.type + 'detail.html?post_id=' + post.id + '">' + 
+											'<img src="' + post.thumbnail[0] + '"/>' +
+											'<h2>' + post.name + '</h2>' +
+											'<p>' + post.address + '</p>' +
+										'</a>' +
+									'</li>'
+								);
+							});
+						}
+						$('ul#filter-result').listview('refresh');
+						$('ul#filterlist').slideUp();
+						$('ul#filter-button').slideUp();
+						$('ul#filter-result').slideDown();
+						filterFormVisible = false;
+						hideLoading();
+				   },
+				   function( code, error, data ) {
+						console.log('error: ' + error);
+				   }
+				);
+			});
+			
+			$('#togglefilterbtn').click(function(){
+				if (filterFormVisible){
+					$('ul#filterlist').slideUp();
+					$('ul#filter-button').slideUp();
+					$('ul#filter-result').slideDown();
+				} else {
+					$('ul#filter-result').slideUp();
+					$('ul#filterlist').slideDown();
+					$('ul#filter-button').slideDown();
+				}
+				if (filterFormVisible == true){
+					filterFormVisible = false;
+				} else {
+					filterFormVisible = true;
+				}
+			});
+		});
+	</script>
+</div><!-- /page#filterlist -->

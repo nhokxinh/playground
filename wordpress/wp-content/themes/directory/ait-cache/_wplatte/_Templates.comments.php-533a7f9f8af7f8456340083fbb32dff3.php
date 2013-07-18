@@ -1,8 +1,8 @@
-<?php //netteCache[01]000465a:2:{s:4:"time";s:21:"0.33686400 1371810459";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:76:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/comments.php";i:2;i:1371801492;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000465a:2:{s:4:"time";s:21:"0.48788600 1374060550";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:76:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/comments.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/comments.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, '6ceda17qfc')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, '4o6nad0bpf')
 ;
 // snippets support
 if (!empty($control->snippetMode)) {
@@ -43,7 +43,7 @@ comments-closed<?php endif ?>">
  (<?php echo NTemplateHelpers::escapeHtml($post->commentsCount, ENT_NOQUOTES) ?>)
 		</h2>
 
-<?php NCoreMacros::includeTemplate("snippets/comments-pagination.php", array('location' => 'above') + $template->getParams(), $_l->templates['6ceda17qfc'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/comments-pagination.php", array('location' => 'above') + $template->getParams(), $_l->templates['4o6nad0bpf'])->render() ?>
 
 <?php 
 			$a = array('comments' => $post->comments);
@@ -136,7 +136,7 @@ comments-closed<?php endif ?>">
 			else
 				echo "</ol>" ?>
 
-<?php NCoreMacros::includeTemplate("snippets/comments-pagination.php", array('location' => 'below') + $template->getParams(), $_l->templates['6ceda17qfc'])->render() ?>
+<?php NCoreMacros::includeTemplate("snippets/comments-pagination.php", array('location' => 'below') + $template->getParams(), $_l->templates['4o6nad0bpf'])->render() ?>
 
 <?php elseif (!$post->hasOpenComments && $post->type != 'page' && $post->hasSupportFor('comments')): ?>
 

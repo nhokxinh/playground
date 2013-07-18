@@ -1,12 +1,12 @@
-<?php //netteCache[01]000478a:2:{s:4:"time";s:21:"0.17909600 1371819287";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:89:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-review.php";i:2;i:1371801498;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000478a:2:{s:4:"time";s:21:"0.47059300 1374132864";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:89:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-review.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-review.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'xt8kkxn5pp')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'ao9wtxe7yc')
 ;//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb4e85032845_content')) { function _lb4e85032845_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb00ac50b53b_content')) { function _lb00ac50b53b_content($_l, $_args) { extract($_args)
 ?>
 
 <article id="post-<?php echo htmlSpecialChars($post->id) ?>" class="<?php echo htmlSpecialChars($post->htmlClasses) ?>">
@@ -184,7 +184,6 @@ if (!function_exists($_l->blocks['content'][] = '_lb4e85032845_content')) { func
 <?php echo getAitRatingElement($post->id) ?>
 
 
-<?php NCoreMacros::includeTemplate("comments-dir.php", array('closeable' => $themeOptions->general->closeComments, 'defaultState' => $themeOptions->general->defaultPosition) + $template->getParams(), $_l->templates['xt8kkxn5pp'])->render() ?>
 
 <?php if (isset($themeOptions->advertising->showBox4)): ?>
 <div id="advertising-box-4" class="advertising-box">

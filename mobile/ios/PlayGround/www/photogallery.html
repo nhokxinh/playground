@@ -1,0 +1,57 @@
+<div data-role="page" id="photoGallerypage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-rel="back" data-role="button" data-icon="home" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
+		<h1>Ảnh</h1>
+	</div><!-- /header -->
+
+	<div data-role="content" style="padding:0.25em">
+		<ul class="gallery" id="photoGallery">
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		function downloadphotoGallery(){
+			showLoading();
+			wpJSON.request(
+			   'pg.getPhotoGallery',
+			   {},
+			   function (result) {
+					photoGallery = result;
+					$('ul#photoGallery').empty();
+					photoGallery.forEach(function(post){
+						$('ul#photoGallery').append(
+							'<li>' +
+								'<a href="' + post.featured_img[0] + '">' +
+									'<img src="' + post.thumbnail[0] + '" alt="' + post.title + '"/>' +
+								'</a>' +
+							'</li>'
+						);
+					});
+					$('ul#photoGallery a').photoSwipe();
+					hideLoading();
+			   },
+			   function( code, error, data ) {
+					console.log('error: ' + error);
+			   }
+			);
+		}
+		
+		$('div#photoGallerypage').on('pageshow',function(){
+			if (photoGallery.length == 0){
+				downloadphotoGallery();
+			} else {
+				$('ul#photoGallery').empty();
+				photoGallery.forEach(function(post){
+					$('ul#photoGallery').append(
+						'<li>' +
+							'<a href="' + post.featured_img[0] + '">' +
+								'<img src="' + post.thumbnail[0] + '"/>' +
+							'</a>' +
+						'</li>'
+					);
+				});
+				$('ul#photoGallery a').photoSwipe();
+			}
+		});
+	</script>
+</div><!-- /page#photoGallery -->

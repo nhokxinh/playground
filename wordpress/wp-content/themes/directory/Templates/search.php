@@ -9,7 +9,7 @@
 	</header>
 
 	{if $type}
-		
+	
 		{include snippets/content-loop-dir-search.php posts => $posts}
 
 	{else}

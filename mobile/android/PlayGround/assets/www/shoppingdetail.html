@@ -1,0 +1,115 @@
+<div data-role="page" id="shoppingdetailpage">
+	<div data-role="header" data-position="fixed" data-theme="b">
+		<a href="#" data-role="button" data-icon="arrow-l" data-theme="a" class="ui-icon-nodisc" data-iconshadow="false" data-iconpos="notext" data-inline="true" data-rel="back"></a>
+		<h1 id="headertitle">Mua sắm</h1>
+		<a href="#" data-role="button" data-icon="edit" class="ui-icon-nodisc ui-btn-right" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true" id="sharepagelink"></a>
+	</div><!-- /header -->
+	
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li data-role="fieldcontain" class="posterimg">
+			</li>
+		</ul>
+		<ul data-role="listview" data-inset="true">
+			<li data-role="fieldcontain">
+				<a id="weblink" class="external">
+					<h2 id="phone"></h2>
+					<p id="url"></p>
+				</a>
+			</li>
+			<li data-role="fieldcontain">
+				<a id="maplink">
+					<h2 id="address"></h2>
+					<p id="direction"></p>
+				</a>
+			</li>
+		</ul>
+		
+		<ul data-role="listview" data-inset="true" class="hide" id="events">
+		</ul>
+			
+		<ul data-role="listview" data-inset="true" data-theme="d" class="postcontent">
+			<li data-role="fieldcontain" id="content">
+			</li>
+		</ul>
+		
+		<ul data-role="listview" data-inset="true" id="attributes" data-theme="d" class="postcontent">
+			<li data-role="fieldcontain" id="area"></li>
+			<li data-role="fieldcontain" id="avgprice"></li>
+			<!-- <li data-role="fieldcontain" id="timeframe"></li>
+			<li data-role="fieldcontain" id="holiday"></li>
+			<li data-role="fieldcontain" id="est"></li> -->
+		</ul>
+	</div><!-- /content -->
+	
+	<script type="text/javascript">
+		$('div#shoppingdetailpage').on('pageshow',function(){
+			function displayPost(cached_post){
+				$('h1#headertitle').html(cached_post.name);
+				$('li.posterimg').css('background-image','url(' + cached_post.featured_img[0] + ')');
+				$('h2#phone').html(cached_post.phone);
+				$('p#url').html(cached_post.url);
+				$('a#weblink').attr('href',external_link(cached_post.url));
+				var features = cached_post.features.split("\n");
+				var str_features = '';
+				features.forEach(function(feature){
+					str_features += ('- ' + feature + '<br/>');
+				});
+				$('li#features').html(str_features);
+				$('h2#address').html(cached_post.address);
+				$('p#direction').html(cached_post.direction);
+				$('li#content').html(cached_post.content.replace("\n",'<br/><br/>'));
+				$('a#maplink').attr('href','map.html?post_id=' + post_id + '&section=shopping');
+				$('li#area').html('<strong>Khu vực</strong> ' + cached_post.area);
+				$('li#avgprice').html('<strong>Mức giá trung bình: </strong> ' + cached_post.avgprice);
+				// $('li#timeframe').html('<strong>Thời gian phục vụ: </strong> ' + cached_post.timeframe);
+				// $('li#holiday').html('<strong>Nghỉ lễ:</strong> ' + cached_post.holiday);
+				// $('li#est').html('<strong>Thành lập năm</strong> ' + cached_post.est);
+				
+				$('a#sharepagelink').attr('href','share.html?post_id='+cached_post.id);
+				
+				if (cached_post.events.length > 0){
+					cached_post.events.forEach(function(event){
+						$('ul#events').append('<li><a href="eventdetail.html?post_id=' + event.id + '">' + event.name + '</a></li>');
+					});
+					$('ul#events').listview('refresh');
+					$('ul#events').show();
+				}
+				$('li#content *').css('max-width','100%').css('height','auto');
+			}
+			
+			showLoading();
+			var post_id = getUrlVars().post_id;
+			var cached_post = false;
+			if (shoppingList.length > 0){
+				shoppingList.forEach(function(post){
+					if (post.id == post_id){
+						cached_post = post;
+					}
+				});
+			}
+
+			if (cached_post){
+				displayPost(cached_post);
+				hideLoading();
+			} else {
+				wpJSON.request(
+				   'pg.getShopping',
+				   {'post_id':post_id},
+				   function (result) {
+						displayPost(result);
+						hideLoading();
+				   },
+				   function( code, error, data ) {
+						console.log('error: ' + error);
+				   }
+				);
+			}
+			
+			$('a.external,li#content a').click(function(){
+				window.open($(this).attr('href'),'_system');
+				return false;
+			});
+		});
+	</script>
+</div><!-- /page#eventlist -->

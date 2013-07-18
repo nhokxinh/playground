@@ -1,8 +1,8 @@
-<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.70009100 1371801547";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/footer.php";i:2;i:1371801492;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.10150100 1374053521";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/footer.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/footer.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'g2hzds7gxd')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'dqbo3ospxl')
 ;
 // snippets support
 if (!empty($control->snippetMode)) {
@@ -13,7 +13,7 @@ if (!empty($control->snippetMode)) {
 // main template
 //
 ?>
-		<footer id="colophon" role="contentinfo">
+		<footer id="colophon" class="defaultContentWidth" role="contentinfo">
 			
 			<div id="supplementary" class="widgets defaultContentWidth">
 				
@@ -27,11 +27,11 @@ if (!empty($control->snippetMode)) {
 
 			<div id="site-generator" class="clearfix">
 				<div class="defaultContentWidth">
-					<div id="footer-text">
+<?php wp_nav_menu(array('theme_location' => 'footer-menu', 'fallback_cb' => 'default_footer_menu', 'container' => 'nav', 'container_class' => 'footer-menu', 'menu_class' => 'menu', 'depth' => 1)) ?>
+                    <div id="footer-text">
 						<?php echo $themeOptions->general->footer_text ?>
 
 					</div>
-<?php wp_nav_menu(array('theme_location' => 'footer-menu', 'fallback_cb' => 'default_footer_menu', 'container' => 'nav', 'container_class' => 'footer-menu', 'menu_class' => 'menu', 'depth' => 1)) ?>
 				</div>
 			</div>
 

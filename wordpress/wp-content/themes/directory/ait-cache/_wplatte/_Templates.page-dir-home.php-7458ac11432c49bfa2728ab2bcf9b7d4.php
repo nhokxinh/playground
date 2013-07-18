@@ -1,15 +1,15 @@
-<?php //netteCache[01]000470a:2:{s:4:"time";s:21:"0.03911600 1371802095";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:81:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/page-dir-home.php";i:2;i:1371801494;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000470a:2:{s:4:"time";s:21:"0.37152100 1374053519";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:81:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/page-dir-home.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/page-dir-home.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'sgfuyarl27')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'j0x7q135jw')
 ;//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb1620dd4285_content')) { function _lb1620dd4285_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb8e1527b008_content')) { function _lb8e1527b008_content($_l, $_args) { extract($_args)
 ?>
 
-<?php if ($post->options('header')->headerType == 'map'): NCoreMacros::includeTemplate('snippets/map-javascript.php', $template->getParams(), $_l->templates['sgfuyarl27'])->render() ;endif ?>
+<?php if ($post->options('header')->headerType == 'map'): NCoreMacros::includeTemplate('snippets/map-javascript.php', $template->getParams(), $_l->templates['j0x7q135jw'])->render() ;endif ?>
 
 <div id="home-slider-wrapper" style="margin-left:-5%;margin-top:-11%;width:107%;margin-bottom:5%">
 <?php putRevSlider($headerSlider) ?>
@@ -51,12 +51,13 @@ if (!function_exists($_l->blocks['content'][] = '_lb1620dd4285_content')) { func
 				<div class="thumbnail">
 					<img src="<?php echo TIMTHUMB_URL . "?" . http_build_query(array('src' => $item->thumbnailDir, 'w' => 100, 'h' => 100), "", "&amp;") ?>
 " alt="<?php echo htmlSpecialChars(__('Item thumbnail', 'ait')) ?>" />
+					<div class="comment-count"><?php echo NTemplateHelpers::escapeHtml($item->commentsCount, ENT_NOQUOTES) ?></div>
 				</div>
 <?php endif ?>
 				
 				<div class="description">
 					<h3>
-						<a href="<?php echo $item->guid ?>"><?php echo NTemplateHelpers::escapeHtml($item->post_title, ENT_NOQUOTES) ?></a>
+						<a href="<?php echo $item->link ?>"><?php echo NTemplateHelpers::escapeHtml($item->title, ENT_NOQUOTES) ?></a>
 <?php if ($item->rating): ?>
 						<span class="rating">
 <?php for ($i = 1; $i <= $item->rating['max']; $i++): ?>
@@ -65,7 +66,7 @@ if (!function_exists($_l->blocks['content'][] = '_lb1620dd4285_content')) { func
 						</span>
 <?php endif ?>
 					</h3>
-					<?php echo $item->post_excerpt ?>
+					<?php echo $item->excerpt ?>
 
 				</div>
 			</li>

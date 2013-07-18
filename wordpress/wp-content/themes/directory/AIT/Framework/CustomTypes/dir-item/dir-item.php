@@ -23,10 +23,7 @@ register_taxonomy( 'ait-dir-item-category', array( 'ait-dir-item' ), array(
 	),
 	'show_ui' => true,
 	'rewrite' => array( 'slug' => 'cat' ),
-	'query_var' => 'dir-item-category',
-	'capabilities' => array(
-			'assign_terms' => 'assign_dir_category'
-		)
+	'query_var' => 'dir-item-category'
 ));
 
 register_taxonomy( 'ait-dir-item-location', array( 'ait-dir-item','ait-dir-event' ), array(
@@ -45,10 +42,7 @@ register_taxonomy( 'ait-dir-item-location', array( 'ait-dir-item','ait-dir-event
 	),
 	'show_ui' => true,
 	'rewrite' => false,
-	'query_var' => 'dir-item-location',
-	'capabilities' => array(
-			'assign_terms' => 'assign_dir_location'
-		)
+	'query_var' => 'dir-item-location'
 ));
 
 
@@ -387,6 +381,7 @@ function aitDirItemPostType()
 				'excerpt',
 				'page-attributes',
 				'comments',
+				'revisions'
 			),
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -395,8 +390,8 @@ function aitDirItemPostType()
 			'has_archive' => true,
 			'query_var' => true,//'dir-item',
 			'rewrite' => array('slug' => 'item'),
-			'capability_type' => 'ait-dir-item',
-			'map_meta_cap' => true
+			// 'capability_type' => 'ait-dir-item',
+			// 'map_meta_cap' => true
 		)
 	);
 	
@@ -423,6 +418,7 @@ function aitDirItemPostType()
 				'excerpt',
 				'page-attributes',
 				'comments',
+				'revisions'
 			),
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -431,8 +427,8 @@ function aitDirItemPostType()
 			'has_archive' => true,
 			'query_var' => true,//'dir-event',
 			'rewrite' => array('slug' => 'event'),
-			'capability_type' => 'ait-dir-item',
-			'map_meta_cap' => true
+			// 'capability_type' => 'ait-dir-item',
+			// 'map_meta_cap' => true
 		)
 	);
 	
@@ -459,6 +455,7 @@ function aitDirItemPostType()
 				'excerpt',
 				'page-attributes',
 				'comments',
+				'revisions'
 			),
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -467,8 +464,8 @@ function aitDirItemPostType()
 			'has_archive' => true,
 			'query_var' => true,//'dir-event',
 			'rewrite' => array('slug' => 'review'),
-			'capability_type' => 'ait-dir-item',
-			'map_meta_cap' => true
+			// 'capability_type' => 'ait-dir-item',
+			// 'map_meta_cap' => true
 		)
 	);
 	

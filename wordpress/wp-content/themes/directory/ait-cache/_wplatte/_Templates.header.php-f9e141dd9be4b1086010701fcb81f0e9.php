@@ -1,8 +1,8 @@
-<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.59781100 1371804045";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/header.php";i:2;i:1371804037;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000463a:2:{s:4:"time";s:21:"0.16209200 1374132583";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:74:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/header.php";i:2;i:1374132578;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/header.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'v0xg2dzg49')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'gjg9dkkpo8')
 ;
 // snippets support
 if (!empty($control->snippetMode)) {
@@ -40,6 +40,34 @@ if (!empty($control->snippetMode)) {
 
         <script type="text/javascript">
         jQuery(document).ready(function($) {
+            $('body').click(function(){
+                $('#s_result').attr('style', 'display:none');
+            })
+            var globalTimeout = null;  
+            $('#dir-searchinput-text').keyup(function(){
+                if (globalTimeout != null) {
+                    clearTimeout(globalTimeout);
+                  }
+                var $that = $(this);
+                globalTimeout = setTimeout(function(){
+                    globalTimeout = null;  
+                    if ($that.val().trim() != "") {
+                        var path = '/?ajax=yes&categories=0&locations=0&dir-search=yes&post_type=ait-dir-item&s=' + $that.val();
+                       $.ajax({
+                        url: '<?php echo get_home_url()?>' + path,
+                        type: 'html',
+                        beforeSend: function(){
+                            $('#s_result').attr('style', 'display:block');
+                            $('#s_result').html('<center><img style="padding: 10px" src="<?php echo get_home_url()?>/loading.gif" /></center>');
+                        },
+                        success: function(data){
+                            $('#s_result').attr('style', 'display:block');
+                            $('#s_result').html(data);
+                        }
+                       });
+                    }
+                },800);
+            });
             var categories = [
 
 			<?php function add_sub_term($list,$term,$prefix){
@@ -70,11 +98,12 @@ if (!empty($control->snippetMode)) {
 
 <?php endif ;$iterations++; endforeach; array_pop($_l->its); $iterator = end($_l->its) ?>
             ];
+            
             var catInput = $( "#dir-searchinput-category" ),
                 catInputID = $( "#dir-searchinput-category-id" ),
                 locInput = $( "#dir-searchinput-location" ),
                 locInputID = $( "#dir-searchinput-location-id" );
-
+            
             catInput.autocomplete({
                 minLength: 0,
                 source: categories,
@@ -85,7 +114,7 @@ if (!empty($control->snippetMode)) {
                 select: function( event, ui ) {
                     catInput.val( ui.item.label.replace(/&amp;/g, "&") );
                     catInputID.val( ui.item.value );
-                    return false;
+                    $('#dir-search-form').submit();
                 }
             }).data( "autocomplete" )._renderItem = function( ul, item ) {
                 return $( "<li>" )
@@ -112,7 +141,7 @@ if (!empty($control->snippetMode)) {
                 select: function( event, ui ) {
                     locInput.val( ui.item.label.replace(/&amp;/g, "&") );
                     locInputID.val( ui.item.value );
-                    return false;
+                    $('#dir-search-form').submit();
                 },
                 open: function(event, ui) {
 
@@ -196,21 +225,23 @@ error<?php else: ?>info<?php endif ?>">
                  </div>
             </div>
 <?php endif ?>
-
-            <div class="topbar clearfix">
+            <div id="top-slider-wrapper" class="defaultContentWidth">
+<?php putRevSlider('topbanner') ?>
+            </div>
+            <div class="topbar clearfix defaultContentWidth">
 <?php if (!empty($themeOptions->general->topBarContact)): ?>
                     <div id="tagLineHolder">
                         <div class="defaultContentWidth clearfix">
                             <p class="left info"><?php echo NTemplateHelpers::escapeHtml($themeOptions->general->topBarContact, ENT_NOQUOTES) ?></p>
-<?php NCoreMacros::includeTemplate('snippets/social-icons.php', $template->getParams(), $_l->templates['v0xg2dzg49'])->render() ;NCoreMacros::includeTemplate('snippets/wpml-flags.php', $template->getParams(), $_l->templates['v0xg2dzg49'])->render() ?>
-                            <!-- <?php NCoreMacros::includeTemplate('snippets/search-form.php', $template->getParams(), $_l->templates['v0xg2dzg49'])->render() ?> -->
+<?php NCoreMacros::includeTemplate('snippets/social-icons.php', $template->getParams(), $_l->templates['gjg9dkkpo8'])->render() ;NCoreMacros::includeTemplate('snippets/wpml-flags.php', $template->getParams(), $_l->templates['gjg9dkkpo8'])->render() ?>
+                            <!-- <?php NCoreMacros::includeTemplate('snippets/search-form.php', $template->getParams(), $_l->templates['gjg9dkkpo8'])->render() ?> -->
                         </div>
                     </div>
 <?php endif ?>
             </div>
-
-            <header id="branding" role="banner">
-                <div class="defaultContentWidth clearfix">
+            
+            <header id="branding" class="defaultContentWidth" role="banner">
+                <div class="defaultContentWidth clearfix top-header">
                     <div id="logo" class="left">
 <?php if (!empty($themeOptions->general->logo_img)): ?>
                         <a class="trademark" href="<?php echo htmlSpecialChars($homeUrl) ?>">
@@ -222,27 +253,19 @@ error<?php else: ?>info<?php endif ?>">
                         </a>
 <?php endif ?>
                     </div>
-
-                    <nav id="access" role="navigation">
-                        <h3 class="assistive-text"><?php echo NTemplateHelpers::escapeHtml(__('Main menu', 'ait'), ENT_NOQUOTES) ?></h3>
-<?php wp_nav_menu(array('theme_location' => 'primary-menu', 'fallback_cb' => 'default_menu', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'menu')) ?>
-                    </nav><!-- #accs -->
+                    
                 </div>
             </header><!-- #branding -->
-
-<?php if (isset($isDirSingle)): NCoreMacros::includeTemplate('snippets/map-single-javascript.php', $template->getParams(), $_l->templates['v0xg2dzg49'])->render() ;else: if ($headerType == 'map'): NCoreMacros::includeTemplate('snippets/map-javascript.php', $template->getParams(), $_l->templates['v0xg2dzg49'])->render() ;endif ;endif ?>
-
-            <div id="directory-search" data-interactive="<?php if (isset($themeOptions->search->enableInteractiveSearch)): ?>
-yes<?php else: ?>no<?php endif ?>">
-                <div class="defaultContentWidth clearfix">
-                    <form action="<?php echo htmlSpecialChars($homeUrl) ?>" id="dir-search-form" method="get" class="dir-searchform">
+            <div id="menu" class="defaultContentWidth clearfix">
+            <form action="<?php echo htmlSpecialChars($homeUrl) ?>" id="dir-search-form" method="get" class="dir-searchform">
                         <div id="dir-search-inputs">
                             <div id="dir-holder">
                             	<div class="dir-holder-wrap">
-                                <input type="text" name="s" id="dir-searchinput-text" placeholder="<?php echo htmlSpecialChars(__('Tìm kiếm...', 'ait')) ?>
+                                <input autocomplete="off" type="text" name="s" id="dir-searchinput-text" placeholder="<?php echo htmlSpecialChars(__('Tìm kiếm...', 'ait')) ?>
 " class="dir-searchinput"<?php if (isset($isDirSearch)): ?> value="<?php echo htmlSpecialChars($site->searchQuery) ?>
 "<?php endif ?> />
-                                
+                                <div id="s_result" style="display: none;">
+                                </div>
 <?php if (isset($themeOptions->search->showAdvancedSearch)): ?>
                                 <div id="dir-searchinput-settings" class="dir-searchinput-settings">
                                     <div class="icon"></div>
@@ -277,7 +300,7 @@ yes<?php else: ?>no<?php endif ?>">
                                 
                                 <input type="text" id="dir-searchinput-location" placeholder="<?php echo htmlSpecialChars(__('Khu vực', 'ait')) ?>" />
                                 <input type="text" name="locations" id="dir-searchinput-location-id" value="0" style="display: none;" />
-
+                         
                                 <div class="reset-ajax"></div>
                                 </div>
                             </div>
@@ -285,11 +308,24 @@ yes<?php else: ?>no<?php endif ?>">
 <?php if (isset($themeOptions->search->showAdvancedSearch)): ?>
                         
 <?php endif ?>
-                        <div id="dir-search-button">
-                            <input type="submit" value="<?php echo htmlSpecialChars(__('Tìm địa điểm', 'ait')) ?>" class="dir-searchsubmit" style="background-position-x:70px" />
-                        </div>
+                        <!--<div id="dir-search-button">
+                            <input type="submit" value="<?php echo NTemplateHelpers::escapeHtmlComment(__('Tìm địa điểm', 'ait')) ?>" class="dir-searchsubmit" style="background-position-x:20px">
+                        </div>-->
                         <input type="hidden" name="dir-search" value="yes" />
                         <input type="hidden" name="post_type" value="ait-dir-item" />
                     </form>
-                </div>
+            <nav id="access" role="navigation">
+                        <h3 class="assistive-text"><?php echo NTemplateHelpers::escapeHtml(__('Main menu', 'ait'), ENT_NOQUOTES) ?></h3>
+<?php wp_nav_menu(array('theme_location' => 'primary-menu', 'fallback_cb' => 'default_menu', 'container' => 'nav', 'container_class' => 'mainmenu', 'menu_class' => 'menu')) ?>
+                        <div id="bg_access" class="tp-bannershadow tp-shadow1" style="width: 960px;"></div>
+                    </nav><!-- #accs -->
             </div>
+
+<?php if (isset($isDirSingle)): NCoreMacros::includeTemplate('snippets/map-single-javascript.php', $template->getParams(), $_l->templates['gjg9dkkpo8'])->render() ;else: if ($headerType == 'map'): NCoreMacros::includeTemplate('snippets/map-javascript.php', $template->getParams(), $_l->templates['gjg9dkkpo8'])->render() ;endif ;endif ?>
+
+            <!--<div class="defaultContentWidth" id="directory-search" data-interactive="<?php if (isset($themeOptions->search->enableInteractiveSearch)): ?>
+yes<?php else: ?>no<?php endif ?>">
+                <div class="defaultContentWidth clearfix">
+                    
+                </div>
+            </div>-->

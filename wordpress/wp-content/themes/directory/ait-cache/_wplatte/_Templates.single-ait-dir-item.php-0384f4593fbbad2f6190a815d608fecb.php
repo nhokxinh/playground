@@ -1,12 +1,12 @@
-<?php //netteCache[01]000476a:2:{s:4:"time";s:21:"0.03767400 1371801547";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:87:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-item.php";i:2;i:1371801498;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
+<?php //netteCache[01]000476a:2:{s:4:"time";s:21:"0.98928200 1374054257";s:9:"callbacks";a:3:{i:0;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:9:"checkFile";}i:1;s:87:"/home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-item.php";i:2;i:1374053474;}i:1;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:20:"NFramework::REVISION";i:2;s:30:"eee17d5 released on 2011-08-13";}i:2;a:3:{i:0;a:2:{i:0;s:6:"NCache";i:1;s:10:"checkConst";}i:1;s:21:"WPLATTE_CACHE_VERSION";i:2;i:4;}}}?><?php
 
 // source file: /home/tgud/tgud.com.vn/pg/wp-content/themes/directory/Templates/single-ait-dir-item.php
 
-?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, '2q7ypazpz8')
+?><?php list($_l, $_g) = NCoreMacros::initRuntime($template, 'oa40giovhv')
 ;//
 // block content
 //
-if (!function_exists($_l->blocks['content'][] = '_lb1dc18b7991_content')) { function _lb1dc18b7991_content($_l, $_args) { extract($_args)
+if (!function_exists($_l->blocks['content'][] = '_lb9f214fba30_content')) { function _lb9f214fba30_content($_l, $_args) { extract($_args)
 ?>
 
 <article id="post-<?php echo htmlSpecialChars($post->id) ?>" class="<?php echo htmlSpecialChars($post->htmlClasses) ?>">
@@ -83,6 +83,34 @@ if (!function_exists($_l->blocks['content'][] = '_lb1dc18b7991_content')) { func
 
 		</div>
 	</div>
+	
+<?php if (count($events) > 0): ?>
+		<h3 class="entry-title">
+			<span>Sự kiện sắp diễn ra tại <?php echo NTemplateHelpers::escapeHtml($post->title, ENT_NOQUOTES) ?></span>
+		</h3>
+<?php $iterations = 0; foreach ($iterator = $_l->its[] = new NSmartCachingIterator($events) as $event): ?>
+			<ul>
+				<li>
+					<span class="star active" style="margin-top:-0.5em"></span>
+					<a href="<?php echo htmlSpecialChars($event->permalink) ?>" title="Permalink to <?php echo htmlSpecialChars($event->title) ?>
+" rel="bookmark"><?php echo NTemplateHelpers::escapeHtml($event->title, ENT_NOQUOTES) ?></a>
+				</li>
+			</ul>
+<?php $iterations++; endforeach; array_pop($_l->its); $iterator = end($_l->its) ;endif ?>
+	
+<?php if (count($reviews) > 0): ?>
+		<h3 class="entry-title">
+			<span>Đánh giá nổi bật về <?php echo NTemplateHelpers::escapeHtml($post->title, ENT_NOQUOTES) ?></span>
+		</h3>
+<?php $iterations = 0; foreach ($iterator = $_l->its[] = new NSmartCachingIterator($reviews) as $review): ?>
+			<ul>
+				<li>
+					<span class="star active" style="margin-top:-0.5em"></span>
+					<a href="<?php echo htmlSpecialChars($review->permalink) ?>" title="Permalink to <?php echo htmlSpecialChars($review->title) ?>
+" rel="bookmark"><?php echo NTemplateHelpers::escapeHtml($review->title, ENT_NOQUOTES) ?></a>
+				</li>
+			</ul>
+<?php $iterations++; endforeach; array_pop($_l->its); $iterator = end($_l->its) ;endif ?>
 	
 	<hr />
 		
@@ -186,7 +214,6 @@ if (!function_exists($_l->blocks['content'][] = '_lb1dc18b7991_content')) { func
 <?php echo getAitRatingElement($post->id) ?>
 
 
-<?php NCoreMacros::includeTemplate("comments-dir.php", array('closeable' => $themeOptions->general->closeComments, 'defaultState' => $themeOptions->general->defaultPosition) + $template->getParams(), $_l->templates['2q7ypazpz8'])->render() ?>
 
 <?php if (isset($themeOptions->advertising->showBox4)): ?>
 <div id="advertising-box-4" class="advertising-box">
