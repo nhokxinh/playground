@@ -1,0 +1,136 @@
+.hide{
+	display: none;
+}
+
+.custom-iconpos-left{
+	margin-left: 1.5em;
+}
+
+.categorylink.sub-cat{
+	padding-left:1em;
+}
+
+.withdescription{
+	display: inline-table;
+	margin-left: 0.5em;
+}
+
+.mapembed{
+	padding: 0 !important;
+}
+
+.mapembed iframe{
+	width: 100%;
+	height:500px;
+}
+
+.postcontent li{
+	font-weight: normal;
+}
+
+.center{
+	text-align: center;
+}
+
+.posterimg{
+	margin:0px; 
+    padding:0px;
+/*    background-image:url('http://www.flightcentre.com.au/global-images/AIRFARE_SPECIALS_2/Paris.jpg');*/
+    background-repeat:no-repeat;
+	background-position:center;
+    background-size:100%;
+    height: 400px;
+}
+
+@media (max-width: 640px){
+	.ui-li-aside{
+		float:none;
+		text-align:left;
+		color:gray;
+		font-size:0.7em;
+	}
+	
+	.posterimg{
+		height: 250px;
+	}
+	
+	.mapembed iframe{
+		height:250px;
+	}
+}
+
+#searchsection li.ui-field-contain,
+#eventsearchsection li.ui-field-contain{
+	padding-top:0.5em;
+}
+
+#searchsection li.ui-field-contain div.ui-input-search,
+#eventsearchsection li.ui-field-contain div.ui-input-search{
+	width:100%;
+}
+
+#searchsection li.ui-field-contain div.button-wrapper,
+#eventsearchsection li.ui-field-contain div.button-wrapper{
+	margin-bottom:0.75em;
+	margin-top:0.25em;
+	text-align:center;
+}
+
+#searchsection li.ui-field-contain div.button-wrapper a,
+#eventsearchsection li.ui-field-contain div.button-wrapper a{
+	width:49%;
+}
+
+.ul-info{
+	margin-left: 1em;
+}
+
+.filter-button-wrapper{
+	padding:0;
+}
+
+.search-input-wrapper{
+	width:85% !important;
+}
+
+.search-button-wrapper{
+	width:15% !important;
+}
+
+.padding025em{
+	padding:0.25em !important;
+}
+
+.grid-full-width{
+	margin-top:1em;
+	margin-left:-1em;
+	margin-right:-1em;
+}
+
+.grid-portfolio{
+	text-align:center;
+}
+
+.grid-portfolio a{
+	text-decoration:none;
+}
+
+.grid-portfolio p{
+	margin:0;
+	font-size:0.75em;
+}
+
+#filterlist li{
+	padding: 0 0.5em 0.25em !important;
+}
+
+div.ps-caption-content{
+	text-shadow:none;
+}
+
+.videogallery { list-style: none; padding: 0; margin: 0; }
+.videogallery:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.videogallery li { float: left; width: 33.33333333%; }
+.videogallery li object { display: block; margin: 5px; border: 1px solid #3c3c3c; }
+.videogallery li object embed { display: block; width: 100%; height: auto; }
+.videogallery .ui-content { overflow: hidden; }

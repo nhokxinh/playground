@@ -16,25 +16,24 @@
 
 <div id="main" class="defaultContentWidth{ifset $fullwidth} onecolumn{/ifset}">
 	<div id="wrapper-row">
-		
-		{ifset $fullwidth}
-			<div id="primary" class="">
-				<div id="content" role="main">
-		{else}
-			{if isset($leftSidebarType) && $leftSidebarType == 'home'}
-				{isActiveSidebar sidebar-home-left}
-					<div id="secondary" class="widget-area" role="complementary">
+
+
+					<div id="secondary" class="col-l" role="complementary">
+                        <div class="col-l-t">&nbsp;</div>
+                        <div class="col-l-m">
 						{dynamicSidebar sidebar-home-left}
+                        </div>
+                        <div class="col-l-b">&nbsp;</div>
 					</div>
-					
+					{if isset($leftSidebarType) && $leftSidebarType == 'home'}
 					<div id="primary" class="">
 						<div id="content" role="main" class="home-content-with-left-sidebar">
-				{/isActiveSidebar}
-			{else}
+
+			     {else}
 				<div id="primary" class="">
-					<div id="content" role="main">
-			{/if}
-		{/ifset}
+					<div id="content" role="main" class="home-content-with-left-sidebar">
+			     {/if}
+	
 
 				{ifset $themeOptions->advertising->showBox2}
 	            <div id="advertising-box-2" class="advertising-box">
@@ -48,33 +47,23 @@
 				{include #content}
 				{/ifset}
 			</div><!-- /#content -->
-
 		</div><!-- /#primary -->
-
-		{ifset $fullwidth}
-		{else}
-
-			{if isset($sidebarType) && $sidebarType == 'home'}
-				{isActiveSidebar sidebar-home}
-				<div id="secondary" class="widget-area" role="complementary">
-					{dynamicSidebar sidebar-home}
-				</div>
-				{/isActiveSidebar}
-			{elseif isset($sidebarType) && $sidebarType == 'item'}
+            <?php if (isset($_GET['post_type'])): ?>
+			{if isset($sidebarType) && $sidebarType == 'item'}
 				{isActiveSidebar sidebar-item}
-				<div id="secondary" class="widget-area" role="complementary">
+				<div id="secondary" class="widget-area col-r" role="complementary">
 					{dynamicSidebar sidebar-item}
 				</div>
 				{/isActiveSidebar}
-			{else}
-				{isActiveSidebar sidebar-1}
-				<div id="secondary" class="widget-area" role="complementary">
-					{dynamicSidebar sidebar-1}
+
+			{/if}
+            <?php endif;?>
+            {isActiveSidebar sidebar-home}
+				<div id="secondary" class="widget-area col-r" role="complementary">
+					{dynamicSidebar sidebar-home}
 				</div>
 				{/isActiveSidebar}
-			{/if}
 
-		{/ifset}
 	</div>
 
 </div> <!-- /#main -->
