@@ -219,6 +219,8 @@ class WP_JSON_RPC_Server extends IXR_Server
 			'demo.addTwoNumbers' => 'this:addTwoNumbers',
 			
 			//PlayGround specialized functions
+            'pg.getBeautyList' => 'this:getBeautyList',
+			'pg.getBeauty' => 'this:getBeauty',
 			'pg.getClubList' => 'this:getClubList',
 			'pg.getClub' => 'this:getClub',
 			'pg.getRestaurantList' => 'this:getRestaurantList',
@@ -262,6 +264,165 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	//start messing	
+    
+    function getBeautyList($args){
+		$posts = get_posts(
+			array(
+				'post_type'=>'ait-dir-item',
+				'numberposts'=>10,
+				'offset'=>0,
+				'post_status'=> 'publish',
+				'tax_query'=>array(
+					array(
+						'taxonomy'=>'ait-dir-item-category',
+						'field'=>'slug',
+						'terms'=>'beauty',
+						'include_children'=>true,
+						'operator'=>'AND'
+					)
+				)
+			)
+		);
+		$beauty_list = array();
+		if ($posts){
+			$term_list = array(
+				'ait-dir-item-location',
+				'purpose',
+				'culture',
+				'dishes',
+				'facility',
+				'timeframe',
+				'capacity',
+				'avgprice'
+			);
+			$meta_list = array(
+				'address',
+				'direction',
+				'map',
+				'phone',
+				'url',
+				'servingtime',
+				'holiday',
+				'est',
+				'features'
+			);
+			global $wpdb;
+			foreach($posts as $post){
+				$beauty = array(
+					'id' => $post->ID,
+					'name' => $post->post_title,
+					'thumbnail' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'thumbnail',true),
+					'featured_img' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'full',true),
+					'content' => $post->post_content
+				);
+				foreach ($term_list as $term){
+					$term_sql = "select term.name from $wpdb->terms term, $wpdb->term_taxonomy tax, $wpdb->term_relationships r where term.term_id = tax.term_id and tax.term_taxonomy_id = r.term_taxonomy_id and r.object_id = $post->ID and tax.taxonomy = '$term'";
+					$term_val = $wpdb->get_results($term_sql);
+					// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
+					$beauty[$term] = $term_val[0];
+					if ($term == 'ait-dir-item-location'){
+						$beauty['area'] = $term_val[0]->name;
+					} else {
+						$beauty[$term] = $term_val[0]->name;
+					}
+				}
+				foreach ($meta_list as $meta){
+					$beauty[$meta] = get_post_meta($post->ID, 'pg_restaurant_' . $meta, true);
+				}
+				$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+				$beauty['events'] = array();
+				foreach($events as $event){
+					array_push($beauty['events'],array(
+						'id' => $event->ID,
+						'name' => $event->post_title,
+						'url' => $event->guid
+					));
+				}
+				
+				$$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+				$beauty['address'] = $$beauty_info_option['address'];
+				$beauty['url'] = $beauty_info_option['web'];
+				$beauty['phone'] = $beauty_info_option['telephone'];
+				$beauty['latitude'] = $beauty_info_option['gpsLatitude'];
+				$beauty['longitude'] = $beauty_info_option['gpsLongitude'];
+				$beauty['type'] = 'beauty';
+				
+				array_push($beauty_list,$beauty);
+			}
+		}
+		return $beauty_list;
+	}
+
+	function getBeauty($args){
+		$this->escape( $args );
+		$post_id = $args;
+		$post = get_post($post_id);
+		$beauty = false;
+		if ($post){
+			$term_list = array(
+				'ait-dir-item-location',
+				'purpose',
+				'culture',
+				'dishes',
+				'facility',
+				'timeframe',
+				'capacity',
+				'avgprice'
+			);
+			$meta_list = array(
+				'address',
+				'direction',
+				'map',
+				'phone',
+				'url',
+				'servingtime',
+				'holiday',
+				'est',
+				'features'
+			);
+			$beauty = array(
+				'id' => $post->ID,
+				'name' => $post->post_title,
+				'thumbnail' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'thumbnail',true),
+				'featured_img' => wp_get_attachment_image_src(get_post_meta($post->ID, '_thumbnail_id', true),'full',true),
+				'content' => $post->post_content
+			);
+			global $wpdb;
+			foreach ($term_list as $term){
+				$term_sql = "select term.name from $wpdb->terms term, $wpdb->term_taxonomy tax, $wpdb->term_relationships r where term.term_id = tax.term_id and tax.term_taxonomy_id = r.term_taxonomy_id and r.object_id = $post->ID and tax.taxonomy = '$term'";
+				$term_val = $wpdb->get_results($term_sql);
+				// $term_val = wp_get_post_terms($post->ID, $term, array('fields' => 'names'));
+				$beauty[$term] = $term_val[0];
+				if ($term == 'ait-dir-item-location'){
+					$beauty['area'] = $term_val[0]->name;
+				} else {
+					$beauty[$term] = $term_val[0]->name;
+				}
+			}
+			foreach ($meta_list as $meta){
+				$beauty[$meta] = get_post_meta($post->ID, 'pg_beauty_' . $meta, true);
+			}
+			$events = get_posts(array('post_type'=>array('ait-dir-event'),'meta_key'=>'pg_event_venue','meta_value'=>$post->ID,'numberposts'=>5));
+			$beauty['events'] = array();
+			foreach($events as $event){
+				array_push($beauty['events'],array(
+					'id' => $event->ID,
+					'name' => $event->post_title,
+					'url' => $event->guid
+				));
+			}
+			
+			$$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+			$beauty['address'] = $beauty_info_option['address'];
+			$beauty['url'] = $beauty_info_option['web'];
+			$beauty['phone'] = $beauty_info_option['telephone'];
+			$beauty['latitude'] = $beauty_info_option['gpsLatitude'];
+			$beauty['longitude'] = $beauty_info_option['gpsLongitude'];
+			$beauty['type'] = 'beauty';
+		}
+		return $beauty;
+	}
+    
 	function getClubList($args){
 		$posts = get_posts(
 			array(
@@ -850,7 +1011,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 	
 	function search($args){
 		$this->escape($args);
-		$s = $args;
+		$s = urldecode($args);
 		$query = array(
 			'post_type'=>array('ait-dir-item','ait-dir-event'),
 			'numberposts'=>10,
@@ -862,6 +1023,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		$posts = get_posts($query);
 		
 		$search_results = array();
+
 		foreach ($posts as $post){
 			if ($post->post_type == 'ait-dir-event'){
 				$place = $this->getEvent($post->ID);
