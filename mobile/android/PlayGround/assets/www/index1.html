@@ -24,7 +24,7 @@
 	</head>
 	<body>
 		<div data-role="page" id="indexpage">
-			<div data-role="header" data-position="fixed" data-theme="b" id="header_bar">
+			<div data-role="header" data-position="fixed" data-theme="b">
 				<a href="#menu-panel" data-role="button" data-icon="bars" class="ui-icon-nodisc" data-theme="a" data-iconshadow="false" data-iconpos="notext" data-inline="true"></a>
 				<h1>PlayGround</h1>
 			</div><!-- /header -->
@@ -97,13 +97,13 @@
 				    <div class="ui-block-b">                            
 				    	<a href="inbox.html">
 							<div class="ui-bar ui-bar-b">                      
-								<img src="assets/img/portfolio-icon-salon.png">
+								<img src="assets/img/portfolio-icon-inbox.png">
 								<p>Đẹp</p>
 							</div>                                             
 						</a>                                                    
 				    </div>                                                     
 				    <div class="ui-block-a">                                   
-				    	<a>                                           
+				    	<a href="photogallery.html">                                           
 							<div class="ui-bar ui-bar-b">                      
 								<img src="assets/img/portfolio-icon-gallery.png">
 								<p>Ảnh</p>
@@ -229,7 +229,7 @@
 					}
 	            }
 
-	            //alert($("#header_bar").height() + " - " + $("#indexpage").height() + " - " + $("#page_content").height());
+	            alert($("#indexpage").height() + " - " + $("#page_content").height() + " - " + $("#list_functions").height() + " - " + $("#search_bar").height());
             }
             
 			$('div#indexpage').on('pageshow',function(){
