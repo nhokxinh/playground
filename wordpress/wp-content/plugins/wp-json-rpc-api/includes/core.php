@@ -219,6 +219,8 @@ class WP_JSON_RPC_Server extends IXR_Server
 			'demo.addTwoNumbers' => 'this:addTwoNumbers',
 			
 			//PlayGround specialized functions
+            'pg.getWatchingList' => 'this:getWatchingList',
+			'pg.getWatching' => 'this:getWatching',
             'pg.getBeautyList' => 'this:getBeautyList',
 			'pg.getBeauty' => 'this:getBeauty',
 			'pg.getClubList' => 'this:getClubList',
@@ -264,6 +266,106 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	//start messing	
+    function getWatchingList($args){
+        $event_types = array(
+            'xem', 'cinemas', 'shows'
+        );
+        $category_types = array('xem', 'cinemas', 'shows');
+        $query = array(
+			'post_type'=> array('ait-dir-item','ait-dir-event'),
+			'numberposts'=>10,
+			'offset'=>0,
+			'post_status'=> 'publish',
+            'orderby' => 'post_id',
+            'order' => 'desc',
+			'tax_query'=>array(
+                'relation' => 'OR',
+				array(
+					'taxonomy'=>'ait-dir-item-category',
+					'field'=>'slug',
+					'terms'=>$category_types,
+					'include_children'=>true
+				),
+                array(
+					'taxonomy'=>'event_types',
+					'field'=>'slug',
+					'terms'=> $event_types,
+					'include_children'=>true
+				),
+			)
+		);
+		$posts =  get_posts($query);
+                
+		$watching_list = array();
+		if ($posts){
+			foreach ($posts as $post) {
+			 		if ($post->post_type == 'ait-dir-event'){
+        				$place = $this->getEvent($post->ID);
+        				$place['type'] = 'event';
+        				array_push($watching_list,$place);
+        			} else {
+        				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+        				switch ($category[0]){
+        					case 'nha-hang':
+        						$place = $this->getRestaurant($post->ID);
+        						$place['type'] = 'restaurant';
+        						array_push($watching_list,$place);
+        						break;
+        					case 'mua-sam':
+        						$place = $this->getShopping($post->ID);
+        						$place['type'] = 'shopping';
+        						array_push($watching_list,$place);
+        						break;
+        					case 'barsclubs':
+        						$place = $this->getClub($post->ID);
+        						$place['type'] = 'club';
+        						array_push($watching_list,$place);
+        						break;
+                            default:
+                                $place = $this->getRestaurant($post->ID);
+        						$place['type'] = 'watching';
+        						array_push($watching_list,$place);
+        						break;
+        				}
+        			}
+			}
+		}
+		return $watching_list;
+	}
+	
+	function getWatching($args){
+		$this->escape( $args );
+		$post_id = $args;
+		$post = get_post($post_id);
+		$watching = false;
+		if ($post){
+            if ($post->post_type == 'ait-dir-event'){
+				$watching = $this->getEvent($post->ID);
+				$watching['type'] = 'event';
+			} else {
+				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+				switch ($category[0]){
+					case 'nha-hang':
+						$watching = $this->getRestaurant($post->ID);
+						$watching['type'] = 'restaurant';
+						break;
+					case 'mua-sam':
+						$watching = $this->getShopping($post->ID);
+						$watching['type'] = 'shopping';
+						break;
+					case 'barsclubs':
+						$watching = $this->getClub($post->ID);
+						$watching['type'] = 'club';
+						break;
+                    default:
+                        $watching = $this->getRestaurant($post->ID);
+						$watching['type'] = 'watching';
+						break;
+				}
+			}
+		}
+		return $watching;
+	}
     
     function getBeautyList($args){
 		$posts = get_posts(
