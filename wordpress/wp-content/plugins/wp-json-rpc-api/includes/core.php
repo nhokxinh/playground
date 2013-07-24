@@ -266,6 +266,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	//start messing	
+    
     function getWatchingList($args){
         $event_types = array(
             'xem', 'cinemas', 'shows'
@@ -1408,27 +1409,62 @@ class WP_JSON_RPC_Server extends IXR_Server
 		);
 		
 		$posts = get_posts($query);
+
 		$search_results = array();
 		foreach ($posts as $post){
 			$optionsDir = get_post_meta($post->ID, '_ait-dir-item', true);
-			if (isPointInRadius($radius, $latitude, $longitude, $optionsDir['gpsLatitude'], $optionsDir['gpsLongitude'])){
+            //$distance = isPointInRadius($radius, $latitude, $longitude, $optionsDir['gpsLatitude'], $optionsDir['gpsLongitude']);
+            $distance = getDistance($radius, $latitude, $longitude, $optionsDir['gpsLatitude'], $optionsDir['gpsLongitude']);
+			if ($distance){ // not false
+            //get events with exp_date <= 7
+                $query_event = array(
+                    'post_type' => 'ait-dir-event',
+                    'numberposts' => -1,
+                    'offset' => 0,
+                    'meta_value' => $post->ID,
+                    'post_status' => 'publish'
+                );
+                $events = get_posts($query_event);
+                foreach ($events as $event) {
+                    $optionEvent = get_post_meta($event->ID);
+                    $exp_date = $event->pg_event_expire_date;
+                    $curr_date = date('Y-m-d');
+                    $days = floor( (abs(strtotime($exp_date) - strtotime($curr_date)))/(60*60*24) );
+                    if ($days >= 0 && $days <= 7) {
+                        $place = $this->getEvent($event->ID);
+                        $place['distance'] = $distance;
+                        array_push($search_results, $place);
+                    }
+                }
 				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
 				switch ($category[0]){
 					case 'nha-hang':
 						$place = $this->getRestaurant($post->ID);
 						$place['type'] = 'restaurant';
+                        $place['distance'] = $distance;
 						array_push($search_results,$place);
 						break;
 					case 'mua-sam':
 						$place = $this->getShopping($post->ID);
 						$place['type'] = 'shopping';
+                        $place['distance'] = $distance;
 						array_push($search_results,$place);
 						break;
 					case 'barsclubs':
 						$place = $this->getClub($post->ID);
 						$place['type'] = 'club';
+                        $place['distance'] = $distance;
 						array_push($search_results,$place);
 						break;
+                    default: {
+                        if (in_array($category[0], array('xem', 'beauty', 'shows', 'cinemas'))) {
+                            $place = $this->getWatching($post->ID);
+                            $place['type'] = 'watching';
+                            $place['distance'] = $distance;
+                            array_push($search_results,$place);
+                        }
+                        break;
+                    }
 				}
 			}
 		}
