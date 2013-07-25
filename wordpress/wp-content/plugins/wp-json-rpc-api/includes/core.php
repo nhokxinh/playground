@@ -1187,34 +1187,67 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	function getFilter($agrs){
-		$taxonomies = array(
-			'ait-dir-item-category',
-			'ait-dir-item-location',
-			'purpose',
-			'culture',
-			'dishes',
-			'facility',
-			'timeframe',
-			'avgprice',
-			'capacity',
-			'event_types',
-			'ticketprice'
-		);
+	   if (empty($agrs)) { // first
+	       $taxonomies = array(
+            'ait-dir-item-category',
+            'ait-dir-item-location'
+           );
+	   } else { //
+            $category = ($agrs[0] != '__NULL__')?$agrs[0]:'';
+            $location = ($agrs[1] != '__NULL__')?$agrs[1]:'';
+            if (in_array($category, array('4'))) { // choi : karaoke/bar/club
+                $taxonomies = array(
+        			'ait-dir-item-category',
+        			'ait-dir-item-location',
+        			'entertainment_industry',
+        			'music_style'
+        		);
+            }
+            if (in_array($category, array('3'))) { // Nha hang/ cafe
+                $taxonomies = array(
+        			'ait-dir-item-category',
+        			'ait-dir-item-location',
+        			'culture',
+        			'avgprice'
+        		);
+            }
+            if (in_array($category, array('71', '107', '108'))) { // shows/xem
+                $taxonomies = array(
+        			'ait-dir-item-category',
+        			'ait-dir-item-location',
+        			'watching_type'
+        		);
+            }
+            if (in_array($category, array('5'))) { // mua sam
+                $taxonomies = array(
+        			'ait-dir-item-category',
+        			'ait-dir-item-location',
+        			'merchandise'
+        		);
+            }
+            if (in_array($category, array('109'))) { // Dep
+                $taxonomies = array(
+        			'ait-dir-item-category',
+        			'ait-dir-item-location',
+        			'beauty_service'
+        		);
+            }
+	   }
 		
 		$terms = array();
 		foreach ($taxonomies as $tax){
-			$terms[$tax] = get_terms($tax);
+			$terms[$tax] = get_terms($tax); 
 			$terms['tax_names'][$tax] = get_taxonomy($tax)->label;
 		}
 		return $terms;
 	}
 	
-	function doFilter($args){
+	function doFilter($agrs){
 		$tax_query = array();
 		$query = array(
-			'post_type'=>$args->post_type
+			'post_type'=>$agrs->post_type,
 		);
-		foreach ($args as $taxonomy => $terms ) {
+		foreach ($agrs as $taxonomy => $terms ) {
 			if ($taxonomy != 'post_type'){
 				$query['tax_query'][] = array(
 					'taxonomy' => $taxonomy,
@@ -1226,9 +1259,10 @@ class WP_JSON_RPC_Server extends IXR_Server
 			}
 		}
 		$posts = get_posts($query);
+        
 		$filter_results = array();
 		foreach ($posts as $post){
-			$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
+			$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));var_dump($category[0]);exit;
 			switch ($category[0]){
 				case 'nha-hang':
 					$place = $this->getRestaurant($post->ID);
@@ -1245,6 +1279,14 @@ class WP_JSON_RPC_Server extends IXR_Server
 					$place['type'] = 'restaurant';
 					array_push($filter_results,$place);
 					break;
+                default: {
+                    if (in_array($category[0], array('xem', 'beauty', 'shows', 'cinemas'))) {
+                        $place = $this->getWatching($post->ID);
+                        $place['type'] = 'watching';
+                        array_push($search_results,$place);
+                    }
+                    break;
+                }
 			}
 		}
 		return $filter_results;
