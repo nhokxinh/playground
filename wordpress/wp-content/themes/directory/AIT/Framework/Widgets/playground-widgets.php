@@ -464,15 +464,17 @@ class pg_latest_places extends WP_Widget {
             $query['showposts'] = $instance['number_of_posts'];
         else
             $query['showposts'] = 1;
-
-		$query['tax_query'] = array(
-			array(
-				'taxonomy' => 'ait-dir-item-category',
-				'field' => 'term_id',
-				'terms' => $instance['place_category'],
-				'operator' => 'IN'
-			)
-		);
+            
+        if (trim($instance['place_category']) != '--') {
+    		$query['tax_query'] = array(
+    			array(
+    				'taxonomy' => 'ait-dir-item-category',
+    				'field' => 'term_id',
+    				'terms' => $instance['place_category'],
+    				'operator' => 'IN'
+    			)
+    		);
+        }
 
 		/* START Widget body */
         //if ( isset( $instance['title'] ) ) echo $before_title . $instance['title'] . $after_title;

@@ -515,7 +515,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 				));
 			}
 			
-			$$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+			$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
 			$beauty['address'] = $beauty_info_option['address'];
 			$beauty['url'] = $beauty_info_option['web'];
 			$beauty['phone'] = $beauty_info_option['telephone'];
@@ -1445,7 +1445,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		
 		$query = array(
 			'post_type'=>array('ait-dir-item'),
-			'numberposts'=>-1,
+			'numberposts'=>10,
 			'offset'=>0,
 			'post_status'=> 'publish'
 		);
@@ -1461,7 +1461,7 @@ class WP_JSON_RPC_Server extends IXR_Server
             //get events with exp_date <= 7
                 $query_event = array(
                     'post_type' => 'ait-dir-event',
-                    'numberposts' => -1,
+                    'numberposts' => 10,
                     'offset' => 0,
                     'meta_value' => $post->ID,
                     'post_status' => 'publish'
@@ -1470,12 +1470,18 @@ class WP_JSON_RPC_Server extends IXR_Server
                 foreach ($events as $event) {
                     $optionEvent = get_post_meta($event->ID);
                     $exp_date = $event->pg_event_expire_date;
-                    $curr_date = date('Y-m-d');
-                    $days = floor( (abs(strtotime($exp_date) - strtotime($curr_date)))/(60*60*24) );
-                    if ($days >= 0 && $days <= 7) {
-                        $place = $this->getEvent($event->ID);
-                        $place['distance'] = $distance;
-                        array_push($search_results, $place);
+                    if (trim($exp_date) != "") {  
+                        $arrExp = explode('-', $exp_date);
+                        $check = checkdate($arrExp[1], $arrExp[2], $arrExp[0]);
+                        if ($check) {
+                            $curr_date = date('Y-m-d');
+                            $days = floor( (abs(strtotime($exp_date) - strtotime($curr_date)))/(60*60*24) );
+                            if ($days >= 0 && $days <= 7) {
+                                $place = $this->getEvent($event->ID);
+                                $place['distance'] = $distance;
+                                array_push($search_results, $place);
+                            }
+                        }
                     }
                 }
 				$category = wp_get_post_terms($post->ID,'ait-dir-item-category',array('fields'=>'slugs'));
