@@ -268,6 +268,14 @@ class WP_JSON_RPC_Server extends IXR_Server
 	//start messing	
     
     function getWatchingList($args){
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
         $event_types = array(
             'xem', 'cinemas', 'shows'
         );
@@ -275,7 +283,7 @@ class WP_JSON_RPC_Server extends IXR_Server
         $query = array(
 			'post_type'=> array('ait-dir-item','ait-dir-event'),
 			'numberposts'=>10,
-			'offset'=>0,
+			'offset'=>$offset,
 			'post_status'=> 'publish',
             'orderby' => 'post_id',
             'order' => 'desc',
@@ -369,11 +377,19 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
     
     function getBeautyList($args){
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
 		$posts = get_posts(
 			array(
 				'post_type'=>'ait-dir-item',
 				'numberposts'=>10,
-				'offset'=>0,
+				'offset'=>$offset,
 				'post_status'=> 'publish',
 				'tax_query'=>array(
 					array(
@@ -442,8 +458,8 @@ class WP_JSON_RPC_Server extends IXR_Server
 					));
 				}
 				
-				$$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
-				$beauty['address'] = $$beauty_info_option['address'];
+				$beauty_info_option = get_post_meta($post->ID, '_ait-dir-item', true);
+				$beauty['address'] = $beauty_info_option['address'];
 				$beauty['url'] = $beauty_info_option['web'];
 				$beauty['phone'] = $beauty_info_option['telephone'];
 				$beauty['latitude'] = $beauty_info_option['gpsLatitude'];
@@ -527,11 +543,19 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
     
 	function getClubList($args){
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
 		$posts = get_posts(
 			array(
 				'post_type'=>'ait-dir-item',
 				'numberposts'=>10,
-				'offset'=>0,
+				'offset'=>$offset,
 				'post_status'=> 'publish',
 				'tax_query'=>array(
 					array(
@@ -674,11 +698,20 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	function getRestaurantList($args){
+		$this->escape( $args );
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
 		$posts = get_posts(
 			array(
 				'post_type'=>'ait-dir-item',
 				'numberposts'=>10,
-				'offset'=>0,
+				'offset'=>$offset,
 				'post_status'=> 'publish',
 				'tax_query'=>array(
 					array(
@@ -832,11 +865,19 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	function getShoppingList($args){
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
 		$posts = get_posts(
 			array(
 				'post_type'=>'ait-dir-item',
 				'numberposts'=>10,
-				'offset'=>0,
+				'offset'=>$offset,
 				'post_status'=> 'publish',
 				'tax_query'=>array(
 					array(
@@ -980,7 +1021,15 @@ class WP_JSON_RPC_Server extends IXR_Server
 	}
 	
 	function getEventList($args){
-		$posts = get_posts(array('post_type'=>'ait-dir-event','numberposts'=>10,'offset'=>0,'post_status'=> 'publish'));
+		$offset = 0;
+		if($args) {
+			$offset = $args;
+		}
+		else {
+			$offset = 0;
+		}
+		
+		$posts = get_posts(array('post_type'=>'ait-dir-event','numberposts'=>10,'offset'=>$offset,'post_status'=> 'publish'));
 		$event_list = array();
 		if ($posts){
 			$term_list = array(
@@ -1180,6 +1229,14 @@ class WP_JSON_RPC_Server extends IXR_Server
 						$ret_post = $this->getClub($post->ID);
 						$ret_post['type'] = 'club';
 						break;
+					case 'xem':
+						$ret_post = $this->getWatching($post->ID);
+						$ret_post['type'] = 'xem';
+						break;
+					case 'beauty':
+						$ret_post = $this->getBeauty($post->ID);
+						$ret_post['type'] = 'beauty';
+						break;
 				}
 			}
 		}
@@ -1303,7 +1360,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		);
 	
 		if (username_exists($phone_number)){
-			$res['error_msg'] = 'Đăng ký không thành công: Tài khoản đã tồn tại.';
+			$res['error_msg'] = '�ang k� kh�ng th�nh c�ng: T�i kho?n d� t?n t?i.';
 		} else {
 			$user_id = wp_create_user($phone_number,$pwd);
 			add_user_meta($user_id,'pg_user_phone_number',$phone_number,true);
@@ -1340,7 +1397,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 			);
 			$user = wp_signon($creds,false);
 			if (is_wp_error($user)){
-				$res['error_msg'] = 'Đăng nhập không thành công. Xin thử lại.';
+				$res['error_msg'] = '�ang nh?p kh�ng th�nh c�ng. Xin th? l?i.';
 			} else {
 				global $wpdb;
 				$msgs = $wpdb->get_results( 'SELECT p.`id`, p.`sender`, p.`subject`, p.`content`, p.`post_id`, p.`read`, p.`date`, post.`post_title` FROM ' . $wpdb->prefix . 'pm p, '. $wpdb->prefix . 'posts post WHERE p.`recipient` = "' . $user->user_login . '" AND p.`deleted` != "2" AND p.`post_id` = post.`ID` ORDER BY p.`date` DESC' );
@@ -1368,7 +1425,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 				$res['user_id'] = $user->ID;
 			}
 		} else {
-			$res['error_msg'] = 'Số điện thoại không hợp lệ.';
+			$res['error_msg'] = 'S? di?n tho?i kh�ng h?p l?.';
 		}
 		
 		return $res;
@@ -1445,7 +1502,7 @@ class WP_JSON_RPC_Server extends IXR_Server
 		
 		$query = array(
 			'post_type'=>array('ait-dir-item'),
-			'numberposts'=>10,
+			'numberposts'=>-1,
 			'offset'=>0,
 			'post_status'=> 'publish'
 		);
@@ -1461,7 +1518,7 @@ class WP_JSON_RPC_Server extends IXR_Server
             //get events with exp_date <= 7
                 $query_event = array(
                     'post_type' => 'ait-dir-event',
-                    'numberposts' => 10,
+                    'numberposts' => -1,
                     'offset' => 0,
                     'meta_value' => $post->ID,
                     'post_status' => 'publish'
